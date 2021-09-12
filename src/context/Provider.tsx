@@ -4,6 +4,7 @@ import { router } from "../router"
 
 export const _NAVIGATE = registerRouterDOM(router)
 
+//console.log({ _NAVIGATE })
 export const CTX = createContext(null)
 
 export const Provider = ({ children }) => {

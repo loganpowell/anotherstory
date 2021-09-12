@@ -9,7 +9,9 @@ import { log$ } from "@-0/browser"
 import { out$ } from "@-0/spool"
 import { trace } from "@thi.ng/rstream"
 import { ThemeProvider } from "@emotion/react"
-// log$.subscribe(trace("log$:"))
+
+// 🧐 inspect
+//log$.subscribe(trace("log$:"))
 
 //console.log("all subs:", out$.topics.entries())
 

@@ -44,7 +44,7 @@ export const View = ({ store = $store$ }) => {
 
     // @ts-ignore
     const data = getIn(state, path)
-    console.log({ Page, data, loading, ...getScrollPos() })
+    //console.log({ Page, data, loading, ...getScrollPos() })
 
     return (
         <AnimatePresence

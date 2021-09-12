@@ -49,7 +49,7 @@ export function Item({ id, data, ...props }) {
                         <h2>{title}</h2>
                     </motion.div>
                     <motion.div className="content-container" animate>
-                        <LoremIpsum p={6} avgWordsPerSentence={6} avgSentencesPerParagraph={4} />
+                        <LoremIpsum p={2} avgWordsPerSentence={6} avgSentencesPerParagraph={4} />
                     </motion.div>
                 </motion.div>
             </div>
