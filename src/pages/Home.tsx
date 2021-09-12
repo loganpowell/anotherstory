@@ -1,14 +1,20 @@
 import React from "react"
-import { Header, Link, NavColl } from "../components"
+import { Header, Link, FloodButton } from "../components"
 
 export const Home = ({ data }) => {
     //console.log({ data })
     return (
         <>
             {/*<Header />*/}
-            <NavColl>Howdy</NavColl>
+            <FloodButton>===</FloodButton>
             <pre
-                style={{ color: "white", fontSize: "2rem", maxWidth: "800px", overflow: "hidden" }}
+                style={{
+                    color: "white",
+                    fontSize: "1rem",
+                    maxWidth: "800px",
+                    overflow: "hidden",
+                    fontFamily: "Bitter",
+                }}
             >
                 {JSON.stringify(data, null, 4)}
             </pre>

@@ -7,10 +7,10 @@ import { URL2obj, obj2URL } from "@-0/utils"
 import { motion } from "framer-motion"
 //import styled from "@emotion/styled"
 
-const getScrollPos = () => ({
-    [API.SCROLL_X]: window.scrollX,
-    [API.SCROLL_Y]: window.scrollY,
-})
+//const getScrollPos = () => ({
+//    [API.SCROLL_X]: window.scrollX,
+//    [API.SCROLL_Y]: window.scrollY,
+//})
 
 //console.log({ _NAVIGATE })
 export const Link = ({ href, children = "", ...props }) => {
@@ -61,7 +61,6 @@ export const Link = ({ href, children = "", ...props }) => {
                     [API.CMD_ARGS]: {
                         [API.URL_FULL]: e.currentTarget.href,
                         [API.DOM_NODE]: me.current,
-                        [API.PUSH_STATE]: getScrollPos(),
                     },
                 })
             }}

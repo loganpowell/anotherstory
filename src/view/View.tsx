@@ -48,12 +48,12 @@ export const View = ({ store = $store$ }) => {
 
     return (
         <AnimatePresence
-        //exitBeforeEnter
-        //onExitComplete={() => {
-        //    console.log("scrollposition before:", getScrollPos())
-        //    window.scrollTo({ top: 0 })
-        //    console.log("scrollposition after:", getScrollPos())
-        //}}
+            exitBeforeEnter
+            //onExitComplete={() => {
+            //    console.log("scrollposition before:", getScrollPos())
+            //    window.scrollTo({ top: 0 })
+            //    console.log("scrollposition after:", getScrollPos())
+            //}}
         >
             {!loading && <Page data={data} />}
         </AnimatePresence>

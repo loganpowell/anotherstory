@@ -1,45 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { space, color, typography, layout, shadow } from "styled-system"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { theme } from "../theme"
-
-const Div = styled(motion.div)`
-    ${space}
-    ${color}
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: fit-conte;
-    height: fit-content;
-    overflow: hidden;
-    resize: both;
-    background: blue;
-    box-shadow: 0 0 0 200vmax red;
-    clip-path: circle(71%);
-    margin: 100px auto;
-`
 
 const StyMoDiv = styled(motion.div)(
     {
         position: "absolute",
-        top: "10px",
-        right: "10px",
+        top: "2rem",
+        right: "1rem",
         width: "fit-conte",
         height: "fit-content",
-        overflow: "hidden",
+        //overflow: "hidden",
         resize: "both",
         background: theme.colors.muted,
+        fontFamily: "Fira Code",
+        //fontWeight: 800,
+        transform: "rotate(-45deg)",
         boxShadow: `0 0 0 200vmax ${theme.colors.muted}`,
         clipPath: "circle(71%)",
         cursor: "pointer",
-    },
-    shadow,
-    color,
-    space,
-    layout
+    }
+    //shadow,
+    //color,
+    //space,
+    //layout
 )
-export const NavColl = ({ children, ...props }) => {
+
+export const FloodButton = ({ children, ...props }) => {
+    const [menuOpen, setMenuOpen] = useState(false)
+
     return (
         <div style={{ position: "relative" }}>
             <StyMoDiv {...props} color="black">
