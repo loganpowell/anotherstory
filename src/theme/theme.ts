@@ -15,7 +15,9 @@
  * - space
  */
 
-export const breakpoints = ["640px", "768px", "1024px", "1280px"]
+export const bps = [640, 768, 1024, 1280]
+export const breakpoints = bps.map(bp => `${bp}px`)
+//export const breakpoints = ["640px", "768px", "1024px", "1280px"]
 
 export const borderWidths = {
     px: "1px",

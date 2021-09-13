@@ -1,19 +1,34 @@
 import React from "react"
 import { Header, Link, FloodButton } from "../components"
 
+const nav_items = [
+    {
+        title: "Financing Options",
+        url: "./financing",
+    },
+    {
+        title: "The Process",
+        url: "./process",
+    },
+    {
+        title: "About",
+        url: "./about",
+    },
+]
+
 export const Home = ({ data }) => {
     //console.log({ data })
     return (
         <>
             {/*<Header />*/}
-            <FloodButton>===</FloodButton>
+            <FloodButton items={nav_items} />
             <pre
                 style={{
                     color: "white",
                     fontSize: "1rem",
                     maxWidth: "800px",
                     overflow: "hidden",
-                    fontFamily: "Bitter",
+                    fontFamily: "fira code",
                 }}
             >
                 {JSON.stringify(data, null, 4)}
