@@ -30,7 +30,6 @@ export const make_responsive = settings => {
                     (i >= 2 && d[i - 2]) ||
                     (i >= 3 && d[i - 3]) ||
                     (i >= 4 && d[i - 4]) ||
-                    (i >= 5 && d[i - 5]) ||
                     (i >= 0 && d[i + 1]) ||
                     (i >= 0 && d[i + 2]) ||
                     (i >= 0 && d[i + 3]),

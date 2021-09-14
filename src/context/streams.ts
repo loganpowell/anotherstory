@@ -2,21 +2,21 @@ import { fromDOMEvent, trace, debounce } from "@thi.ng/rstream"
 import { map } from "@thi.ng/transducers"
 import { bps, breakpoints, bp_sizes } from "../theme"
 
-const resize$ = fromDOMEvent(window, "resize")
+const resize$ = fromDOMEvent(window.visualViewport, "resize")
 
 export const size$ = resize$.transform({
     xform: map(e =>
         //@ts-ignore
-        ({ x: e.target.innerWidth, y: e.target.innerHeight })
+        ({ x: e.target.width, y: e.target.height })
     ),
 })
 
 // Get the party started on load
 resize$ //@ts-ignore
-    .next({ target: { innerWidth: window.innerWidth, innerHeight: window.innerHeight } })
+    .next({ target: { width: window.visualViewport.width, width: window.visualViewport.height } })
 
 export const breakpoint$ = size$.map(({ x, y }) => {
-    //console.log({ x, y })
+    console.log({ x, y })
     switch (true) {
         case x < bps[0]:
             return bp_sizes[0]

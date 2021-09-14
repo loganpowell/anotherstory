@@ -26,7 +26,9 @@ export const Home = ({ data }) => {
                 style={{
                     color: "white",
                     fontSize: "1rem",
-                    maxWidth: "800px",
+                    width: "100px",
+                    //width: "100px",
+                    //display: "block",
                     overflow: "hidden",
                     fontFamily: "fira code",
                 }}
