@@ -22,19 +22,25 @@ export const Home = ({ data }) => {
         <>
             {/*<Header />*/}
             <FloodButton items={nav_items} />
-            <pre
+            <div
                 style={{
-                    color: "white",
-                    fontSize: "1rem",
-                    width: "100px",
-                    //width: "100px",
-                    //display: "block",
                     overflow: "hidden",
-                    fontFamily: "fira code",
+                    width: "100vw",
+                    position: "relative",
                 }}
             >
-                {JSON.stringify(data, null, 4)}
-            </pre>
+                <pre
+                    style={{
+                        color: "white",
+                        fontSize: "1rem",
+                        width: "100%",
+                        //display: "block",
+                        fontFamily: "fira code",
+                    }}
+                >
+                    {JSON.stringify(data, null, 4)}
+                </pre>
+            </div>
             <Link href="./magic-move">Magic Move</Link>
         </>
     )

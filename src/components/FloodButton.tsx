@@ -1,74 +1,54 @@
-import React, { useEffect, useLayoutEffect, useState, useContext } from "react"
-import styled from "@emotion/styled"
-import { motion, AnimatePresence, useCycle } from "framer-motion"
-import { theme, bps, make_responsive } from "../theme"
-import { size$, breakpoint$, CTX } from "../context"
-//import { MenuToggle } from "../elements"
+import React, { useEffect, useLayoutEffect, useState, useContext, useCallback } from "react"
+import styled, { StyledTags } from "@emotion/styled"
+import { motion, AnimatePresence, useCycle, useViewportScroll } from "framer-motion"
+import { theme, bps } from "../theme"
+import { make_responsive } from "../for-export"
+import { CTX } from "../context"
+import { MenuIcon } from "../elements"
+import { Card } from "./Cards"
 
 interface IFlex {
     size?: string
-    css?: any
+    styledWith?: React.CSSProperties
 }
 
 const responsive_bg = make_responsive(["red", "grey", "green", "blue"])
 
-const CircumscribedShadow = styled(motion.div)<IFlex>(({ size, css }) => ({
-    position: "absolute",
+export const moStyled = (element: keyof JSX.IntrinsicElements) => styled(motion[element])
+
+const Circumscribed = styled(motion.div)<IFlex>(({ size, styledWith }) => ({
+    position: "fixed",
     resize: "both",
     zIndex: 10,
     boxShadow: `0 0 0 200vmax ${responsive_bg(size) || theme.colors.muted}`,
     clipPath: "circle(72%)",
     cursor: "pointer",
     backgroundColor: responsive_bg(size) || theme.colors.muted,
-    ...css,
+    ...styledWith,
 }))
 
-const MenuButton = ({ trigger, ...props }) => {
+const MenuClosed = ({ trigger, ...props }) => {
     const { size } = useContext(CTX)
 
     return (
-        <CircumscribedShadow
+        <Circumscribed
             {...props}
             size={size}
-            css={{
+            styledWith={{
                 width: "2rem",
                 height: "2rem",
                 top: "2rem",
                 right: "2rem",
             }}
             layoutId="flood"
-            initial="initial"
-            animate="animate"
             onClick={() => trigger(true)}
         >
             {null}
-            {/*<MenuToggle toggle={() => trigger(true)} right={0} />*/}
-        </CircumscribedShadow>
+        </Circumscribed>
     )
 }
 
-const list_variant = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-        transition: {
-            //ease: "linear",
-            //duration: 1,
-            //delay: 1,
-            staggerChildren: 0.2,
-            delayChildren: 0.2,
-        },
-    },
-    exit: {
-        transition: {
-            staggerChildren: 0.2,
-            staggerDirection: -1,
-        },
-    },
-}
-
+// TODO: export
 const getFloodDims = () => {
     const x = window.visualViewport.width
     const y = window.visualViewport.height
@@ -83,113 +63,66 @@ const getFloodDims = () => {
     }
 }
 
-const MenuFlood = ({ trigger, children, ...props }) => {
+const MenuItems = styled(motion.ul)({
+    boxSizing: "border-box",
+    width: "auto",
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "left",
+    padding: "8px",
+    overflow: "hidden",
+})
+
+const MenuOpen = ({ trigger, children, ...props }) => {
+    const { scrollY } = useViewportScroll()
+    const closeMe = useCallback(e => trigger(false), [trigger])
+    useEffect(() => {
+        //console.log({ scrollY })
+        document.addEventListener("scroll", closeMe)
+        return () => document.removeEventListener("scroll", closeMe)
+    }, [scrollY, trigger, closeMe])
+
     const { size } = useContext(CTX)
     const { height, right, width } = getFloodDims()
     return (
-        <CircumscribedShadow
+        <Circumscribed
             {...props}
+            key="open"
             size={size}
-            css={{
+            styledWith={{
                 width,
                 height,
                 top: 0,
                 right,
+                overflow: "hidden",
             }}
             layoutId="flood"
+            variants={{
+                open: {
+                    opacity: 1,
+                    transition: {
+                        delayChildren: 0.1,
+                        staggerChildren: 0.1,
+                    },
+                },
+                closed: {
+                    opacity: 0,
+                    transition: {
+                        delayChildren: 0.2,
+                        staggerChildren: 0.1,
+                        //staggerDirection: -1,
+                        when: "afterChildren",
+                    },
+                },
+            }}
+            initial="closed"
+            animate="open"
             onClick={() => trigger(false)}
         >
-            <AnimatePresence exitBeforeEnter>
-                <motion.ul
-                    variants={list_variant}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    style={{
-                        boxSizing: "border-box",
-                        width: "aut0",
-                        height: "500px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "8px",
-                        //backgroundColor: "#ffffff",
-                        overflow: "hidden",
-                    }}
-                >
-                    {children}
-                </motion.ul>
-                {/*<MenuToggle toggle={trigger} right={right} />*/}
-            </AnimatePresence>
-        </CircumscribedShadow>
-    )
-}
-
-const list_item_variant = i => ({
-    initial: {
-        top: -200,
-    },
-    animate: {
-        top: i * 20 + 10,
-    },
-    exit: {
-        top: -200,
-    },
-})
-
-const Path = props => (
-    <motion.path
-        fill="transparent"
-        strokeWidth="3"
-        stroke="#000000"
-        strokeLinecap="round"
-        {...props}
-    />
-)
-
-export const MenuToggle = ({ toggle, isOpen, ...props }) => {
-    return (
-        <motion.button
-            onClick={toggle}
-            style={{
-                position: "absolute",
-                width: "2rem",
-                height: "2rem",
-                top: "2rem",
-                right: "2rem",
-                //textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: 100,
-            }}
-            animate={isOpen ? "animate" : "initial"}
-            {...props}
-        >
-            <svg width="23" height="18" viewBox="0 0 23 18">
-                <Path
-                    variants={{
-                        initial: { d: "M 2 2.5 L 20 2.5" },
-                        animate: { d: "M 3 16.5 L 17 2.5" },
-                    }}
-                />
-                <Path
-                    d="M 2 9.423 L 20 9.423"
-                    variants={{
-                        initial: { opacity: 1 },
-                        animate: { opacity: 0 },
-                    }}
-                    transition={{ duration: 0.1 }}
-                />
-                <Path
-                    variants={{
-                        initial: { d: "M 2 16.346 L 20 16.346" },
-                        animate: { d: "M 3 2.5 L 17 16.346" },
-                    }}
-                />
-            </svg>
-        </motion.button>
+            <MenuItems>{children}</MenuItems>
+        </Circumscribed>
     )
 }
 
@@ -197,29 +130,45 @@ const _items = items =>
     items.map((ch, i) => (
         <motion.li
             key={"cl-" + i}
-            layoutId={"cl-" + i}
-            variants={list_item_variant(i)} //
-            exit="exit"
+            variants={{
+                open: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                        type: "spring",
+                        damping: 100,
+                        mass: 2,
+                        stiffness: 1000,
+                    },
+                    z: 100,
+                },
+                closed: {
+                    y: -5000,
+                    opacity: 0,
+                    z: 0,
+                },
+            }}
+            exit={{
+                scale: 0,
+            }}
         >
-            <a
-                style={{
-                    color: "white",
-                }}
+            <Card
+                img={process.env.PUBLIC_URL + "/images/peach.jpg"}
                 href={ch.url}
-            >
-                {ch.title}
-            </a>
+                title={ch.title}
+            />
         </motion.li>
     ))
+
 export const FloodButton = ({ items, ...props }) => {
-    const [menuOpen, setMenuOpen] = useCycle(false, true)
+    const [menuOpen, setMenuOpen] = useState(false)
 
     return (
         <div style={{ position: "relative" }}>
-            <MenuToggle toggle={setMenuOpen} isOpen={menuOpen} />
-            <AnimatePresence exitBeforeEnter>
-                {(menuOpen && <MenuFlood trigger={setMenuOpen}>{_items(items)}</MenuFlood>) || (
-                    <MenuButton trigger={setMenuOpen}>{_items(items)}</MenuButton>
+            <MenuIcon toggle={setMenuOpen} isOpen={menuOpen} />
+            <AnimatePresence>
+                {(menuOpen && <MenuOpen trigger={setMenuOpen}>{_items(items)}</MenuOpen>) || (
+                    <MenuClosed trigger={setMenuOpen}>{_items(items)}</MenuClosed>
                 )}
             </AnimatePresence>
         </div>

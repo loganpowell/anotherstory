@@ -54,7 +54,7 @@ const getItems = async () => {
         image: image[0].url,
         title,
     }))
-    //console.log({ parsed })
+
     return await parsed
 }
 //console.log({ base })
@@ -77,7 +77,7 @@ export const urlToPageConfig = async URL => {
             { page: () => Magic, data: getItems },
         ],
         [
-            { ...match, [_PATH.length === 2 && "_PATH"]: ["magic-move", _2] },
+            { ...match, _PATH: ["magic-move", _2] },
             { page: () => Move, data: getItems },
         ],
     ]).get(match) || {
