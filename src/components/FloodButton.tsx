@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState, useContext, useCallback } from "react"
 import styled, { StyledTags } from "@emotion/styled"
-import { motion, AnimatePresence, useCycle, useViewportScroll } from "framer-motion"
+import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
 import { theme, bps } from "../theme"
 import { make_responsive } from "../for-export"
 import { CTX } from "../context"
@@ -12,11 +12,21 @@ interface IFlex {
     styledWith?: React.CSSProperties
 }
 
-const responsive_bg = make_responsive(["red", "grey", "green", "blue"])
+const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
+
+//
+//                                                 d8    d8b
+//   e88~~8e  Y88b  /  888-~88e   e88~-_  888-~\ _d88__ !Y88!
+//  d888  88b  Y88b/   888  888b d888   i 888     888    Y8Y
+//  8888__888   Y88b   888  8888 8888   | 888     888     8
+//  Y888    ,   /Y88b  888  888P Y888   ' 888     888     e
+//   "88___/   /  Y88b 888-_88"   "88_-~  888     "88_/  "8"
+//                     888
+//
 
 export const moStyled = (element: keyof JSX.IntrinsicElements) => styled(motion[element])
 
-const Circumscribed = styled(motion.div)<IFlex>(({ size, styledWith }) => ({
+const Circumscribed = moStyled("div")<IFlex>(({ size, styledWith }) => ({
     position: "fixed",
     resize: "both",
     zIndex: 10,
@@ -63,19 +73,31 @@ const getFloodDims = () => {
     }
 }
 
-const MenuItems = styled(motion.ul)({
+const ease = {
+    //type: "spring",
+    //damping: 100,
+    //mass: 2,
+    //stiffness: 1000,
+    type: "ease",
+    ease: [0.6, 0.01, -0.05, 0.95],
+}
+const MoList = ({ children, ...props }) => {
+    return <motion.ul {...props}>{children}</motion.ul>
+}
+const MenuItems = styled(MoList)({
     boxSizing: "border-box",
     width: "auto",
     height: "100vh",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "left",
-    padding: "8px",
     overflow: "hidden",
+    padding: "90px 5%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
 })
 
-const MenuOpen = ({ trigger, children, ...props }) => {
+const MenuOpen = ({ trigger, isOpen, children, ...props }) => {
+    const { size } = useContext(CTX)
     const { scrollY } = useViewportScroll()
     const closeMe = useCallback(e => trigger(false), [trigger])
     useEffect(() => {
@@ -84,7 +106,7 @@ const MenuOpen = ({ trigger, children, ...props }) => {
         return () => document.removeEventListener("scroll", closeMe)
     }, [scrollY, trigger, closeMe])
 
-    const { size } = useContext(CTX)
+    //console.log("MenuOpen'd:", { isOpen })
     const { height, right, width } = getFloodDims()
     return (
         <Circumscribed
@@ -101,24 +123,25 @@ const MenuOpen = ({ trigger, children, ...props }) => {
             layoutId="flood"
             variants={{
                 open: {
-                    opacity: 1,
+                    //opacity: 1,
                     transition: {
-                        delayChildren: 0.1,
-                        staggerChildren: 0.1,
+                        delayChildren: 0.2,
+                        staggerChildren: 0.2,
                     },
                 },
                 closed: {
-                    opacity: 0,
+                    //opacity: 0,
                     transition: {
-                        delayChildren: 0.2,
-                        staggerChildren: 0.1,
-                        //staggerDirection: -1,
+                        delay: 0.2,
+                        ...ease,
+                        staggerChildren: 0.2,
                         when: "afterChildren",
                     },
                 },
             }}
             initial="closed"
             animate="open"
+            exit="closed"
             onClick={() => trigger(false)}
         >
             <MenuItems>{children}</MenuItems>
@@ -126,30 +149,26 @@ const MenuOpen = ({ trigger, children, ...props }) => {
     )
 }
 
-const _items = items =>
-    items.map((ch, i) => (
+const MoCard = ({ ch, ...props }) => {
+    const { height, right, width } = getFloodDims()
+
+    console.log({ height, right, width })
+    return (
         <motion.li
-            key={"cl-" + i}
+            {...props}
+            layout
+            //layoutId={"li" + ch.title}
             variants={{
                 open: {
-                    y: 0,
-                    opacity: 1,
-                    transition: {
-                        type: "spring",
-                        damping: 100,
-                        mass: 2,
-                        stiffness: 1000,
-                    },
-                    z: 100,
+                    x: 0,
+                    //z: 100,
                 },
                 closed: {
-                    y: -5000,
-                    opacity: 0,
-                    z: 0,
+                    x: width,
+                    transition: {
+                        ...ease,
+                    },
                 },
-            }}
-            exit={{
-                scale: 0,
             }}
         >
             <Card
@@ -158,7 +177,9 @@ const _items = items =>
                 title={ch.title}
             />
         </motion.li>
-    ))
+    )
+}
+const _items = items => items.map((ch, i) => <MoCard key={"cl-" + i} ch={ch} i={i} />)
 
 export const FloodButton = ({ items, ...props }) => {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -166,10 +187,17 @@ export const FloodButton = ({ items, ...props }) => {
     return (
         <div style={{ position: "relative" }}>
             <MenuIcon toggle={setMenuOpen} isOpen={menuOpen} />
-            <AnimatePresence>
-                {(menuOpen && <MenuOpen trigger={setMenuOpen}>{_items(items)}</MenuOpen>) || (
-                    <MenuClosed trigger={setMenuOpen}>{_items(items)}</MenuClosed>
-                )}
+            <AnimatePresence
+                onExitComplete={() => {
+                    console.log("I'm out!")
+                }}
+                exitBeforeEnter
+            >
+                {(menuOpen && (
+                    <MenuOpen isOpen={menuOpen} trigger={setMenuOpen} key="open">
+                        {_items(items)}
+                    </MenuOpen>
+                )) || <MenuClosed trigger={setMenuOpen}>{_items(items)}</MenuClosed>}
             </AnimatePresence>
         </div>
     )
