@@ -1,11 +1,13 @@
 import React, { useEffect, useLayoutEffect, useState, useContext, useCallback } from "react"
 import styled, { StyledTags } from "@emotion/styled"
 import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
-import { theme, bps } from "../theme"
+import { theme } from "../theme"
 import { make_responsive } from "../for-export"
 import { CTX } from "../context"
 import { micons } from "../elements"
 import { Card } from "./Cards"
+import { StyledAs } from "../for-export"
+import * as CSS from "csstype"
 
 const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
 
@@ -22,11 +24,12 @@ export const moStyled = (element: keyof JSX.IntrinsicElements) => styled(motion[
 
 interface IFlex {
     size?: string
-    styledWith?: React.CSSProperties
+    styledWith?: CSS.Properties
 }
 
 const CenterButton = moStyled("button")(
-    ({ size, styledWith }: { size: string; styledWith: React.CSSProperties }) => ({
+    //@ts-ignore
+    ({ size, styledWith }: { size: string; styledWith: CSS.Properties }) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

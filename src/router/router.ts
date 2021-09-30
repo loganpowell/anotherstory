@@ -69,7 +69,7 @@ export const urlToPageConfig = async URL => {
             { ...match, _PATH: [] },
             {
                 page: () => Home,
-                data: async () => ({ items: await getItems() }),
+                data: async () => ({ items: [] }),
             },
         ],
         [

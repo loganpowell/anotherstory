@@ -1,13 +1,44 @@
 import React, { useContext } from "react"
 import { motion, MotionStyle } from "framer-motion"
-import styled from "@emotion/styled"
+import styled, { CreateStyled } from "@emotion/styled"
 import { isFunction, isArray } from "@thi.ng/checks"
 import { make_responsive, default_tshirt_sizes } from "./responsive"
 import { CTX } from "../context"
 
+import * as CSS from "csstype"
+
+// TODO: Move to ./responsive
+type RArr = (string | number)[]
+type RFun = (props: React.ReactPropTypes, theme: Record<string, any>) => null
+type Responsive = RArr | RFun
+
+// https://github.com/frenic/csstype#what-should-i-do-when-i-get-type-errors
+declare module "csstype" {
+    interface Properties {
+        // Add a missing property
+        //WebkitRocketLauncher?: string;
+
+        lineHeight?: CSS.Property.LineHeight | Responsive
+        color?: CSS.Property.Color | Responsive
+        fontSize?: CSS.Property.FontSize | Responsive
+        width?: CSS.Property.Width | Responsive
+        height?: CSS.Property.Height | Responsive
+        padding?: CSS.Property.Padding | Responsive
+        paddingTop?: CSS.Property.PaddingTop | Responsive
+        paddingBottom?: CSS.Property.PaddingBottom | Responsive
+        paddingRight?: CSS.Property.PaddingRight | Responsive
+        paddingLeft?: CSS.Property.PaddingLeft | Responsive
+        // Add a CSS Custom Property
+        //'--theme-color'?: 'black' | 'white';
+
+        // ...or allow any other property
+        //[index: string]: any;
+    }
+}
+
 interface IFlex {
     size?: string
-    style?: React.CSSProperties
+    style?: CSS.Properties
 }
 
 //
@@ -21,17 +52,23 @@ interface IFlex {
 //
 export const moStyled = (element: keyof JSX.IntrinsicElements) => styled(motion[element])
 
+type PropsOf<Tag> = Tag extends keyof JSX.IntrinsicElements
+    ? JSX.IntrinsicElements[Tag]
+    : Tag extends React.ComponentType<infer Props>
+    ? Props & JSX.IntrinsicAttributes
+    : never
+
 export const styleConfig =
     (CTX: React.Context<{ size: string }>, theme: Record<string, unknown>) =>
     ({
         as = "div",
         style,
-        label = "unknown",
+        label = "x",
         children,
         ...props
     }: {
-        as?: keyof JSX.IntrinsicElements
-        style: React.CSSProperties
+        as?: any
+        style: CSS.Properties
         label?: string
         children?: React.ReactNode
     }) => {
@@ -61,6 +98,7 @@ export const styleConfig =
         return <El {...props}>{children}</El>
     }
 
+//styled("div")
 export const StyledAs = styleConfig(CTX, {
     font: "Fira Code",
     colors: { base: ["white", "black", "#F6F6EE"] },
