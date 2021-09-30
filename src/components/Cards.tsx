@@ -2,13 +2,14 @@ import React from "react"
 import styled from "@emotion/styled"
 import { motion } from "framer-motion"
 import { Link } from "./Link"
+import { ratio } from "../theme"
 
 const Wrap = styled("div")({
     display: "flex",
     overflow: "hidden",
     width: "100%",
     maxWidth: "600px",
-    minHeight: "200px",
+    //minHeight: "200px",
     marginBottom: "35px",
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -17,9 +18,10 @@ const Wrap = styled("div")({
     boxShadow: "14px 14px 40px 0 rgba(118, 126, 173, 0.1)",
 })
 
+const width = 40
 const Image = styled("img")({
-    height: "100px",
-    width: "400px",
+    height: width / ratio.gum + "rem",
+    maxWidth: width + "rem",
     objectFit: "cover",
     //alignSelf: "right",
 })
@@ -28,8 +30,8 @@ const Title = styled(Link)({
     fontFamily: "DM Serif Text",
     fontSize: "2rem",
     position: "absolute",
-    bottom: 0,
-    left: 0,
+    //bottom: 0,
+    right: 0,
     zIndex: 10,
     width: "100%",
 })

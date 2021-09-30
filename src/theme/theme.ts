@@ -1,3 +1,6 @@
+/* font-size 1em = 10px on default browser settings (16px) */
+export const baseFontSize = 62.5 + "%"
+
 //
 //  888                                  888   _                      ,e,            d8
 //  888-~88e  888-~\  e88~~8e    /~~~8e  888 e~ ~  888-~88e   e88~-_   "  888-~88e _d88__  d88~\
@@ -14,7 +17,12 @@
  * - layout
  * - space
  */
-
+export const ratio = {
+    gum: 3.5,
+    platnum: 2.75,
+    golden: 1.618,
+    silver: 1.372,
+}
 export const bps = [640, 768, 1024, 1280]
 export const breakpoints = bps.map(bp => `${bp}px`)
 //export const breakpoints = ["640px", "768px", "1024px", "1280px"]
