@@ -13,7 +13,7 @@ const Path = props => (
     />
 )
 
-export const OpenClosed = ({ open = "open", closed = "closed" }) => (
+export const menu = ({ open = "open", closed = "closed" }) => (
     <svg width="22" height="18" viewBox="0 0 22 18">
         <Path
             variants={{

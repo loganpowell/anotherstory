@@ -1,1 +1,1 @@
-export * as micons from "./micons"
+export * as moicons from "./moicons"

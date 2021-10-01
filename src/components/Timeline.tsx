@@ -112,7 +112,7 @@ export const TLItem = ({
                         fontWeight: 300,
                         //fontStyle: "normal",
                         fontFamily: '"Fira Code", serif',
-                        color: (_, { colors }) => colors.base[1],
+                        color: ({ colors }) => colors.base[1],
                         fontSize: ["1.6rem", "2rem", "2.5rem"],
                         letterSpacing: "-0.08rem",
                         paddingTop: ["0.5rem", ".9rem", "0.7rem", "1.2rem"],
@@ -143,8 +143,7 @@ export const TLItem = ({
                             overflow: "hidden",
                             borderRadius: "1rem",
                             border: "3px solid",
-                            //@ts-ignore
-                            borderColor: (_, { colors }) => colors.base[1],
+                            borderColor: ({ colors }) => colors.base[1],
                         }}
                     />
                 </StyledAs>
@@ -158,7 +157,9 @@ export const TLItem = ({
                         whiteSpace: "pre-wrap",
                         wordWrap: "break-word",
                         wordBreak: "break-word",
-                        color: (_, { colors }) => colors.base[1],
+                        //@ts-ignore
+
+                        color: ({ colors }) => colors.base[1],
                         fontSize: ["2.4rem", "3rem", "3.5rem", "4.5rem"],
                         fontWeight: 800,
                         paddingTop: [".1rem", ".3rem", ".2rem", "0rem"],
@@ -187,7 +188,7 @@ export const TLItem = ({
                             height: "100%",
                             fontWeight: 300,
                             //@ts-ignore
-                            color: (_, { colors }) => colors.base[1],
+                            color: ({ colors }) => colors.base[1],
                             fontSize: "2rem",
                             letterSpacing: "-0.8px",
                             lineHeight: "1",
@@ -225,7 +226,7 @@ export const TLItem = ({
                             wordBreak: "break-word",
                             fontWeight: 200,
                             //@ts-ignore
-                            color: (_, { colors }) => colors.base[1],
+                            color: ({ colors }) => colors.base[1],
                             fontSize: ["2rem", "2.5rem"],
                             letterSpacing: "-0.8px",
                             lineHeight: "1.3",
@@ -240,7 +241,15 @@ export const TLItem = ({
     )
 }
 
-export const Timeline = ({ children }) => (
+type Milestone = {
+    time: string
+    icon: string
+    title: string
+    description: string
+}
+type Milestones = Milestone[]
+
+export const Timeline = ({ milestones }: { milestones: Milestones }) => (
     <StyledAs
         as="ul"
         label="stack"
@@ -255,6 +264,17 @@ export const Timeline = ({ children }) => (
             overflow: "hidden",
         }}
     >
-        {children}
+        {milestones.map(({ time, icon, title, description }, idx, { length }) => {
+            return (
+                <TLItem
+                    key={"timeline_item" + idx}
+                    time={time}
+                    icon={icon}
+                    title={title}
+                    description={description}
+                    borders={idx + 1 < length ? true : false}
+                />
+            )
+        })}
     </StyledAs>
 )

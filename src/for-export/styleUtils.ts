@@ -1,5 +1,5 @@
 export const one_border = ([borderXWidth, width]) => ({
-    borderColor: (_, { colors }) => colors.base[1],
+    borderColor: ({ colors }) => colors.base[1],
     borderStyle: "solid",
     borderTopWidth: 0,
     borderBottomWidth: 0,

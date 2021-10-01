@@ -1,6 +1,6 @@
 import React from "react"
 import { Header, Link, FloodButton, Slab, Timeline, TLItem } from "../components"
-import { ExampleUse, StyledAs, one_border } from "../for-export"
+//import { StyledAs, one_border } from "../for-export"
 
 const nav_items = [
     {
@@ -41,7 +41,7 @@ const timeline_items = [
     {
         time: "Weeks 3-5",
         icon: "users-three",
-        title: "Bidding/Value Engineering",
+        title: "Bidding / Value Engineering",
         description:
             "Receive estimates for construction from local construction teams. Meet with pre-vetted Contactor’s. Discuss cost and value. ",
     },
@@ -55,7 +55,7 @@ const timeline_items = [
     {
         time: "Weeks 9-10",
         icon: "pencil-line",
-        title: "Construction Documents/Permitting",
+        title: "Construction Documents / Permitting",
         description:
             "Construction drawings in accordance with local covenants to ensure compliance with all codes.",
     },
@@ -88,20 +88,7 @@ export const Home = ({ data }) => {
                     position: "relative",
                 }}
             >
-                <Timeline>
-                    {timeline_items.map(({ time, icon, title, description }, idx, { length }) => {
-                        return (
-                            <TLItem
-                                key={"timeline_item" + idx}
-                                time={time}
-                                icon={icon}
-                                title={title}
-                                description={description}
-                                borders={idx + 1 < length ? true : false}
-                            />
-                        )
-                    })}
-                </Timeline>
+                <Timeline milestones={timeline_items} />
                 {/*<pre
                     style={{
                         color: "white",
