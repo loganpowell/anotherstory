@@ -16,7 +16,7 @@
     box-sizing: border-box;
     position: relative;
     /*smooth scrollin'*/
-    scroll-behavior: smooth;
+    /*scroll-behavior: smooth;*/
     /* font-size 1em = 10px on default browser settings (16px) */
     font-size: 62.5%;
 }

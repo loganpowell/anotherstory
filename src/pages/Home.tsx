@@ -81,15 +81,15 @@ export const Home = ({ data }) => {
         <>
             {/*<Header />*/}
             <FloodButton items={nav_items} />
-            <div
+            <Timeline milestones={timeline_items} />
+            {/*<div
                 style={{
                     overflow: "hidden",
                     width: "100vw",
                     position: "relative",
                 }}
             >
-                <Timeline milestones={timeline_items} />
-                {/*<pre
+              <pre
                     style={{
                         color: "white",
                         fontSize: "1rem",
@@ -99,8 +99,8 @@ export const Home = ({ data }) => {
                     }}
                 >
                     {JSON.stringify(data, null, 4)}
-                </pre>*/}
-            </div>
+                </pre>
+            </div>*/}
             <Link href="./magic-move">Magic Move</Link>
         </>
     )

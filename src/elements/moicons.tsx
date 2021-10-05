@@ -1,7 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import styled from "@emotion/styled"
-import { moStyled } from "../for-export"
+import {} from "../for-export"
 
 const Path = props => (
     <motion.path

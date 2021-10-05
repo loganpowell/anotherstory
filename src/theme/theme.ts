@@ -727,4 +727,6 @@ export const theme = {
     inputs,
 }
 
+export type Theme = Partial<typeof theme>
+
 export default theme

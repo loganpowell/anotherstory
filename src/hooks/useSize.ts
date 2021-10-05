@@ -17,7 +17,7 @@ import { generateBreakpoint$ } from "../for-export"
 // TODO: @-0/react
 
 const breakpoint$ = generateBreakpoint$(bps)
-export const useSize = (init = null) => {
+export const useSize$ = (init = null) => {
     const [size, setSize] = useState(init)
     const b$ = breakpoint$
     const size$ = b$.map(

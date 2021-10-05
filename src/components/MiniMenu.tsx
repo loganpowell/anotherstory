@@ -1,60 +1,73 @@
-import React, { useEffect, useLayoutEffect, useState, useContext, useCallback } from "react"
+/** @jsxImportSource @emotion/react */
+
+import React, { useEffect, useLayoutEffect, useState, useContext, useCallback, useRef } from "react"
 import styled, { StyledTags } from "@emotion/styled"
+import { useTheme, jsx } from "@emotion/react"
 import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
-import { theme } from "../theme"
+import { Theme, theme } from "../theme"
 import { CTX } from "../context"
 import { moicons } from "../elements"
 import { Card } from "./Cards"
-import { StyledAs, parseDynamicStyles } from "../for-export"
+import { useR$ } from "../for-export"
 import * as CSS from "csstype"
 
 //const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
 
-//                                                 d8    d8b
-//   e88~~8e  Y88b  /  888-~88e   e88~-_  888-~\ _d88__ !Y88!
-//  d888  88b  Y88b/   888  888b d888   i 888     888    Y8Y
-//  8888__888   Y88b   888  8888 8888   | 888     888     8
-//  Y888    ,   /Y88b  888  888P Y888   ' 888     888     e
-//   "88___/   /  Y88b 888-_88"   "88_-~  888     "88_/  "8"
-//                     888
-//
-// TODO: refactor to be portable/reusable (consider returning a function that takes the same props as the styled HOF after it's been passed the element type -> ->)
-export const moStyled = (element: keyof JSX.IntrinsicElements) => styled(motion[element])
-
-//interface IFlex {
-//    size?: string
-//    styledWith?: CSS.Properties
-//}
-
-//@ts-ignore
-const MotionButtonCentered = moStyled("button")(
-    ({ style, label, ...props }: { style: CSS.Properties; label: string }) => ({
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 100,
-        cursor: "pointer",
-        ...parseDynamicStyles({ style, label, ...props }),
-    })
+const MotionButtonCentered = ({ children, ...props }) => (
+    <motion.button
+        css={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 100,
+            cursor: "pointer",
+            position: "fixed",
+            top: ["2rem", "3rem"],
+            right: "3rem",
+            width: "3rem",
+            height: "3rem",
+        }}
+        {...props}
+    >
+        {children}
+    </motion.button>
 )
+
+// doesn't work with animated icon 🤷 ⏲ 💢
+//const MotionButtonCentered = ({ children, ...props }) => {
+//    return (
+//        <Responsive
+//            as={motion.button}
+//            style={{
+//                label: "menu-button",
+//                display: "flex",
+//                alignItems: "center",
+//                justifyContent: "center",
+//                zIndex: 100,
+//                cursor: "pointer",
+//                position: "fixed",
+//                top: "3rem",
+//                right: "3rem",
+//                width: "3rem",
+//                height: "3rem",
+//            }}
+//            {...props}
+//        >
+//            {children}
+//        </Responsive>
+//    )
+//}
 
 export const MenuButton = ({ toggle, isOpen }) => {
     //console.log({ isOpen, props })
     return (
+        //@ts-ignore
         <MotionButtonCentered
-            label="menu-button"
             onClick={() => {
                 console.log("menu-button toggle clicked")
                 toggle(!isOpen)
             }}
             animate={isOpen ? "open" : "closed"}
-            style={{
-                position: "fixed",
-                top: "3rem",
-                right: "3rem",
-                width: "3rem",
-                height: "3rem",
-            }}
         >
             <moicons.menu open="open" closed="closed" />
         </MotionButtonCentered>
@@ -62,29 +75,35 @@ export const MenuButton = ({ toggle, isOpen }) => {
 }
 
 const Circumscribed = ({ style, children, ...props }) => {
+    const theme: Theme = useTheme()
+    console.log({ theme })
     return (
-        <StyledAs
-            as={motion.div}
-            style={{
+        <motion.div
+            css={useR$({
                 position: "fixed",
                 resize: "both",
                 zIndex: 10,
                 boxShadow: [
-                    "0 0 0 200vmax #D0C2C2",
-                    "0 0 0 200vmax grey",
-                    "0 0 0 200vmax green",
-                    "0 0 0 200vmax darkgrey",
+                    `0 0 0 200vmax ${theme.colors.info}`,
+                    `0 0 0 200vmax ${theme.colors.gray[1]}`,
+                    `0 0 0 200vmax green`,
+                    `0 0 0 200vmax darkgrey`,
                 ],
                 clipPath: "circle(72%)",
                 cursor: "pointer",
-                backgroundColor: ["#D0C2C2", "grey", "green", "darkgrey"],
+                backgroundColor: [
+                    `${theme.colors.info}`,
+                    `${theme.colors.gray[1]}`,
+                    "green",
+                    "darkgrey",
+                ],
                 label: "circumscribed",
                 ...style,
-            }}
+            })}
             {...props}
         >
             {children}
-        </StyledAs>
+        </motion.div>
     )
 }
 
@@ -133,15 +152,11 @@ const ease = {
     type: "ease",
     ease: [0.6, 0.01, -0.05, 0.95],
 }
-const MoList = ({ children, ...props }) => {
-    return <motion.ul {...props}>{children}</motion.ul>
-}
 
 const MenuItems = ({ children, ...props }) => (
-    <StyledAs
+    <motion.ul
         {...props}
-        as={MoList}
-        style={{
+        css={{
             boxSizing: "border-box",
             width: "auto",
             height: "100vh",
@@ -154,7 +169,7 @@ const MenuItems = ({ children, ...props }) => (
         }}
     >
         {children}
-    </StyledAs>
+    </motion.ul>
 )
 
 const MenuOpen = ({ trigger, children, ...props }) => {

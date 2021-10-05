@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { moStyled } from "../for-export"
+import {} from "../for-export"
 
 const Static = styled("div")({
     width: "100vw",

@@ -6,13 +6,6 @@ import { map } from "@thi.ng/transducers"
 // TODO: create CONSTS for EACH SIZE
 export const default_tshirt_sizes = ["xs", "sm", "md", "lg", "xl"]
 
-interface IResize {
-    target: {
-        width: number
-        height: number
-    }
-}
-
 //@ts-ignore
 const resize$: Stream<IResize> = fromDOMEvent(window.visualViewport, "resize")
 
@@ -58,7 +51,7 @@ const breakpoint_settings_err = (bps, arr, label) => `
 export const make_responsive = (
     settings,
     tshirt_sizes = default_tshirt_sizes,
-    label = "unknown"
+    label = "responsive"
 ) => {
     //console.log({ settings })
     const n1 = tshirt_sizes.length
@@ -66,6 +59,7 @@ export const make_responsive = (
     if (n1 < n2) {
         console.log(breakpoint_settings_err(tshirt_sizes, settings, label))
     }
+    // HOC (needs size to work)
     return size => {
         const filled = [...settings, ...Array(n1 - n2)]
         const config = filled.reduce(function re(a, c, i, d) {
