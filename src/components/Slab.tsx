@@ -38,3 +38,14 @@ export const Slab = () => {
         </>
     )
 }
+
+/** PSEUDO
+ *
+ * the slab is the atom from which the matter of the app is built
+ * props:
+ * - responsive right/left padding settings: [0, 12, 123]
+ * - responsive
+ *
+ * style:
+ * - height = auto (hold children)
+ */

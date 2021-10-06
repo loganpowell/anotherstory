@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import { fromDOMEvent, trace, debounce, Stream } from "@thi.ng/rstream"
 import { map } from "@thi.ng/transducers"
+import React, { useContext } from "react"
+import { Styles } from "./api"
+import { CTX } from "../context"
 //import { bps, breakpoints } from "../theme"
 
 // TODO: create CONSTS for EACH SIZE
@@ -49,21 +52,24 @@ const breakpoint_settings_err = (bps, arr, label) => `
     `
 
 export const make_responsive = (
-    settings,
+    response_array,
     tshirt_sizes = default_tshirt_sizes,
     label = "responsive"
 ) => {
-    //console.log({ settings })
+    //console.log({ response_array })
+
     const n1 = tshirt_sizes.length
-    const n2 = settings.length
+    const n2 = response_array.length
+
     if (n1 < n2) {
-        console.log(breakpoint_settings_err(tshirt_sizes, settings, label))
+        console.log(breakpoint_settings_err(tshirt_sizes, response_array, label))
     }
-    // HOC (needs size to work)
+
     return size => {
-        const filled = [...settings, ...Array(n1 - n2)]
-        const config = filled.reduce(function re(a, c, i, d) {
+        const filled = [...response_array, ...Array(n1 - n2)]
+        const config = filled.reduce((a, c, i, d) => {
             // if c === null (use the last valid setting)
+
             return {
                 ...a,
                 [tshirt_sizes[i]]:
@@ -82,3 +88,22 @@ export const make_responsive = (
         return config[size]
     }
 }
+
+const configResponsiveStyler = (CTX: React.Context<{ size$: string }>) => (css: Styles) => {
+    const { size$ } = useContext(CTX)
+    const parsed = {}
+    Object.entries(css).forEach(([k, v]) => {
+        if (Array.isArray(v)) {
+            parsed[k] = make_responsive(v, default_tshirt_sizes)(size$)
+            return
+        } else {
+            parsed[k] = v
+            return
+        }
+    })
+    return parsed
+}
+
+export const useR$ = configResponsiveStyler(CTX)
+
+// TODO: FUCKIN DRAW/SKETCH! 🔥

@@ -118,7 +118,7 @@ export const TLItem = ({
                     css={{
                         width: "30%",
                         height: "100%",
-                        ...one_border(["Right", 1, dark]),
+                        ...one_border("Right", 1, dark),
                     }}
                 />
                 <span
@@ -126,7 +126,7 @@ export const TLItem = ({
                     css={{
                         width: "70%",
                         height: "100%",
-                        ...one_border(["Left", 1, dark]),
+                        ...one_border("Left", 1, dark),
                     }}
                 />
             </TimelineRow>
@@ -198,7 +198,7 @@ export const TLItem = ({
                     css={{
                         label: "tl-bottom-left",
                         width: "30%",
-                        ...(borders && one_border(["Right", ".1rem", dark])),
+                        ...(borders && one_border("Right", ".1rem", dark)),
                     }}
                 >
                     <motion.div
@@ -242,7 +242,7 @@ export const TLItem = ({
                         alignItems: "flex-start",
                         padding: "20px 30px 0px 30px",
                         overflow: "visible",
-                        ...(borders && one_border(["Left", ".1rem", dark])),
+                        ...(borders && one_border("Left", ".1rem", dark)),
                     }}
                 >
                     <p
