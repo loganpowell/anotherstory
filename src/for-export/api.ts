@@ -1,5 +1,12 @@
 import * as CSS from "csstype"
 import { MotionStyle, MotionProps } from "framer-motion"
+import { phosphor_weights } from "./constants"
+import { theme } from "../theme"
+
+export type FontSize = keyof typeof theme.fontSizes
+export type Space = keyof typeof theme.space
+export type Color = keyof typeof theme.colors
+export type Font = keyof typeof theme.fonts
 
 type RArr = (string | number)[]
 type RFun = (theme: Record<string, any>, props: React.ReactPropTypes) => null
@@ -25,6 +32,9 @@ declare module "csstype" {
         borderColor?: CSS.Property.BorderColor | Responsive
         right?: CSS.Property.Right | Responsive
         top?: CSS.Property.Top | Responsive
+        flexDirection?: CSS.Property.FlexDirection | Responsive
+        letterSpacing?: CSS.Property.LetterSpacing | Responsive
+        alignItems?: CSS.Property.AlignItems | Responsive
         // Add a CSS Custom Property
         //'--theme-color'?: 'black' | 'white';
 
@@ -34,6 +44,8 @@ declare module "csstype" {
 }
 
 export type Styles = CSS.Properties
+
+export type IconWeight = keyof typeof phosphor_weights
 
 export interface IStyledProps extends React.HTMLAttributes<HTMLElement> {
     as?: any

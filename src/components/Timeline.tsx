@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react"
 import { motion } from "framer-motion"
-import { Header, Link, FloodButton, Slab, Icon } from "../components"
+import { Header, Link, FloodButton, Icon } from "../components"
 import { CTX } from "../context"
 import { one_border, useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
@@ -82,7 +82,7 @@ export const TLItem = ({
     })
     const { size } = useContext(CTX)
     const {
-        colors: { dark },
+        colors: { dark_5 },
     } = useMyTheme()
     return (
         <motion.li
@@ -118,7 +118,7 @@ export const TLItem = ({
                     css={{
                         width: "30%",
                         height: "100%",
-                        ...one_border("Right", 1, dark),
+                        ...one_border("Right", 1, dark_5),
                     }}
                 />
                 <span
@@ -126,7 +126,7 @@ export const TLItem = ({
                     css={{
                         width: "70%",
                         height: "100%",
-                        ...one_border("Left", 1, dark),
+                        ...one_border("Left", 1, dark_5),
                     }}
                 />
             </TimelineRow>
@@ -142,7 +142,7 @@ export const TLItem = ({
                     alignItems: "flex-start",
                 }}
             >
-                <TLTime color={dark} size={size}>
+                <TLTime color={dark_5} size={size}>
                     {time}
                 </TLTime>
                 <div
@@ -167,7 +167,7 @@ export const TLItem = ({
                             overflow: "hidden",
                             borderRadius: "1rem",
                             border: "3px solid",
-                            borderColor: dark,
+                            borderColor: dark_5,
                         })}
                     />
                 </div>
@@ -180,7 +180,7 @@ export const TLItem = ({
                         whiteSpace: "pre-wrap",
                         wordWrap: "break-word",
                         wordBreak: "break-word",
-                        color: dark,
+                        color: dark_5,
                         fontSize: ["2.4rem", "3rem", "3.5rem", "4.5rem"],
                         fontWeight: 800,
                         paddingTop: [".1rem", ".3rem", ".2rem", "0rem"],
@@ -198,7 +198,7 @@ export const TLItem = ({
                     css={{
                         label: "tl-bottom-left",
                         width: "30%",
-                        ...(borders && one_border("Right", ".1rem", dark)),
+                        ...(borders && one_border("Right", ".1rem", dark_5)),
                     }}
                 >
                     <motion.div
@@ -208,7 +208,7 @@ export const TLItem = ({
                             width: "100%",
                             height: "100%",
                             fontWeight: 300,
-                            color: dark,
+                            color: dark_5,
                             fontSize: "2rem",
                             letterSpacing: "-0.8px",
                             lineHeight: "1",
@@ -242,7 +242,7 @@ export const TLItem = ({
                         alignItems: "flex-start",
                         padding: "20px 30px 0px 30px",
                         overflow: "visible",
-                        ...(borders && one_border("Left", ".1rem", dark)),
+                        ...(borders && one_border("Left", ".1rem", dark_5)),
                     }}
                 >
                     <p
@@ -255,7 +255,7 @@ export const TLItem = ({
                             wordWrap: "break-word",
                             wordBreak: "break-word",
                             fontWeight: 200,
-                            color: dark,
+                            color: dark_5,
                             fontSize: ["2rem", "2.5rem"],
                             letterSpacing: "-0.8px",
                             lineHeight: "1.3",

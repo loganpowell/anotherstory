@@ -10,6 +10,7 @@ import { moicons } from "../elements"
 import { Card } from "./Cards"
 import { useR$ } from "../for-export"
 import * as CSS from "csstype"
+import { useMyTheme } from "../hooks"
 
 //const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
 
@@ -75,7 +76,9 @@ export const MenuButton = ({ toggle, isOpen }) => {
 }
 
 const Circumscribed = ({ style, children, ...props }) => {
-    const theme: Theme = useTheme()
+    const {
+        colors: { dark_5, light_5 },
+    } = useMyTheme()
     console.log({ theme })
     return (
         <motion.div
@@ -83,20 +86,10 @@ const Circumscribed = ({ style, children, ...props }) => {
                 position: "fixed",
                 resize: "both",
                 zIndex: 10,
-                boxShadow: [
-                    `0 0 0 200vmax ${theme.colors.info}`,
-                    `0 0 0 200vmax ${theme.colors.gray[1]}`,
-                    `0 0 0 200vmax green`,
-                    `0 0 0 200vmax darkgrey`,
-                ],
+                boxShadow: `0 0 0 200vmax ${dark_5}`,
                 clipPath: "circle(72%)",
                 cursor: "pointer",
-                backgroundColor: [
-                    `${theme.colors.info}`,
-                    `${theme.colors.gray[1]}`,
-                    "green",
-                    "darkgrey",
-                ],
+                backgroundColor: dark_5,
                 label: "circumscribed",
                 ...style,
             })}

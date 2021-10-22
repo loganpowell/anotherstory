@@ -14,4 +14,11 @@ export const calc_columns = ({ column_width = 20, gutter_width = 2 }) => {
 
 export const columns = calc_columns({})
 
-columns //?
+export const phosphor_weights = {
+    thin: "thin",
+    light: "light",
+    regular: "regular",
+    bold: "bold",
+    fill: "fill",
+    duotone: "duotone",
+}

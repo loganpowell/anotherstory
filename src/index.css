@@ -25,11 +25,6 @@ a[active] {
     color: coral;
 }
 
-/*phosphor*/
-.phosphor {
-    font-size: 4rem;
-}
-
 body {
     margin: 0;
     padding: 0;
