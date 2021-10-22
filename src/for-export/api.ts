@@ -35,6 +35,7 @@ declare module "csstype" {
         flexDirection?: CSS.Property.FlexDirection | Responsive
         letterSpacing?: CSS.Property.LetterSpacing | Responsive
         alignItems?: CSS.Property.AlignItems | Responsive
+        gap?: CSS.Property.Gap | Responsive
         // Add a CSS Custom Property
         //'--theme-color'?: 'black' | 'white';
 

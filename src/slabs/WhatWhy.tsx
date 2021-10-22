@@ -85,6 +85,7 @@ const Prompt = ({ title, subtitle, bullets }) => {
                 alignItems: "flex-start",
                 justifyContent: "flex-start",
                 gap: space.md,
+                paddingTop: space.md,
             }}
         >
             <H2 title={title} />

@@ -17,6 +17,8 @@ export const Slab = ({
     gap = "lg",
     align = "flex-start" || [],
     img = null,
+    direction = ["column", null, "row"],
+    myRef = null,
     ...props
 }) => {
     const { colors, space } = useMyTheme()
@@ -25,18 +27,19 @@ export const Slab = ({
     //console.log({ pads })
     return (
         <section
+            ref={myRef}
             css={useR$({
                 boxSizing: "border-box",
                 flexShrink: 0,
                 width: "100%",
                 height: "auto" /* 1068px */,
                 display: "flex",
-                flexDirection: ["column", null, "row"],
+                flexDirection: direction,
                 justifyContent: "center",
                 alignItems: align,
                 padding: pads,
                 backgroundColor: colors[bg],
-                gap: space[gap],
+                gap: [space["sm"], space[gap]],
                 ...(img && {
                     backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${img})`,
                     backgroundSize: "cover",
