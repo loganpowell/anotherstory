@@ -59,43 +59,43 @@ export const TopNav = () => {
             }}
             animate={(showing && "show") || "hide"}
         >
-            {((size === "sm" || size === "xs") && (
-                <Slab padding={slim_slab_padding} bg="none" blur direction={["row"]} align="center">
-                    <div
+            {/*{((size === "sm" || size === "xs") && (*/}
+            <Slab padding={slim_slab_padding} bg="none" blur direction={["row"]} align="center">
+                <div
+                    css={{
+                        flex: "1",
+                        display: "flex",
+                        flexDirection: "row",
+                    }}
+                >
+                    <H4 color="light_5">AnotherStory</H4>
+                </div>
+                <div
+                    css={{
+                        flex: "1",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "flex-end", // TODO: "space-between"
+                    }}
+                >
+                    <a
+                        href="mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory"
                         css={{
-                            flex: "1",
-                            display: "flex",
-                            flexDirection: "row",
+                            width: "auto",
+                            height: "auto",
+                            padding: "1.5rem 3rem",
+                            backgroundColor: colors.light_5,
+                            color: colors.dark_5,
+                            borderRadius: "1rem",
+                            fontWeight: fontWeights.bold,
+                            fontSize: fontSizes.sm,
                         }}
                     >
-                        <H4 color="light_5">AnotherStory</H4>
-                    </div>
-                    <div
-                        css={{
-                            flex: "1",
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "flex-end", // TODO: "space-between"
-                        }}
-                    >
-                        <a
-                            href="mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory"
-                            css={{
-                                width: "auto",
-                                height: "auto",
-                                padding: "1.5rem 3rem",
-                                backgroundColor: colors.light_5,
-                                color: colors.dark_5,
-                                borderRadius: "1rem",
-                                fontWeight: fontWeights.bold,
-                                fontSize: fontSizes.sm,
-                            }}
-                        >
-                            Connect
-                        </a>
-                    </div>
-                </Slab>
-            )) || <Slab padding={slim_slab_padding}> Large </Slab>}
+                        Connect
+                    </a>
+                </div>
+            </Slab>
+            ){/*) || <Slab padding={slim_slab_padding}> Large </Slab>}*/}
         </motion.div>
     )
 }
