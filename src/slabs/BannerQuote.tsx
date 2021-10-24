@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react"
-import { Slab } from "../containers"
+import { Slab, xtall_slab_padding } from "../containers"
 import { Avatar, AvatarQuote } from "../elements"
 import { useMyTheme } from "../hooks"
+import { lineHeights } from "../theme"
 
 const long_quote =
     "Some say the world will end in fire. Some say in ice. From what I've witnessed of desire, I hold with those that favor fire. But if it had to perish twice, I think I know enough of hate - to say that for destruction, ice, is also great and would suffice."
@@ -27,15 +28,27 @@ export const BannerQuote = ({
         left: 0,
     }
     return (
-        <Slab bg={"none"} align={["flex-start", null, "flex-end"]} img={banner_img}>
+        <Slab
+            bg={"none"}
+            align={["flex-start", null, "flex-end"]}
+            img={banner_img}
+            //padding={xtall_slab_padding}
+            full_height={true}
+        >
             <h3
                 css={{
-                    fontSize: fontSizes.lg,
+                    fontFamily: "Poppins",
+                    fontSize: fontSizes.xl,
                     fontWeight: fontWeights.black,
                     letterSpacing: letterSpacings.sm,
-                    color: colors.light_3,
+                    //color: colors.light_3,
+                    lineHeight: lineHeights.sm,
+                    marginTop: "10rem",
                     flex: 1,
                     width: 1,
+                    WebkitTextStroke: "1px",
+                    WebkitTextStrokeColor: colors.light_3,
+                    WebkitTextFillColor: "transparent",
                 }}
             >
                 {topline}

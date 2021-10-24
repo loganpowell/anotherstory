@@ -8,15 +8,17 @@ import { FontSize, IconWeight, nudge_size } from "../for-export"
 export const IconBullet = ({
     weight = "light",
     size = "sm",
-    icon = "phosphor-logo",
     bullet = "bullet prop goes here",
     color = "",
+    icon = null,
+    link = null,
 }: {
     weight?: IconWeight
     size?: FontSize
     icon?: string
     color?: string
     bullet: string
+    link?: string
 }) => {
     const {
         colors: { dark_5, light_5 },
@@ -27,7 +29,7 @@ export const IconBullet = ({
     } = useMyTheme()
 
     const [upsize] = nudge_size(fontSizes)(size, 2)
-    return (
+    const Li = () => (
         <li
             css={{
                 height: "auto",
@@ -51,6 +53,18 @@ export const IconBullet = ({
                 {bullet}
             </p>
         </li>
+    )
+    return link ? (
+        <a
+            href={link}
+            css={{
+                width: "100%",
+            }}
+        >
+            <Li />
+        </a>
+    ) : (
+        <Li />
     )
 }
 
@@ -81,8 +95,16 @@ export const BulletList = ({ bullets, size }) => {
             }}
         >
             {bullets.map((item, idx) => {
-                const { icon, point } = item
-                return <IconBullet key={"bullet" + idx} icon={icon} bullet={point} size={size} />
+                const { icon, point, link } = item
+                return (
+                    <IconBullet
+                        key={"bullet" + idx}
+                        icon={icon}
+                        bullet={point}
+                        size={size}
+                        link={link}
+                    />
+                )
             })}
         </ul>
     )

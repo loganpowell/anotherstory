@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react"
 import { Slab } from "../containers"
-import { IconBullet, BulletList } from "../components"
+import { IconBullet, BulletList, TitledBullets } from "../components"
 import { useR$ } from "../for-export"
 import { useMyTheme, useSize$ } from "../hooks"
 import { fontSizes } from "../theme"
@@ -33,73 +33,11 @@ const data = {
     },
 }
 
-const H2 = ({ title }) => {
-    const {
-        fontSizes: { xxl, xl, lg, md },
-        letterSpacings: { xxs, xs },
-        fontWeights: { black },
-        colors: { light_1, light_5 },
-    } = useMyTheme()
-
-    return (
-        <h2
-            css={useR$({
-                color: light_1,
-                fontWeight: black,
-                letterSpacing: [xs, null, xxs],
-                fontSize: [lg, null, xl],
-                lineHeight: 0.5,
-            })}
-        >
-            {title}
-        </h2>
-    )
-}
-
-const Subtitle = ({ subtitle }) => {
-    const {
-        colors,
-        fontSizes: { xxl, xl, lg, md, sm },
-    } = useMyTheme()
-    return (
-        <h4
-            css={useR$({
-                color: colors.light_5,
-                fontSize: [sm, md],
-            })}
-        >
-            {subtitle}
-        </h4>
-    )
-}
-
-const Prompt = ({ title, subtitle, bullets }) => {
-    const { space, fontSizes } = useMyTheme()
-    return (
-        <div
-            css={{
-                width: ["100%", null, "1fr"],
-                height: "auto",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "flex-start",
-                gap: space.md,
-                paddingTop: space.md,
-            }}
-        >
-            <H2 title={title} />
-            <Subtitle subtitle={subtitle} />
-            <BulletList bullets={bullets} size="sm" />
-        </div>
-    )
-}
-
 export const WhatWhy = () => {
     return (
         <Slab bg="dark_5" gap="lg">
-            <Prompt title="What" subtitle={data.What.subtitle} bullets={data.What.bullets} />
-            <Prompt title="Why" subtitle={data.Why.subtitle} bullets={data.Why.bullets} />
+            <TitledBullets title="What" subtitle={data.What.subtitle} bullets={data.What.bullets} />
+            <TitledBullets title="Why" subtitle={data.Why.subtitle} bullets={data.Why.bullets} />
         </Slab>
     )
 }

@@ -1,35 +1,70 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react"
+import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Slab } from "../containers"
+import { Interpolation } from "@emotion/react"
+import { Slab, slim_slab_padding } from "../containers"
 import { useInView } from "react-intersection-observer"
 import { useMyTheme, useBbox } from "../hooks"
 import { CTX } from "../context"
+import { useR$, Styles } from "../for-export"
+import { colors, lineHeights, Theme } from "../theme"
 
-export const BoldSlab = ({ ...props }) => {
+export const responsive_img_css = zIndex => ({
+    width: "47%",
+    "&:after": {
+        content: `""`,
+        display: "block",
+        paddingBottom: "100%",
+    },
+    zIndex: zIndex,
+})
+
+export const BoldSlab = ({ title, subtitle, ...props }) => {
+    const {
+        fontSizes: { sm, md, lg, xl },
+        letterSpacings: { xxs, xs, sm: lsm },
+        fontWeights,
+        colors,
+    } = useMyTheme()
     return (
-        <Slab bg="light_5">
-            <div>
-                <h3>
-                    <span
-                        css={
-                            {
-                                //fontSize:
-                            }
-                        }
-                    >
-                        How
-                    </span>{" "}
-                    it&aposs done
-                </h3>
-            </div>
+        <Slab bg="light_5" align="flex-end" direction={["row"]}>
+            <span
+                css={{
+                    width: "48%",
+                }}
+            />
+            <h3
+                css={useR$({
+                    flex: "1",
+                    display: "flex",
+                    flexDirection: "column",
+                    fontSize: [sm, md],
+                    letterSpacing: lsm,
+                    fontWeight: fontWeights.bold,
+                    color: colors.dark_5,
+                    textAlign: "left",
+                })}
+            >
+                <span
+                    css={useR$({
+                        fontSize: [lg, null, xl],
+                        fontWeight: fontWeights.black,
+                        letterSpacing: [xs, null, xxs],
+                        color: colors.dark_3,
+                    })}
+                >
+                    {title}
+                </span>
+                {subtitle}
+            </h3>
         </Slab>
     )
 }
-export const MIsoPrompt = ({ src, tagline, zIndex = 1 }) => {
+
+export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
     const { ref, inView, entry } = useInView({
-        threshold: 0.5,
+        threshold: 1,
     })
     const [rect, setRect] = useState(null)
 
@@ -39,11 +74,119 @@ export const MIsoPrompt = ({ src, tagline, zIndex = 1 }) => {
     const { height } = rect || { height: 100 }
     //const { size$ } = useContext(CTX)
 
-    console.log({ inView, entry, rect })
+    //console.log({ inView, entry, rect })
 
+    const theme = useMyTheme()
     const {
         colors: { dark_5 },
+        fonts,
+        fontWeights,
+        fontSizes: { xs, sm, md },
+        lineHeights,
+    } = theme
+
+    return (
+        <Slab
+            myRef={ref}
+            align="center"
+            bg="light_5"
+            padding={slim_slab_padding}
+            direction={["row"]}
+        >
+            <motion.img
+                src={src}
+                alt={tagline}
+                css={responsive_img_css(zIndex)}
+                initial="out"
+                animate={inView ? "in" : "out"}
+                variants={{
+                    out: {
+                        y: -height / 1.7,
+                        transition: {
+                            delay: 2,
+                            ease: "easeInOut",
+                        },
+                    },
+                    in: {
+                        y: 0,
+                        transition: {
+                            delay: 0.5,
+                            ease: "easeInOut", // [0.6, 0.01, -0.05, 0.95]
+                            //delayChildren: 0.5,
+                        },
+                    },
+                }}
+            />
+            <p
+                css={useR$({
+                    flex: "1",
+                    color: colors.dark_5,
+                    fontFamily: fonts.serif,
+                    fontWeight: fontWeights.normal,
+                    lineHeight: lineHeights.md,
+                    fontSize: [sm, null, md],
+                })}
+            >
+                {tagline}
+            </p>
+        </Slab>
+    )
+}
+
+export const IsoSimple = ({ src, tagline, zIndex = 1 }) => {
+    const {
+        colors: { dark_5 },
+        fonts,
+        fontWeights,
+        fontSizes: { xs, sm, md },
     } = useMyTheme()
+    return (
+        <Slab
+            align="center"
+            bg="light_5"
+            padding={[["sm", "sm"], ["sm", "lg"], ["sm", "15%"], null, ["sm", "20%"]]}
+            direction={["row"]}
+        >
+            <img src={src} alt={tagline} css={responsive_img_css(zIndex)} />
+            <p
+                css={useR$({
+                    flex: "1",
+                    color: colors.dark_5,
+                    fontFamily: fonts.serif,
+                    fontWeight: fontWeights.normal,
+                    lineHeight: lineHeights.md,
+                    fontSize: [sm, null, md],
+                })}
+            >
+                {tagline}
+            </p>
+        </Slab>
+    )
+}
+
+export const IsoStair = ({ src, tagline, zIndex = 1 }) => {
+    const { ref, inView, entry } = useInView({
+        threshold: 0.8,
+    })
+    const [rect, setRect] = useState(null)
+
+    useEffect(() => {
+        setRect(entry?.target?.getBoundingClientRect())
+    }, [entry])
+    const { height } = rect || { height: 100 }
+    //const { size$ } = useContext(CTX)
+
+    //console.log({ inView, entry, rect })
+
+    const theme = useMyTheme()
+    const {
+        colors: { dark_5 },
+        fonts,
+        fontWeights,
+        fontSizes: { xs, sm, md },
+        lineHeights,
+    } = theme
+
     return (
         <Slab
             myRef={ref}
@@ -52,74 +195,68 @@ export const MIsoPrompt = ({ src, tagline, zIndex = 1 }) => {
             padding={[["sm", "sm"], ["sm", "lg"], ["sm", "15%"], null, ["sm", "20%"]]}
             direction={["row"]}
         >
-            <motion.img
-                src={src}
-                alt={tagline}
-                css={{
-                    width: "48%",
-                    "&:after": {
-                        content: `""`,
-                        display: "block",
-                        paddingBottom: "100%",
-                    },
-                    zIndex: zIndex,
-                }}
-                initial="out"
-                animate={inView ? "in" : "out"}
-                variants={{
-                    out: {
-                        y: -height / 1.7,
-                    },
-                    in: {
-                        y: 0,
-                        transition: {
-                            delay: 0.5,
-                            ease: "easeInOut",
-                            //delayChildren: 0.5,
+            <div css={{ ...responsive_img_css(zIndex), position: "relative" }}>
+                <img
+                    src={src}
+                    alt={tagline}
+                    css={{
+                        width: "100%",
+                        "&:after": {
+                            content: `""`,
+                            display: "block",
+                            paddingBottom: "100%",
                         },
-                    },
-                }}
-            />
+                        zIndex: zIndex,
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                    }}
+                />
+                <motion.img
+                    src={process.env.PUBLIC_URL + "/svgs/staircase.svg"}
+                    alt="stair"
+                    css={{
+                        width: "100%",
+                        "&:after": {
+                            content: `""`,
+                            display: "block",
+                            paddingBottom: "100%",
+                        },
+                        zIndex: 20,
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                    }}
+                    initial="out"
+                    animate={inView ? "in" : "out"}
+                    variants={{
+                        out: {
+                            y: -height / 3,
+                            transition: {
+                                delay: 2,
+                                ease: "easeInOut",
+                            },
+                        },
+                        in: {
+                            y: 0,
+                            transition: {
+                                delay: 0.5,
+                                ease: "easeInOut", // [0.6, 0.01, -0.05, 0.95]
+                                //delayChildren: 0.5,
+                            },
+                        },
+                    }}
+                />
+            </div>
             <p
-                css={{
+                css={useR$({
                     flex: "1",
-                    width: "1",
-                }}
-            >
-                {tagline}
-            </p>
-        </Slab>
-    )
-}
-export const IsoPrompt = ({ src, tagline, zIndex = 1 }) => {
-    const {
-        colors: { dark_5 },
-    } = useMyTheme()
-    return (
-        <Slab
-            align="center"
-            bg="light_5"
-            padding={[["sm", "sm"], ["sm", "lg"], ["sm", "15%"], null, ["sm", "20%"]]}
-            direction={["row"]}
-        >
-            <img
-                src={src}
-                alt={tagline}
-                css={{
-                    width: "48%",
-                    "&:after": {
-                        content: `""`,
-                        display: "block",
-                        paddingBottom: "100%",
-                    },
-                    zIndex: zIndex,
-                }}
-            />
-            <p
-                css={{
-                    flex: "1",
-                    width: "1",
-                }}
+                    color: colors.dark_5,
+                    fontFamily: fonts.serif,
+                    fontWeight: fontWeights.normal,
+                    lineHeight: lineHeights.md,
+                    fontSize: [sm, null, md],
+                })}
             >
                 {tagline}
             </p>

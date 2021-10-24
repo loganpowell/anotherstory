@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { _NAVIGATE } from "../context"
-import { run$, API } from "@-0/browser"
+import { run$, API, registerCMD } from "@-0/browser"
 //import { registerCMD, run$ } from "@-0/spool"
 import { URL2obj, obj2URL } from "@-0/utils"
 //import { CMD, DOM_NODE, URL, URL_FULL } from "@-0/keys"
@@ -53,13 +53,12 @@ export const Link = ({ href, children = null, ...props }) => {
             {...props}
             onClick={e => {
                 e.preventDefault()
-                //console.log({
-                //    href: e.currentTarget.href,
-                //    location: window.location.href,
-                //    r_path,
-                //    me: me.current,
-                //    ...getScrollPos(),
-                //})
+                console.log({
+                    href: e.currentTarget.href,
+                    location: window.location.href,
+                    r_path,
+                    me: me.current,
+                })
                 run$.next({
                     ..._NAVIGATE,
                     [API.CMD_ARGS]: {

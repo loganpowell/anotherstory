@@ -184,11 +184,11 @@ export const fonts = {
  */
 export const fontSizes = {
     xxs: "1rem",
-    xs: "1.6rem",
-    sm: "2.6rem",
-    md: "4.2rem",
-    lg: "6.85rem",
-    xl: "11.1rem",
+    xs: "1.4rem",
+    sm: "2.4rem",
+    md: "4rem",
+    lg: "6.4rem",
+    xl: "11rem",
     xxl: "18rem",
 }
 
@@ -206,6 +206,41 @@ export const fontWeights = {
     bold: 700,
     extrabold: 800,
     black: 900,
+}
+/**
+ * Used by:
+ * - typography: https://styled-system.com/table/#typography
+ */
+export const letterSpacings = {
+    xxs: "-1rem",
+    xs: "-0.5rem",
+    sm: "-0.25rem",
+    md: "0",
+    lg: "0.25rem",
+    xl: "0.5rem",
+    xxl: "1rem",
+}
+
+/**
+ * Used by:
+ * - typography: https://styled-system.com/table/#typography
+ */
+export const lineHeights = {
+    xxs: "0.5",
+    xs: ".8",
+    sm: "1",
+    md: "1.25",
+    lg: "1.5",
+    xl: "2",
+    xxl: "3",
+}
+
+export const radii = {
+    none: "0",
+    sm: "0.125rem",
+    default: "0.25rem",
+    lg: "0.5rem",
+    full: "9999px",
 }
 
 const commonInputStyles = {
@@ -256,41 +291,6 @@ export const inputs = {
             backgroundColor: "white",
         },
     },
-}
-/**
- * Used by:
- * - typography: https://styled-system.com/table/#typography
- */
-export const letterSpacings = {
-    xxs: "-1rem",
-    xs: "-0.5rem",
-    sm: "-0.25rem",
-    md: "0",
-    lg: "0.25rem",
-    xl: "0.5rem",
-    xxl: "1rem",
-}
-
-/**
- * Used by:
- * - typography: https://styled-system.com/table/#typography
- */
-export const lineHeights = {
-    xxs: "0.5",
-    xs: ".8",
-    sm: "1",
-    md: "1.25",
-    lg: "1.5",
-    xl: "2",
-    xxl: "3",
-}
-
-export const radii = {
-    none: "0",
-    sm: "0.125rem",
-    default: "0.25rem",
-    lg: "0.5rem",
-    full: "9999px",
 }
 
 //

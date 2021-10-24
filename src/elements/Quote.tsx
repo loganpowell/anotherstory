@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react"
-import { nudge_size } from "../for-export"
+import { nudge_size, useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
 import { borderWidths, fontWeights } from "../theme"
 import { Avatar } from "./Avatar"
 
-export const Quote = ({ text, color = "dark_3", size = "sm" }) => {
+export const Quote = ({ text, color = "dark_3", size = ["sm"] }) => {
     const { fontSizes, fonts, fontWeights, colors } = useMyTheme()
 
     return (
@@ -43,14 +43,14 @@ export const Quote = ({ text, color = "dark_3", size = "sm" }) => {
                 }}
             >
                 <p
-                    css={{
+                    css={useR$({
                         fontFamily: fonts.serif,
                         fontStyle: "italic",
-                        fontSize: fontSizes[size],
+                        fontSize: size.map(s => fontSizes[s]),
                         color: colors[color],
                         lineHeight: 1.3,
                         whiteSpace: "pre-wrap",
-                    }}
+                    })}
                 >
                     {text}
                 </p>
@@ -185,6 +185,7 @@ export const AvatarQuote = ({
     name = "Bill Murray",
     location = "Birmingham, AL",
     size = "sm",
+    quote_size = ["sm"],
     src = "https://www.fillmurray.com/360/360",
     shape = "circle",
     align = "right",
@@ -212,7 +213,7 @@ export const AvatarQuote = ({
                 width: "1",
             }}
         >
-            <Quote text={text} color={color} />
+            <Quote text={text} color={color} size={quote_size} />
             <QuoteLine align={align} color={color} />
             <div
                 css={{

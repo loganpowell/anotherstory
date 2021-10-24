@@ -59,6 +59,29 @@ const getItems = async () => {
 }
 //console.log({ base })
 
+const getHomePageData = async () => {
+    const res: any[] = await new Promise((resolve, reject) => {
+        let acc = []
+        base("timeline")
+            .select({ maxRecords: 12 })
+            .eachPage(
+                (records, nextPage) => {
+                    //console.log({ records })
+                    records.forEach(r => {
+                        const { order, time, icon, title } = r.fields
+                        acc.push({ order, time, title })
+                    })
+                    nextPage()
+                },
+                function done(e) {
+                    if (e) throw new Error(e)
+                    return resolve(acc)
+                }
+            )
+    })
+    return res.sort(({ order: a }, { order: b }) => a - b)
+}
+
 export const urlToPageConfig = async URL => {
     const match = URL2obj(URL)
     const { _PATH } = match
@@ -69,7 +92,7 @@ export const urlToPageConfig = async URL => {
             { ...match, _PATH: [] },
             {
                 page: () => Home,
-                data: async () => ({ items: [] }),
+                data: async () => ({ data: await getHomePageData() }),
             },
         ],
         [
@@ -95,8 +118,21 @@ export const urlToPageConfig = async URL => {
 
 const LOG_POP_STATE = LOG_PROP(API.POP_STATE)
 
+export const _SCROLL_TO_HASH = registerCMD({
+    [API.CMD_SUB$]: "_SCROLL_TO_HASH",
+    [API.CMD_ARGS]: ({ [API.URL_FULL]: url }) => ({ [API.URL_FULL]: url }),
+    [API.CMD_WORK]: ({ [API.URL_FULL]: url }) => {
+        const { _HASH } = URL2obj(url)
+        if (_HASH) {
+            const el = document.getElementById(_HASH)
+            //console.log({ el })
+            el.scrollIntoView({ behavior: "smooth" })
+        }
+    },
+})
+
 export const router = {
     [API.CFG_RUTR]: urlToPageConfig,
     //[API.RTR_PREP]: [PUSH],
-    //[API.RTR_POST]: [LOG_POP_STATE],
+    [API.RTR_POST]: [_SCROLL_TO_HASH],
 }

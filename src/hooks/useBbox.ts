@@ -16,7 +16,6 @@ export const useBbox = <T extends Element>(): [DOMRect | undefined, MutableRefOb
     }
 
     useEffectInEvent("resize")
-    //useEffectInEvent("scroll", true)
 
     return [rect, ref]
 }

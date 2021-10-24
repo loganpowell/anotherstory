@@ -2,17 +2,21 @@
 
 import React from "react"
 
-export const Page = ({ children, ...props }) => {
+import { useMyTheme } from "../hooks"
+
+export const TextPanel = ({ children }) => {
+    const { space, fontSizes } = useMyTheme()
     return (
         <div
             css={{
-                width: "100%",
+                width: ["100%", null, "1fr"],
                 height: "auto",
                 display: "flex",
                 flexDirection: "column",
+                alignItems: "flex-start",
                 justifyContent: "flex-start",
-                alignItems: "center",
-                position: "relative",
+                gap: space.md,
+                paddingTop: space.md,
             }}
         >
             {children}

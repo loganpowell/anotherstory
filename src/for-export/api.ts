@@ -2,6 +2,7 @@ import * as CSS from "csstype"
 import { MotionStyle, MotionProps } from "framer-motion"
 import { phosphor_weights } from "./constants"
 import { theme } from "../theme"
+import { Interpolation } from "@emotion/serialize"
 
 export type FontSize = keyof typeof theme.fontSizes
 export type Space = keyof typeof theme.space
@@ -44,7 +45,7 @@ declare module "csstype" {
     }
 }
 
-export type Styles = CSS.Properties
+export type Styles = CSS.Properties | Interpolation<CSS.Properties>
 
 export type IconWeight = keyof typeof phosphor_weights
 
@@ -52,7 +53,7 @@ export interface IStyledProps extends React.HTMLAttributes<HTMLElement> {
     as?: any
     label?: string
     size?: string
-    style?: Styles
+    //style?: Styles
     children?: React.ReactNode
 }
 
@@ -60,7 +61,7 @@ export interface IMoStyledProps extends MotionProps {
     as?: any
     label?: string
     size?: string
-    style?: Styles
+    //style?: Styles
     children?: React.ReactNode
 }
 

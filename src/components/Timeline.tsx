@@ -62,6 +62,9 @@ const TLTime = ({ color, children, ...props }) => (
         {children}
     </div>
 )
+const convertToKebabCase = string => {
+    return string.replace(/\s+/g, "-").toLowerCase()
+}
 
 export const TLItem = ({
     time,
@@ -69,6 +72,7 @@ export const TLItem = ({
     title,
     description,
     borders = true,
+    color = "light_5",
     ...props
 }: {
     time?: string
@@ -76,16 +80,16 @@ export const TLItem = ({
     title?: string
     description?: string
     borders?: boolean
+    color?: string
 }) => {
     const { ref, inView, entry } = useInView({
         threshold: 0.8,
     })
     const { size } = useContext(CTX)
-    const {
-        colors: { dark_5 },
-    } = useMyTheme()
+    const { colors } = useMyTheme()
     return (
         <motion.li
+            id={convertToKebabCase(title)}
             ref={ref}
             css={{
                 width: "100%",
@@ -96,20 +100,20 @@ export const TLItem = ({
                 alignItems: "flex-start",
                 overflow: "hidden",
             }}
-            initial="out"
-            animate={inView ? "in" : "out"}
-            variants={{
-                out: {
-                    opacity: 0,
-                },
-                in: {
-                    opacity: 1,
-                    transition: {
-                        //delay: 0.4,
-                        delayChildren: 0.1,
-                    },
-                },
-            }}
+            //initial="out"
+            //animate={inView ? "in" : "out"}
+            //variants={{
+            //    out: {
+            //        opacity: 0,
+            //    },
+            //    in: {
+            //        opacity: 1,
+            //        transition: {
+            //            //delay: 0.4,
+            //            delayChildren: 0.1,
+            //        },
+            //    },
+            //}}
         >
             {/*TOP ROW*/}
             <TimelineRow height="58px">
@@ -118,7 +122,7 @@ export const TLItem = ({
                     css={{
                         width: "30%",
                         height: "100%",
-                        ...one_border("Right", 1, dark_5),
+                        ...one_border("Right", 1, colors[color]),
                     }}
                 />
                 <span
@@ -126,7 +130,7 @@ export const TLItem = ({
                     css={{
                         width: "70%",
                         height: "100%",
-                        ...one_border("Left", 1, dark_5),
+                        ...one_border("Left", 1, colors[color]),
                     }}
                 />
             </TimelineRow>
@@ -142,7 +146,7 @@ export const TLItem = ({
                     alignItems: "flex-start",
                 }}
             >
-                <TLTime color={dark_5} size={size}>
+                <TLTime color={colors[color]} size={size}>
                     {time}
                 </TLTime>
                 <div
@@ -167,7 +171,7 @@ export const TLItem = ({
                             overflow: "hidden",
                             borderRadius: "1rem",
                             border: "3px solid",
-                            borderColor: dark_5,
+                            borderColor: colors[color],
                         })}
                     />
                 </div>
@@ -180,7 +184,7 @@ export const TLItem = ({
                         whiteSpace: "pre-wrap",
                         wordWrap: "break-word",
                         wordBreak: "break-word",
-                        color: dark_5,
+                        color: colors[color],
                         fontSize: ["2.4rem", "3rem", "3.5rem", "4.5rem"],
                         fontWeight: 800,
                         paddingTop: [".1rem", ".3rem", ".2rem", "0rem"],
@@ -198,7 +202,7 @@ export const TLItem = ({
                     css={{
                         label: "tl-bottom-left",
                         width: "30%",
-                        ...(borders && one_border("Right", ".1rem", dark_5)),
+                        ...(borders && one_border("Right", ".1rem", colors[color])),
                     }}
                 >
                     <motion.div
@@ -208,25 +212,25 @@ export const TLItem = ({
                             width: "100%",
                             height: "100%",
                             fontWeight: 300,
-                            color: dark_5,
+                            color: colors[color],
                             fontSize: "2rem",
                             letterSpacing: "-0.8px",
                             lineHeight: "1",
                             textAlign: "right",
                         }}
-                        variants={{
-                            out: {
-                                y: 50,
-                                opacity: 0,
-                            },
-                            in: {
-                                y: 0,
-                                opacity: 1,
-                                //transition: {
-                                //    delay: 3,
-                                //},
-                            },
-                        }}
+                        //variants={{
+                        //    out: {
+                        //        y: 50,
+                        //        opacity: 0,
+                        //    },
+                        //    in: {
+                        //        y: 0,
+                        //        opacity: 1,
+                        //        //transition: {
+                        //        //    delay: 3,
+                        //        //},
+                        //    },
+                        //}}
                     >
                         <Icon type={icon} weight="thin" />
                     </motion.div>
@@ -242,7 +246,7 @@ export const TLItem = ({
                         alignItems: "flex-start",
                         padding: "20px 30px 0px 30px",
                         overflow: "visible",
-                        ...(borders && one_border("Left", ".1rem", dark_5)),
+                        ...(borders && one_border("Left", ".1rem", colors[color])),
                     }}
                 >
                     <p
@@ -255,14 +259,14 @@ export const TLItem = ({
                             wordWrap: "break-word",
                             wordBreak: "break-word",
                             fontWeight: 200,
-                            color: dark_5,
+                            color: colors[color],
                             fontSize: ["2rem", "2.5rem"],
                             letterSpacing: "-0.8px",
                             lineHeight: "1.3",
                             textAlign: "left",
                         })}
                     >
-                        {description}
+                        {description || ""}
                     </p>
                 </div>
             </TimelineRow>
@@ -278,7 +282,13 @@ type Milestone = {
 }
 type Milestones = Milestone[]
 
-export const Timeline = ({ milestones }: { milestones: Milestones }) => (
+export const Timeline = ({
+    milestones,
+    color = "light_5",
+}: {
+    milestones: Milestones
+    color?: string
+}) => (
     <ul
         css={{
             label: "stack",
@@ -296,6 +306,7 @@ export const Timeline = ({ milestones }: { milestones: Milestones }) => (
             return (
                 <TLItem
                     key={"timeline_item" + idx}
+                    color={color}
                     time={time}
                     icon={icon}
                     title={title}
