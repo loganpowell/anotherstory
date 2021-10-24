@@ -131,8 +131,10 @@ export const _SCROLL_TO_HASH = registerCMD({
     },
 })
 
-export const router = {
+export const router: API.RouterCFG = {
     [API.CFG_RUTR]: urlToPageConfig,
     //[API.RTR_PREP]: [PUSH],
+    //@ts-ignore
+    ignore_prefix: "anotherstory",
     [API.RTR_POST]: [_SCROLL_TO_HASH],
 }
