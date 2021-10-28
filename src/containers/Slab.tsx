@@ -39,7 +39,7 @@ export const Slab = ({
                 boxSizing: "border-box",
                 flexShrink: 0,
                 width: "100%",
-                ...((!full_height && { height: "auto" }) || { height: "100vh" }),
+                ...((!full_height && { height: "auto" }) || { minHeight: "100vh" }),
                 display: "flex",
                 flexDirection: direction,
                 position: "relative",

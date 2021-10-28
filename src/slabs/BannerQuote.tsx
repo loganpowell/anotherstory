@@ -62,6 +62,7 @@ export const BannerQuote = ({
                 src={src}
                 align={align}
                 shape={shape}
+                quote_size={["xs", "sm"]}
             />
         </Slab>
     )

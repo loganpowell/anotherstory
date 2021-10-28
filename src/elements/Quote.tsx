@@ -12,7 +12,7 @@ export const Quote = ({ text, color = "dark_3", size = ["sm"] }) => {
     return (
         <div
             css={{
-                width: "100%",
+                //width: "100%",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-start",
@@ -210,7 +210,7 @@ export const AvatarQuote = ({
                 display: "flex",
                 flexDirection: "column",
                 flex: "1",
-                width: "1",
+                //width: "1",
             }}
         >
             <Quote text={text} color={color} size={quote_size} />

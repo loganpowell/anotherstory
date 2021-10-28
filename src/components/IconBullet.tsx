@@ -4,7 +4,7 @@ import React from "react"
 import { Icon } from "./Icon"
 import { useMyTheme } from "../hooks"
 //import { theme } from "../theme"
-import { FontSize, IconWeight, nudge_size } from "../for-export"
+import { FontSize, IconWeight, nudge_size, useR$ } from "../for-export"
 export const IconBullet = ({
     weight = "light",
     size = "sm",
@@ -29,6 +29,7 @@ export const IconBullet = ({
     } = useMyTheme()
 
     const [upsize] = nudge_size(fontSizes)(size, 2)
+    const [downsize] = nudge_size(fontSizes)(size, -1)
     const Li = () => (
         <li
             css={{
@@ -43,12 +44,12 @@ export const IconBullet = ({
         >
             <Icon color={light_5} type={icon} weight={weight} size={upsize} />
             <p
-                css={{
+                css={useR$({
                     fontFamily: serif,
                     //letterSpacing: letterSpacings[size],
                     color: color || light_5,
-                    fontSize: fontSizes[size],
-                }}
+                    fontSize: [fontSizes[downsize], fontSizes[size]],
+                })}
             >
                 {bullet}
             </p>
@@ -80,8 +81,9 @@ export const IconBullet = ({
  * ```
  */
 export const BulletList = ({ bullets, size }) => {
-    const { space } = useMyTheme()
+    const { space, sizes } = useMyTheme()
 
+    //const {} = nudge_size()
     return (
         <ul
             css={{
