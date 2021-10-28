@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, useViewportScroll } from "framer-motion"
 import { Interpolation } from "@emotion/react"
 import { Slab, slim_slab_padding } from "../containers"
 import { useInView } from "react-intersection-observer"
@@ -63,14 +63,18 @@ export const BoldSlab = ({ title, subtitle, ...props }) => {
 }
 
 export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
+    //const { scrollY } = useViewportScroll()
     const { ref, inView, entry } = useInView({
         threshold: 1,
     })
     const [rect, setRect] = useState(null)
 
-    useEffect(() => {
+    console.log({ entry })
+    useLayoutEffect(() => {
+        console.log({ ref })
         setRect(entry?.target?.getBoundingClientRect())
-    }, [entry])
+    }, [ref, entry])
+
     const { height } = rect || { height: 100 }
     //const { size$ } = useContext(CTX)
 
@@ -133,7 +137,7 @@ export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
     )
 }
 
-export const IsoSimple = ({ src, tagline, zIndex = 1 }) => {
+export const IsoSimple = ({ src, alt, zIndex = 1, children = null }) => {
     const {
         colors: { dark_5 },
         fonts,
@@ -147,19 +151,9 @@ export const IsoSimple = ({ src, tagline, zIndex = 1 }) => {
             padding={[["sm", "sm"], ["sm", "lg"], ["sm", "15%"], null, ["sm", "20%"]]}
             direction={["row"]}
         >
-            <img src={src} alt={tagline} css={responsive_img_css(zIndex)} />
-            <p
-                css={useR$({
-                    flex: "1",
-                    color: colors.dark_5,
-                    fontFamily: fonts.serif,
-                    fontWeight: fontWeights.normal,
-                    lineHeight: lineHeights.md,
-                    fontSize: [sm, null, md],
-                })}
-            >
-                {tagline}
-            </p>
+            <img src={src} alt={alt} css={responsive_img_css(zIndex)} />
+
+            {children}
         </Slab>
     )
 }

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ES5",
         "module": "esnext",
-        "lib": ["ES2017", "ES7", "ES6", "DOM"],
+        "lib": ["ES2017", "ES2015", "ES7", "ES6", "DOM"],
         "declaration": true,
         "importHelpers": true,
         "noUnusedParameters": false,
@@ -31,8 +31,9 @@
         "**/*.test.ts",
         "**/*.repl.ts",
         "src/aws-exports.js",
-        "node_modules",
+        "src/setupProxy.js",
+        "node_modules/*",
         "src/misc"
     ],
-    "include": ["src"]
+    "include": ["src/*"]
 }

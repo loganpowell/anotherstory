@@ -21,9 +21,9 @@
     font-size: 62.5%;
 }
 /*from @-0/browser set active Command*/
-a[active] {
+/*a[active] {
     color: coral;
-}
+}*/
 
 body {
     margin: 0;
@@ -44,6 +44,14 @@ body {
 .screen {
     width: 100%;
     height: 100%;
+}
+
+/* Chrome autofill (blue) to transparent hack */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s;
 }
 
 /* ========================================== */

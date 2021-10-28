@@ -6,6 +6,7 @@ import { Slab, slim_slab_padding } from "../containers"
 import { H4 } from "../elements"
 import { useMyTheme, useSize$, useThrottle } from "../hooks"
 import throttle from "lodash.throttle"
+import { Link } from "."
 
 export const TopNav = () => {
     const size = useSize$()
@@ -15,12 +16,11 @@ export const TopNav = () => {
     const { colors, fontSizes, fontWeights } = useMyTheme()
     //const debouncedYPos = useDebounce(lastYPos, 1000)
 
-    console.log({ size })
+    //console.log({ size })
 
     const setScroll = () => {
-        console.log("scrolled")
         const yPos = window.scrollY
-        console.log({ yPos })
+        //console.log({ yPos })
         const isScrollingUp = yPos < 100 || yPos < lastYPos
         setShowing(isScrollingUp)
         setLastYPos(yPos)
@@ -78,8 +78,8 @@ export const TopNav = () => {
                         justifyContent: "flex-end", // TODO: "space-between"
                     }}
                 >
-                    <a
-                        href="mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory"
+                    <Link
+                        href="/contact"
                         css={{
                             width: "auto",
                             height: "auto",
@@ -92,7 +92,7 @@ export const TopNav = () => {
                         }}
                     >
                         Connect
-                    </a>
+                    </Link>
                 </div>
             </Slab>
             ){/*) || <Slab padding={slim_slab_padding}> Large </Slab>}*/}

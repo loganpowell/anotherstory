@@ -25,7 +25,7 @@ export const Slab = ({
     myRef = null,
     full_height = false,
     blur = false,
-    children,
+    children = null,
     ...props
 }) => {
     const { colors, space } = useMyTheme()

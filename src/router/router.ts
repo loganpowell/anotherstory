@@ -17,7 +17,7 @@ import Airtable from "airtable"
 import dotenv from "dotenv"
 import fetch from "node-fetch"
 import { items } from "../misc/data"
-import { Magic, Move, Stub, Home } from "../pages"
+import { Magic, Move, Stub, Home, Contact } from "../pages"
 
 dotenv.config()
 
@@ -28,6 +28,7 @@ Airtable.configure({
     endpointUrl: "https://api.airtable.com",
     apiKey,
 })
+
 const base = Airtable.base("appK6q2gwVCCc0gmF")
 
 const getItems = async () => {
@@ -100,12 +101,16 @@ export const urlToPageConfig = async URL => {
             { page: () => Magic, data: getItems },
         ],
         [
+            { ...match, _PATH: ["contact"] },
+            { page: () => Contact, data: getItems },
+        ],
+        [
             { ...match, _PATH: ["magic-move", _2] },
             { page: () => Move, data: getItems },
         ],
     ]).get(match) || {
-        page: d => console.log("404 Page:", d),
-        data: () => Promise.resolve({}),
+        page: () => Home,
+        data: async () => ({ data: await getHomePageData() }),
     }
 
     const res = await data()
@@ -132,6 +137,7 @@ export const _SCROLL_TO_HASH = registerCMD({
 })
 
 export const router: API.RouterCFG = {
+    // @ts-ignore
     [API.CFG_RUTR]: urlToPageConfig,
     //[API.RTR_PREP]: [PUSH],
     //@ts-ignore

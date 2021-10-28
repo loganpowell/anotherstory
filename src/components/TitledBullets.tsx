@@ -6,7 +6,7 @@ import { IconBullet, BulletList } from "../components"
 import { useR$ } from "../for-export"
 import { useMyTheme, useSize$ } from "../hooks"
 import { CTX } from "../context"
-import { H2, H4 } from "../elements"
+import { H2, H4 } from "../elements/index"
 
 export const TitledBullets = ({ title, subtitle = "", bullets }) => {
     return (

@@ -9,6 +9,7 @@ import { log$ } from "@-0/browser"
 import { out$ } from "@-0/spool"
 import { trace } from "@thi.ng/rstream"
 import { ThemeProvider } from "@emotion/react"
+import { TopNav } from "./components"
 
 // 🧐 inspect
 //log$.subscribe(trace("log$:"))
@@ -21,7 +22,8 @@ export default function App() {
             <ThemeProvider theme={theme}>
                 <MyProvider>
                     <AnimateSharedLayout type="crossfade">
-                        {/*<Header />*/}
+                        <TopNav />
+
                         <View />
                     </AnimateSharedLayout>
                 </MyProvider>
