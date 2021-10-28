@@ -8,6 +8,7 @@ export const BigQuote = () => {
     return (
         <Slab bg="light_5" padding={xtall_slab_padding}>
             <AvatarQuote
+                src="http://www.sherispainelong.com/wp-content/uploads/2015/09/sheri-bio-image-2.jpg"
                 color="dark_5"
                 text="[This] team has more vision, imagination and problem solving ability than all five previous architects (combined) with whom we have done projects. their design-build approach simplifies multiple meetings and miscommunications between a separate contractor and architect. The end result of our renovation is stunning."
                 name="Sheri Spain Long"

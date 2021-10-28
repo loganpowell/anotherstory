@@ -7,15 +7,16 @@ import { useMyTheme } from "../hooks"
 import { lineHeights } from "../theme"
 
 const long_quote =
-    "Some say the world will end in fire. Some say in ice. From what I've witnessed of desire, I hold with those that favor fire. But if it had to perish twice, I think I know enough of hate - to say that for destruction, ice, is also great and would suffice."
+    "In the first three weeks of being able to be in the added square footage, we were able to easily welcome out of town friends with 3 kids... Our kids have been able to retreat to their own spaces upstairs when they need some time away and read books together without having to be in the higher traffic areas of our home. We could not be more grateful for what the added space has added to our days as a family."
 
 const short_quote = "Once upon a midnight, dreary. While I pondered, weak and weary..."
+
 export const BannerQuote = ({
     quote = long_quote,
-    name = "Bill Murray",
+    name = "Rachel Buie",
     location = "Birmingham, AL",
     size = "sm",
-    src = "https://www.fillmurray.com/360/360",
+    src = "https://lh6.googleusercontent.com/-gxK45l5s8gg/AAAAAAAAAAI/AAAAAAAAAUo/2OJ5ahdHTNU/photo.jpg",
     shape = "circle",
     align = "left",
     topline = "The Buies",

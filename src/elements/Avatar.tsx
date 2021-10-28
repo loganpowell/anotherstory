@@ -17,6 +17,7 @@ export const Avatar = ({
             css={{
                 width: sizes[size],
                 height: sizes[size],
+                objectFit: "cover",
                 borderRadius: shape === "circle" ? sizes[size] : 0,
             }}
         />
