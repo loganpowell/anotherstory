@@ -10,18 +10,7 @@ import {
     TextPanel,
 } from "../containers"
 import { H2, H4, H3 } from "../elements"
-import {
-    WhatWhy,
-    BannerQuote,
-    IsoSimple,
-    IsoLiving,
-    BoldSlab,
-    IsoStair,
-    BigQuote,
-    ContactForm,
-} from "../slabs/index"
-import { Footer } from "../slabs/Footer"
-import { TimelineHome, WhenTitle } from "../slabs/TimelineHome"
+import { IsoSimple, ContactForm, Footer } from "../slabs/index"
 import { useMyTheme } from "../hooks"
 
 export const Contact = ({ data }) => {

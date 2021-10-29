@@ -32,22 +32,29 @@ export const H2 = ({ color = "light_5", font = "sans", children }) => {
     )
 }
 
-export const H3 = ({ color = "light_5", font = "sans", children }) => {
+export const H3 = ({
+    color = "light_5",
+    font = "sans",
+    align = "flex-start",
+    width = "100%",
+    children,
+}) => {
     const {
         colors,
         fontSizes: { lg, md },
-        letterSpacings: { xs, sm },
-
+        letterSpacings: { xs, sm, md: lms },
         fonts,
     } = useMyTheme()
     return (
         <h3
             css={useR$({
+                width,
                 color: colors[color],
                 fontSize: [md, null, lg],
-                letterSpacing: sm,
+                letterSpacing: [lms, sm],
                 lineHeight: 1,
                 fontFamily: fonts[font],
+                alignItems: align,
             })}
         >
             {children}
@@ -58,16 +65,15 @@ export const H4 = ({ color = "light_5", font = "sans", children }) => {
     const {
         colors,
         fontSizes: { xxl, xl, lg, md, sm },
-        letterSpacings: { xxs, xs, sm: lsm },
-
+        letterSpacings: { xxs, xs, sm: lsm, md: lmd },
         fonts,
     } = useMyTheme()
     return (
         <h4
             css={useR$({
                 color: colors[color],
-                fontSize: [sm, null, md],
-                letterSpacing: lsm,
+                fontSize: [sm, md],
+                letterSpacing: [lmd, lsm],
                 lineHeight: 1,
                 fontFamily: fonts[font],
             })}

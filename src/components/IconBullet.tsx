@@ -5,6 +5,7 @@ import { Icon } from "./Icon"
 import { useMyTheme } from "../hooks"
 //import { theme } from "../theme"
 import { FontSize, IconWeight, nudge_size, useR$ } from "../for-export"
+
 export const IconBullet = ({
     weight = "light",
     size = "sm",
@@ -39,7 +40,7 @@ export const IconBullet = ({
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                gap: space[size],
+                gap: icon && space[size],
             }}
         >
             <Icon color={light_5} type={icon} weight={weight} size={upsize} />

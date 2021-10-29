@@ -86,9 +86,12 @@ export const TLItem = ({
         threshold: 0.8,
     })
     const { size } = useContext(CTX)
-    const { colors } = useMyTheme()
+    const {
+        colors,
+        fontSizes: { xs, sm, md },
+    } = useMyTheme()
     return (
-        <motion.li
+        <li
             id={convertToKebabCase(title)}
             ref={ref}
             css={{
@@ -205,7 +208,7 @@ export const TLItem = ({
                         ...(borders && one_border("Right", ".1rem", colors[color])),
                     }}
                 >
-                    <motion.div
+                    <div
                         css={{
                             label: "tl-icon",
                             padding: "2rem 3rem 0rem 0rem",
@@ -213,27 +216,14 @@ export const TLItem = ({
                             height: "100%",
                             fontWeight: 300,
                             color: colors[color],
-                            fontSize: "2rem",
+                            //fontSize: "2rem",
                             letterSpacing: "-0.8px",
                             lineHeight: "1",
                             textAlign: "right",
                         }}
-                        //variants={{
-                        //    out: {
-                        //        y: 50,
-                        //        opacity: 0,
-                        //    },
-                        //    in: {
-                        //        y: 0,
-                        //        opacity: 1,
-                        //        //transition: {
-                        //        //    delay: 3,
-                        //        //},
-                        //    },
-                        //}}
                     >
-                        <Icon type={icon} weight="thin" />
-                    </motion.div>
+                        <Icon type={icon} weight="thin" size="lg" />
+                    </div>
                 </div>
                 <div
                     css={{
@@ -260,7 +250,7 @@ export const TLItem = ({
                             wordBreak: "break-word",
                             fontWeight: 200,
                             color: colors[color],
-                            fontSize: ["2rem", "2.5rem"],
+                            fontSize: [xs, sm],
                             letterSpacing: "-0.8px",
                             lineHeight: "1.3",
                             textAlign: "left",
@@ -270,17 +260,17 @@ export const TLItem = ({
                     </p>
                 </div>
             </TimelineRow>
-        </motion.li>
+        </li>
     )
 }
 
-type Milestone = {
+export type Milestone = {
     time?: string
     icon?: string
     title?: string
     description?: string
 }
-type Milestones = Milestone[]
+export type Milestones = Milestone[]
 
 export const Timeline = ({
     milestones,

@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { useContext } from "react"
-import { Slab, TextPanel } from "../containers"
+import { TextPanel } from "../containers"
 import { IconBullet, BulletList } from "../components"
 import { useR$ } from "../for-export"
-import { useMyTheme, useSize$ } from "../hooks"
 import { CTX } from "../context"
 import { H2, H4 } from "../elements/index"
 

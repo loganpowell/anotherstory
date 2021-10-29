@@ -21,10 +21,11 @@ export const Slab = ({
     align = "flex-start" || [],
     bg = "dark_5",
     gap = "lg",
-    img = null,
-    myRef = null,
     full_height = false,
     blur = false,
+    justify = "flex-start",
+    img = null,
+    myRef = null,
     children = null,
     ...props
 }) => {
@@ -46,6 +47,7 @@ export const Slab = ({
                 alignItems: align,
                 padding: pads,
                 backgroundColor: colors[bg],
+                justifyContent: justify,
                 gap: [space["sm"], space[gap]],
                 ...(img && {
                     backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${img})`,

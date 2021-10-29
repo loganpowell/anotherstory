@@ -68,7 +68,9 @@ export const TopNav = () => {
                         flexDirection: "row",
                     }}
                 >
-                    <H4 color="light_5">AnotherStory</H4>
+                    <Link href="/">
+                        <H4 color="light_5">AnotherStory</H4>
+                    </Link>
                 </div>
                 <div
                     css={{

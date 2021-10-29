@@ -183,10 +183,10 @@ export const fonts = {
  * - typography: https://styled-system.com/table/#typography
  */
 export const fontSizes = {
-    xxs: "1rem",
-    xs: "1.4rem",
-    sm: "2.4rem",
-    md: "4rem",
+    xxs: "1.4rem",
+    xs: "1.8rem",
+    sm: "2rem",
+    md: "3.5rem",
     lg: "6.4rem",
     xl: "11rem",
     xxl: "18rem",

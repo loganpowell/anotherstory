@@ -17,7 +17,7 @@ import Airtable from "airtable"
 import dotenv from "dotenv"
 import fetch from "node-fetch"
 import { items } from "../misc/data"
-import { Magic, Move, Stub, Home, Contact } from "../pages"
+import { Magic, Move, Stub, Home, Contact, Process, About } from "../pages"
 
 dotenv.config()
 
@@ -58,9 +58,8 @@ const getItems = async () => {
 
     return await parsed
 }
-//console.log({ base })
 
-const getHomePageData = async () => {
+const getTimelineData = async (fields = ["order", "time", "title"]) => {
     const res: any[] = await new Promise((resolve, reject) => {
         let acc = []
         base("timeline")
@@ -69,8 +68,11 @@ const getHomePageData = async () => {
                 (records, nextPage) => {
                     //console.log({ records })
                     records.forEach(r => {
-                        const { order, time, icon, title } = r.fields
-                        acc.push({ order, time, title })
+                        const { order, time, icon, title, description } = r.fields
+                        const take = {}
+                        fields.forEach(f => (take[f] = r.fields[f]))
+                        acc.push(take)
+                        //acc.push({ order, time, title })
                     })
                     nextPage()
                 },
@@ -93,7 +95,26 @@ export const urlToPageConfig = async URL => {
             { ...match, _PATH: [] },
             {
                 page: () => Home,
-                data: async () => ({ data: await getHomePageData() }),
+                data: async () => ({ data: await getTimelineData() }),
+            },
+        ],
+        [
+            { ...match, _PATH: ["contact"] },
+            { page: () => Contact, data: getItems },
+        ],
+        [
+            { ...match, _PATH: ["process"] },
+            {
+                page: () => Process,
+                data: async () =>
+                    await getTimelineData(["order", "time", "title", "icon", "description"]),
+            },
+        ],
+        [
+            { ...match, _PATH: ["about"] },
+            {
+                page: () => About,
+                data: () => null,
             },
         ],
         [
@@ -101,16 +122,12 @@ export const urlToPageConfig = async URL => {
             { page: () => Magic, data: getItems },
         ],
         [
-            { ...match, _PATH: ["contact"] },
-            { page: () => Contact, data: getItems },
-        ],
-        [
             { ...match, _PATH: ["magic-move", _2] },
             { page: () => Move, data: getItems },
         ],
     ]).get(match) || {
         page: () => Home,
-        data: async () => ({ data: await getHomePageData() }),
+        data: async () => ({ data: await getTimelineData() }),
     }
 
     const res = await data()
