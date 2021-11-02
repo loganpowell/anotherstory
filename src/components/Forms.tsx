@@ -96,7 +96,7 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
                     ev.preventDefault()
                     setTimeout(() => {
                         setFocused(false)
-                    }, 100)
+                    }, 300)
                 }}
                 //  loading={isPlacePredictionsLoading}
                 value={value}
@@ -155,6 +155,7 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
         </label>
     )
 }
+
 export const Li = ({ place_id, onClick, description }) => {
     return (
         <li
@@ -229,6 +230,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
                         <Li
                             key={place_id}
                             onClick={() => {
+                                console.log({ text })
                                 setAddress(text)
                             }}
                             description={text}
