@@ -15,18 +15,37 @@ import { _NAVIGATE } from "../context"
 import { API } from "@-0/browser"
 import { Input, Address } from "../components"
 import Airtable from "airtable"
+import vc from "vcards-js"
 import dotenv from "dotenv"
+
 dotenv.config()
 
 const apiKey = process.env.REACT_APP_AIRTABLE
 const places = process.env.REACT_APP_PLACES
+
+//create a new vCard
+const vCard = vc()
+
+//save to file
+
+//get as formatted string
 
 //console.log({ apiKey })
 const base = new Airtable({
     apiKey,
 }).base("appK6q2gwVCCc0gmF")
 
-const createRecord = async ({ address, name, email, phone, experienced, why, urgency, referral }) =>
+const createRecord = async ({
+    address,
+    name,
+    email,
+    phone,
+    experienced,
+    why,
+    urgency,
+    referral,
+    vcard,
+}) =>
     await base("contact").create(
         [
             {
@@ -39,6 +58,7 @@ const createRecord = async ({ address, name, email, phone, experienced, why, urg
                     why,
                     urgency,
                     referral,
+                    vcard,
                 },
             },
         ],
@@ -52,6 +72,7 @@ const createRecord = async ({ address, name, email, phone, experienced, why, urg
             })
         }
     )
+
 export const ContactForm = () => {
     const [address, setAddress] = useState("")
     const [name, setName] = useState("")
@@ -70,6 +91,39 @@ export const ContactForm = () => {
             }}
             onSubmit={async ev => {
                 ev.preventDefault()
+                // name
+                const name_parts = name.trim().split(" ")
+                let first = name_parts[0],
+                    middle,
+                    last
+                if (name_parts.length === 3) {
+                    middle = name_parts[1]
+                    last = name_parts[2]
+                }
+                if (name_parts.length === 2) {
+                    middle = ""
+                    last = name_parts[1]
+                }
+
+                // address
+                const address_parts = address.trim().split(", ")
+                const street = address_parts[0]
+                const city = address_parts[1]
+                const state = address_parts[2]
+
+                //set properties
+                vCard.firstName = first
+                vCard.middleName = middle
+                vCard.lastName = last
+                vCard.cellPhone = phone
+                vCard.homeAddress.label = "Home Address"
+                vCard.homeAddress.street = street
+                vCard.homeAddress.city = city
+                vCard.homeAddress.stateProvince = state
+                vCard.note = why
+
+                const vcard = vCard.getFormattedString()
+                console.log({ vcard })
                 await createRecord({
                     address,
                     name,
@@ -79,11 +133,10 @@ export const ContactForm = () => {
                     why,
                     urgency,
                     referral,
+                    vcard: vCard,
                 }).then(val => {
                     window.alert(
-                        `Thank you ${
-                            name.split(" ")[0]
-                        }. We'll review your information and be in touch.`
+                        `Thank you ${first}. We'll review your information and be in touch.`
                     )
                     run$.next({
                         ..._NAVIGATE,
@@ -91,7 +144,7 @@ export const ContactForm = () => {
                             [API.URL_FULL]: ".",
                         },
                     })
-                    window.history.pushState({}, null, "./")
+                    window.history.pushState({}, null, ".")
                 })
             }}
         >

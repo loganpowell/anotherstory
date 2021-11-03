@@ -83,7 +83,8 @@ const Circumscribed = ({ style, children, ...props }) => {
     //console.log({ theme })
     return (
         <motion.div
-            css={useR$({
+            layoutId="flood"
+            css={{
                 position: "fixed",
                 resize: "both",
                 zIndex: 10,
@@ -91,9 +92,11 @@ const Circumscribed = ({ style, children, ...props }) => {
                 clipPath: "circle(72%)",
                 cursor: "pointer",
                 backgroundColor: light_5,
-                label: "circumscribed",
+                // 🔥 do not touch this 👇 (else flickering on iphone)
+                // fix courtesy of: https://stackoverflow.com/a/17967969
+                WebkitTransform: "translate3D(0,0,0)",
                 ...style,
-            })}
+            }}
             {...props}
         >
             {children}
@@ -102,7 +105,9 @@ const Circumscribed = ({ style, children, ...props }) => {
 }
 
 const MenuClosed = ({ trigger, ...props }) => {
-    const { size } = useContext(CTX)
+    const {
+        colors: { dark_5, light_5 },
+    } = useMyTheme()
 
     return (
         <Circumscribed
@@ -112,7 +117,6 @@ const MenuClosed = ({ trigger, ...props }) => {
                 top: "3rem",
                 right: "3rem",
             }}
-            layoutId="flood"
             onClick={() => trigger(true)}
             {...props}
         >
@@ -167,14 +171,14 @@ const MenuItems = ({ children, ...props }) => (
 )
 
 const MenuOpen = ({ trigger, children, ...props }) => {
-    const { size } = useContext(CTX)
-    const { scrollY } = useViewportScroll()
+    //const { size } = useContext(CTX)
+    //const { scrollY } = useViewportScroll()
     const closeMe = useCallback(e => trigger(false), [trigger])
     useEffect(() => {
         //console.log({ scrollY })
         document.addEventListener("scroll", closeMe)
         return () => document.removeEventListener("scroll", closeMe)
-    }, [scrollY, trigger, closeMe])
+    }, [trigger, closeMe])
 
     const { height, right, width } = getFloodDims()
     return (
@@ -187,9 +191,8 @@ const MenuOpen = ({ trigger, children, ...props }) => {
                 height,
                 top: 0,
                 right,
-                overflow: "hidden",
+                //overflow: "hidden",
             }}
-            layoutId="flood"
             // 🧐 used for child orchestration only
             variants={{
                 open: {

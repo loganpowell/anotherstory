@@ -30,7 +30,7 @@
         "**/*.repl.js",
         "**/*.test.ts",
         "**/*.repl.ts",
-        "src/aws-exports.js",
+        "src/_aws-exports.js",
         "src/setupProxy.js",
         "node_modules/*",
         "src/misc"
