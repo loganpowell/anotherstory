@@ -200,8 +200,8 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
             placesService?.getDetails(
                 {
                     placeId: placePredictions[0].place_id,
-                },
-                placeDetails => console.log(placeDetails)
+                }
+                //placeDetails => console.log(placeDetails)
             )
         }
     }, [placePredictions, placesService])
