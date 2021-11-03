@@ -23,7 +23,7 @@ export const TextPanel = ({
                 alignItems: align,
                 justifyContent: "flex-start",
                 gap: gap.map(g => space[g] || null),
-                paddingBottom: space[paddingBottom] || null,
+                //paddingBottom: space[paddingBottom] || null,
             })}
         >
             {children}

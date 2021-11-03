@@ -59,7 +59,39 @@ const getItems = async () => {
     return await parsed
 }
 
-const getTimelineData = async (fields = ["order", "time", "title"]) => {
+function compare(a, b) {
+    if (a.name < b.name) {
+        return -1
+    }
+    if (a.name > b.name) {
+        return 1
+    }
+    return 0
+}
+
+const getTeam = async () => {
+    const res: any[] = await new Promise((resolve, reject) => {
+        let acc = []
+        base("team")
+            .select({ maxRecords: 20 })
+            .eachPage(
+                (records, nextPage) => {
+                    records.forEach(r => {
+                        const { name, role, quote, bio_short, avatar } = r.fields
+                        acc.push({ name, role, quote, bio_short, avatar: avatar[0]?.url })
+                    })
+                    nextPage()
+                },
+                e => {
+                    if (e) throw new Error(e)
+                    return resolve(acc)
+                }
+            )
+    })
+
+    return res.sort(compare)
+}
+const getTimelineData = async (keep = ["order", "time", "title"]) => {
     const res: any[] = await new Promise((resolve, reject) => {
         let acc = []
         base("timeline")
@@ -68,9 +100,9 @@ const getTimelineData = async (fields = ["order", "time", "title"]) => {
                 (records, nextPage) => {
                     //console.log({ records })
                     records.forEach(r => {
-                        const { order, time, icon, title, description } = r.fields
+                        //const { order, time, icon, title, description } = r.fields
                         const take = {}
-                        fields.forEach(f => (take[f] = r.fields[f]))
+                        keep.forEach(f => (take[f] = r.fields[f]))
                         acc.push(take)
                         //acc.push({ order, time, title })
                     })
@@ -114,7 +146,7 @@ export const urlToPageConfig = async URL => {
             { ...match, _PATH: ["about"] },
             {
                 page: () => About,
-                data: () => null,
+                data: async () => await getTeam(),
             },
         ],
         [

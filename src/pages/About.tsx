@@ -24,6 +24,7 @@ import {
 } from "../slabs"
 import { useMyTheme } from "../hooks"
 import { useR$ } from "../for-export"
+import { space } from "../theme"
 
 const P = ({ weight = "normal", children }) => {
     const { fontWeights, fonts, letterSpacings, fontSizes, colors, lineHeights } = useMyTheme()
@@ -34,7 +35,7 @@ const P = ({ weight = "normal", children }) => {
                 fontFamily: fonts.serif,
                 fontSize: [fontSizes.sm, null, fontSizes.md],
                 color: colors.dark_5,
-                lineHeight: lineHeights.md,
+                lineHeight: lineHeights.xl,
             })}
         >
             {children}
@@ -60,7 +61,8 @@ const Bold = ({ children }) => {
 
 export const About = ({ data }) => {
     const { fontWeights, fonts, letterSpacings, fontSizes, colors } = useMyTheme()
-    console.log({ data })
+    //console.log({ data })
+
     return (
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
@@ -80,8 +82,8 @@ export const About = ({ data }) => {
                             color: colors.dark_5,
                         }}
                     >
-                        It was a
-                        <span css={{ textDecoration: "line-through" }}> dark and story night</span>
+                        It was a{" "}
+                        <span css={{ textDecoration: "line-through" }}> dark and story night</span>{" "}
                         long and bumpy road
                     </p>
                 </TextPanel>
@@ -92,7 +94,7 @@ export const About = ({ data }) => {
                         We thought we had all of the answers and we were up to any challenge. When
                         presented with the opportunity to remove an existing roof system and add a
                         second story to an existing home we thought, &ldquo;Everyone else can do it
-                        so why can&quot;t we?&ldquo;
+                        so why can&apos;t we?&ldquo;
                     </P>
                     <P>
                         As if on command, the moment we removed the roof it began to rain and it
@@ -114,7 +116,8 @@ export const About = ({ data }) => {
                         <Bold>All of the electrical systems had to be reworked. </Bold>
                     </P>
                     <P>
-                        Even the interior basement area which had never seen water before filled up.
+                        Even the interior basement area (which had never seen water before) filled
+                        up.
                     </P>
                     <P>We had to eat all of the cost of labor to spare our clients.</P>
                     <P>And we should have learned our lesson after the first catastrophe...</P>
@@ -139,7 +142,28 @@ export const About = ({ data }) => {
                 </TextPanel>
             </Slab>
             <Slab bg="light_5">
-                <TextPanel gap={["lg"]} paddingBottom={null}>
+                <div
+                    css={{
+                        display: "flex",
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        gap: space.md,
+                        //justifyContent: "center",
+                    }}
+                >
+                    {data.map(({ name, bio_short, quote, role, avatar }) => {
+                        return (
+                            <Bio
+                                key={name}
+                                title={role}
+                                full_name={name}
+                                bio={quote}
+                                img={avatar}
+                            />
+                        )
+                    })}
+                </div>
+                {/*<TextPanel gap={["lg"]} paddingBottom={null}>
                     <Bio
                         title="CEO"
                         full_name="Ben Strout"
@@ -166,7 +190,7 @@ export const About = ({ data }) => {
                         bio="Haven't you ever wanted to jump out of a 10th story window, but then thought, nah"
                         img={process.env.PUBLIC_URL + "/images/benstrout.png"}
                     />
-                </TextPanel>
+                </TextPanel>*/}
             </Slab>
             <Footer />
         </Page>

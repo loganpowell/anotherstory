@@ -26,7 +26,7 @@ export const Home = ({ data: { data } }) => {
         fontSizes: { xs, sm, md },
     } = useMyTheme()
 
-    console.log({ data })
+    //console.log({ data })
     return (
         <Page>
             <BannerQuote />

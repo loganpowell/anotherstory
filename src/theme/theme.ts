@@ -24,7 +24,7 @@ export const ratio = {
     silver: 1.372,
 }
 // TODO: move to ../for-export/responsive
-export const bps = [640, 1020, 1400]
+export const bps = [640, 900, 1300]
 export const breakpoints = bps.map(bp => `${bp}px`)
 //export const breakpoints = ["640px", "768px", "1024px", "1280px"]
 
@@ -215,7 +215,7 @@ export const letterSpacings = {
     xxs: "-1rem",
     xs: "-0.5rem",
     sm: "-0.25rem",
-    md: "0",
+    md: "-0.1rem",
     lg: "0.25rem",
     xl: "0.5rem",
     xxl: "1rem",

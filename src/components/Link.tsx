@@ -47,18 +47,19 @@ export const Link = ({ href, children = null, ...props }) => {
 
     const r_path = getRelativePath(href)
 
+    //console.log({ href, r_path })
     return (
         <a
             ref={me}
             {...props}
             onClick={e => {
                 e.preventDefault()
-                console.log({
-                    href: e.currentTarget.href,
-                    location: window.location.href,
-                    r_path,
-                    me: me.current,
-                })
+                //console.log({
+                //    href: e.currentTarget.href,
+                //    location: window.location.href,
+                //    r_path,
+                //    me: me.current,
+                //})
                 run$.next({
                     ..._NAVIGATE,
                     [API.CMD_ARGS]: {

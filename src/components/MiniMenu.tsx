@@ -11,6 +11,7 @@ import { Card } from "./Cards"
 import { useR$ } from "../for-export"
 import * as CSS from "csstype"
 import { useMyTheme } from "../hooks"
+import { Link } from "."
 
 //const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
 
@@ -65,7 +66,7 @@ export const MenuButton = ({ toggle, isOpen }) => {
         //@ts-ignore
         <MotionButtonCentered
             onClick={() => {
-                console.log("menu-button toggle clicked")
+                //console.log("menu-button toggle clicked")
                 toggle(!isOpen)
             }}
             animate={isOpen ? "open" : "closed"}
@@ -79,17 +80,17 @@ const Circumscribed = ({ style, children, ...props }) => {
     const {
         colors: { dark_5, light_5 },
     } = useMyTheme()
-    console.log({ theme })
+    //console.log({ theme })
     return (
         <motion.div
             css={useR$({
                 position: "fixed",
                 resize: "both",
                 zIndex: 10,
-                boxShadow: `0 0 0 200vmax ${dark_5}`,
+                boxShadow: `0 0 0 200vmax ${light_5}`,
                 clipPath: "circle(72%)",
                 cursor: "pointer",
-                backgroundColor: dark_5,
+                backgroundColor: light_5,
                 label: "circumscribed",
                 ...style,
             })}
@@ -151,7 +152,7 @@ const MenuItems = ({ children, ...props }) => (
         {...props}
         css={{
             boxSizing: "border-box",
-            width: "auto",
+            width: "100%",
             height: "100vh",
             display: "flex",
             overflow: "hidden",
@@ -218,41 +219,51 @@ const MenuOpen = ({ trigger, children, ...props }) => {
 
 const MoCard = ({ ch, ...props }) => {
     const { x } = getFloodDims()
-
+    const { url, title, img } = ch
     //console.log({ x })
     return (
-        <motion.li
-            //adding layout prop screws up 1st mount animation 🤷
-            //layout // <- 🔥
-            variants={{
-                open: {
-                    x: 0,
-                    opacity: 1,
-                    transition: {
-                        ...ease,
-                    },
-                },
-                closed: {
-                    x,
-                    opacity: 0,
-                    transition: {
-                        ...ease,
-                    },
-                },
+        <Link
+            href={url}
+            css={{
+                width: "100%",
             }}
-            {...props}
         >
-            <Card
-                img={process.env.PUBLIC_URL + "/images/peach.jpg"}
-                href={ch.url}
-                title={ch.title}
-            />
-        </motion.li>
+            <motion.li
+                //adding layout prop screws up 1st mount animation 🤷
+                //layout // <- 🔥
+                css={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+                variants={{
+                    open: {
+                        x: 0,
+                        opacity: 1,
+                        transition: {
+                            ...ease,
+                        },
+                    },
+                    closed: {
+                        x,
+                        opacity: 0,
+                        transition: {
+                            ...ease,
+                        },
+                    },
+                }}
+                {...props}
+            >
+                <Card img={process.env.PUBLIC_URL + img} href={url} title={title} alt={title} />
+            </motion.li>
+        </Link>
     )
 }
 const _items = items => items.map((ch, i) => <MoCard key={"cl-" + i} ch={ch} i={i} />)
 
-export const FloodButton = ({ items, ...props }) => {
+export const MiniMenu = ({ items, ...props }) => {
     const [menuOpen, setMenuOpen] = useState(false)
 
     return (

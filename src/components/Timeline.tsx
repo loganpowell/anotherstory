@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react"
 import { motion } from "framer-motion"
-import { Header, Link, FloodButton, Icon } from "../components"
+import { Header, Link, MiniMenu, Icon } from "../components"
 import { CTX } from "../context"
 import { one_border, useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"

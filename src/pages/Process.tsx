@@ -59,7 +59,7 @@ const Bold = ({ children }) => {
 }
 export const Process = ({ data }) => {
     const { fontWeights, fonts, letterSpacings, fontSizes, colors } = useMyTheme()
-    console.log({ data })
+    //console.log({ data })
     return (
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />

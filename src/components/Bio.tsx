@@ -2,22 +2,25 @@
 
 import React from "react"
 import { Avatar } from "../elements"
-import { useMyTheme } from "../hooks"
+import { useR$ } from "../for-export"
+import { useMyTheme, useSize$ } from "../hooks"
 
-export const Bio = ({ title, full_name, bio, img, color = "dark_5" }) => {
+export const Bio = ({ title, full_name, bio, img, color = "dark_5", size = "sm" }) => {
     const { colors, fontSizes, fonts, fontWeights, space } = useMyTheme()
+    const size$ = useSize$()
     return (
         <div
-            css={{
-                width: "100%",
+            css={useR$({
+                flex: "1 1 40rem",
                 height: "auto",
                 display: "flex",
+                //margin: space.sm,
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "flex-start",
                 overflow: "hidden",
                 gap: space.sm,
-            }}
+            })}
         >
             <div
                 css={{
@@ -31,7 +34,7 @@ export const Bio = ({ title, full_name, bio, img, color = "dark_5" }) => {
                     overflow: "visible",
                 }}
             >
-                <Avatar size="md" src={img} />
+                <Avatar size={size} src={img} />
             </div>
             <div
                 css={{

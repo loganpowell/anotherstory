@@ -20,7 +20,7 @@ export const Slab = ({
     direction = ["column", null, "row"],
     align = "flex-start" || [],
     bg = "dark_5",
-    gap = "lg",
+    gap = ["md", "lg"],
     full_height = false,
     blur = false,
     justify = "flex-start",
@@ -48,7 +48,7 @@ export const Slab = ({
                 padding: pads,
                 backgroundColor: colors[bg],
                 justifyContent: justify,
-                gap: [space["sm"], space[gap]],
+                gap: gap.map(g => space[g]),
                 ...(img && {
                     backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${img})`,
                     backgroundSize: "cover",

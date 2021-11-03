@@ -10,6 +10,8 @@ import { CTX } from "../context"
 import { useR$, Styles } from "../for-export"
 import { colors, lineHeights, Theme } from "../theme"
 
+// trick to make responsive square image
+// source: https://spin.atomicobject.com/2015/07/14/css-responsive-square/
 export const responsive_img_css = zIndex => ({
     width: "47%",
     "&:after": {
@@ -23,7 +25,7 @@ export const responsive_img_css = zIndex => ({
 export const BoldSlab = ({ title, subtitle, ...props }) => {
     const {
         fontSizes: { sm, md, lg, xl },
-        letterSpacings: { xxs, xs, sm: lsm },
+        letterSpacings: { xxs, xs, sm: lsm, md: lmd },
         fontWeights,
         colors,
     } = useMyTheme()
@@ -40,7 +42,7 @@ export const BoldSlab = ({ title, subtitle, ...props }) => {
                     display: "flex",
                     flexDirection: "column",
                     fontSize: [sm, md],
-                    letterSpacing: lsm,
+                    letterSpacing: lmd,
                     fontWeight: fontWeights.bold,
                     color: colors.dark_5,
                     textAlign: "left",
@@ -69,9 +71,9 @@ export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
     })
     const [rect, setRect] = useState(null)
 
-    console.log({ entry })
+    //console.log({ entry })
     useLayoutEffect(() => {
-        console.log({ ref })
+        //console.log({ ref })
         setRect(entry?.target?.getBoundingClientRect())
     }, [ref, entry])
 
@@ -98,6 +100,7 @@ export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
             direction={["row"]}
         >
             <motion.img
+                //layoutId={src}
                 src={src}
                 alt={tagline}
                 css={responsive_img_css(zIndex)}
@@ -191,6 +194,7 @@ export const IsoStair = ({ src, tagline, zIndex = 1 }) => {
         >
             <div css={{ ...responsive_img_css(zIndex), position: "relative" }}>
                 <img
+                    //layoutId={src}
                     src={src}
                     alt={tagline}
                     css={{

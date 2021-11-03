@@ -95,8 +95,8 @@ export const ContactForm = () => {
                 })
             }}
         >
-            <Slab bg="light_5">
-                <TextPanel>
+            <Slab bg="light_5" gap={["lg"]}>
+                <TextPanel gap={["lg"]}>
                     <Input
                         label="Full Name*"
                         placeholder="Full Name"
@@ -117,7 +117,7 @@ export const ContactForm = () => {
                     />
                     <Address address={address} setAddress={setAddress} />
                 </TextPanel>
-                <TextPanel>
+                <TextPanel gap={["lg"]}>
                     <Input
                         label="Have you renovated before? (Y/N)"
                         placeholder="no"

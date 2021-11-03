@@ -50,7 +50,7 @@ export const WhenTitle = ({ title, subtitle, ...props }) => {
 export const TimelineHome = ({ title, subtitle, data }) => {
     const {
         fontSizes: { sm, md, lg, xl },
-        letterSpacings: { xxs, xs, sm: lsm, lg: llg },
+        letterSpacings: { xs, md: lmd, lg: llg },
         fontWeights,
         colors,
     } = useMyTheme()
@@ -62,7 +62,7 @@ export const TimelineHome = ({ title, subtitle, data }) => {
                     display: "flex",
                     flexDirection: "row",
                     fontSize: [sm, md],
-                    letterSpacing: lsm,
+                    letterSpacing: lmd,
                     fontWeight: fontWeights.bold,
                     color: colors.light_5,
                     textAlign: "left",

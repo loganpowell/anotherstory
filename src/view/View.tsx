@@ -7,7 +7,7 @@ import { createCursor } from "../hooks"
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 
 export const DefaultLoader = () => {
-    console.log("loading...")
+    //console.log("loading...")
     return (
         <div className="spinner_container" style={{ marginTop: "64px" }}>
             <div className="spinner">

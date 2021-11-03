@@ -35,7 +35,7 @@ const data = {
 
 export const WhatWhy = () => {
     return (
-        <Slab bg="dark_5" gap="lg">
+        <Slab bg="dark_5">
             <TitledBullets title="What" subtitle={data.What.subtitle} bullets={data.What.bullets} />
             <TitledBullets title="Why" subtitle={data.Why.subtitle} bullets={data.Why.bullets} />
         </Slab>

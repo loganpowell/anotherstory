@@ -21,9 +21,9 @@ export const H2 = ({ color = "light_5", font = "sans", children }) => {
             css={useR$({
                 color: colors[color],
                 fontWeight: black,
-                letterSpacing: [xs, null, xxs],
-                fontSize: [lg, null, xl],
-                lineHeight: 0.5,
+                letterSpacing: [xs, null, null, xxs],
+                fontSize: [lg, null, null, xl],
+                lineHeight: [1.5, 0.5],
                 fontFamily: fonts[font],
             })}
         >

@@ -56,7 +56,7 @@ const places = process.env.REACT_APP_PLACES
 
 export const Input = ({ label, placeholder, onChange, value, bg = "light_5", children = null }) => {
     const [focused, setFocused] = useState(false)
-    const { colors } = useMyTheme()
+    const { colors, letterSpacings, fontSizes } = useMyTheme()
     return (
         <label
             css={{
@@ -68,7 +68,9 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
         >
             <input
                 css={{
-                    fontSize: "2rem",
+                    fontSize: fontSizes.sm,
+                    letterSpacing: letterSpacings.md,
+
                     width: "100%",
                     padding: "1rem 0",
                     position: "absolute",
@@ -86,7 +88,7 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
                 placeholder={placeholder}
                 onChange={ev => {
                     ev.preventDefault()
-                    console.log({ value: ev.target.value })
+                    //console.log({ value: ev.target.value })
                     onChange(ev)
                 }}
                 onFocus={ev => {
@@ -103,7 +105,9 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
             />
             <motion.span
                 css={{
-                    fontSize: "2rem",
+                    fontSize: fontSizes.sm,
+                    letterSpacing: letterSpacings.md,
+
                     position: "absolute",
                     top: 0,
                     padding: "1rem 0",
@@ -192,7 +196,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
     useEffect(() => {
         // fetch place details for the first element in placePredictions array
         if (placePredictions.length) {
-            console.log({ placePredictions })
+            //console.log({ placePredictions })
             placesService?.getDetails(
                 {
                     placeId: placePredictions[0].place_id,
@@ -230,7 +234,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
                         <Li
                             key={place_id}
                             onClick={() => {
-                                console.log({ text })
+                                //console.log({ text })
                                 setAddress(text)
                             }}
                             description={text}
