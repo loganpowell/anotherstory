@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react"
-import { useR$ } from "../for-export"
+import { gap_shim, useR$ } from "../for-export"
 
 import { useMyTheme } from "../hooks"
 
@@ -13,6 +13,7 @@ export const TextPanel = ({
     paddingBottom = "sm",
 }) => {
     const { space, fontSizes } = useMyTheme()
+    const { sm, md } = space
     return (
         <div
             css={useR$({
@@ -23,6 +24,7 @@ export const TextPanel = ({
                 alignItems: align,
                 justifyContent: "flex-start",
                 gap: gap.map(g => space[g] || null),
+                ...gap_shim(md),
                 //paddingBottom: space[paddingBottom] || null,
             })}
         >

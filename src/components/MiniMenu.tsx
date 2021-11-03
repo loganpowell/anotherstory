@@ -94,6 +94,7 @@ const Circumscribed = ({ style, children, ...props }) => {
                 backgroundColor: light_5,
                 // 🔥 do not touch this 👇 (else flickering on iphone)
                 // fix courtesy of: https://stackoverflow.com/a/17967969
+                // notes: https://muffinman.io/blog/ios-safari-scroll-position-fixed/
                 WebkitTransform: "translate3D(0,0,0)",
                 ...style,
             }}

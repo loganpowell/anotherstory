@@ -10,6 +10,15 @@ export const one_border = (side = "Top", width: string | number = 0, borderColor
     }
 }
 
+export const gap_shim = (space, bottom = true, right = false) => ({
+    "@supports (-webkit-touch-callout: none) and (not (translate: none))": {
+        "> *": {
+            ...(bottom && { marginBottom: space }),
+            ...(right && { marginRight: space }),
+        },
+    },
+})
+
 export const nudge_size =
     (size_obj: Record<string, string | number>) =>
     (size, distance = 1): [string, string | number] => {

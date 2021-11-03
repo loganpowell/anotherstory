@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react"
-import { one_border, useR$, FontSize, responsive_padding } from "../for-export"
+import { one_border, useR$, FontSize, responsive_padding, gap_shim } from "../for-export"
 import { useMyTheme } from "../hooks"
 import { theme } from "../theme"
 
@@ -30,6 +30,7 @@ export const Slab = ({
     ...props
 }) => {
     const { colors, space } = useMyTheme()
+    const { sm, md, lg } = space
     const pads = responsive_padding(space, padding)
 
     //console.log({ pads })
@@ -56,6 +57,8 @@ export const Slab = ({
                 ...(blur && {
                     backdropFilter: "blur(6px) invert(40%)",
                 }),
+                ...gap_shim(sm, false, true),
+                //...gap_shim(gap.map(g => space[g])),
                 //overflow: "visible",
             })}
         >

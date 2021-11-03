@@ -23,7 +23,7 @@ import {
     TimelineProcess,
 } from "../slabs"
 import { useMyTheme } from "../hooks"
-import { useR$ } from "../for-export"
+import { gap_shim, useR$ } from "../for-export"
 import { space } from "../theme"
 
 const P = ({ weight = "normal", children }) => {
@@ -148,6 +148,7 @@ export const About = ({ data }) => {
                         flexDirection: "row",
                         flexWrap: "wrap",
                         gap: space.md,
+                        ...gap_shim(space.md),
                         //justifyContent: "center",
                     }}
                 >

@@ -44,7 +44,7 @@ const createRecord = async ({
     why,
     urgency,
     referral,
-    vcard,
+    //vcard,
 }) =>
     await base("contact").create(
         [
@@ -58,7 +58,7 @@ const createRecord = async ({
                     why,
                     urgency,
                     referral,
-                    vcard,
+                    //vcard,
                 },
             },
         ],
@@ -133,7 +133,7 @@ export const ContactForm = () => {
                     why,
                     urgency,
                     referral,
-                    vcard: vCard,
+                    //vcard: vCard,
                 }).then(val => {
                     window.alert(
                         `Thank you ${first}. We'll review your information and be in touch.`

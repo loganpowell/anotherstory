@@ -4,6 +4,7 @@ import React from "react"
 import { Avatar } from "../elements"
 import { useR$ } from "../for-export"
 import { useMyTheme, useSize$ } from "../hooks"
+import { gap_shim } from "../for-export"
 
 export const Bio = ({ title, full_name, bio, img, color = "dark_5", size = "sm" }) => {
     const { colors, fontSizes, fonts, fontWeights, space } = useMyTheme()
@@ -20,6 +21,7 @@ export const Bio = ({ title, full_name, bio, img, color = "dark_5", size = "sm" 
                 alignItems: "flex-start",
                 overflow: "hidden",
                 gap: space.sm,
+                ...gap_shim(space.sm),
             })}
         >
             <div
@@ -48,6 +50,7 @@ export const Bio = ({ title, full_name, bio, img, color = "dark_5", size = "sm" 
                     alignItems: "flex-start",
                     overflow: "hidden",
                     gap: space.xs,
+                    ...gap_shim(space.xs),
                 }}
             >
                 <p

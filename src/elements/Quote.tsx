@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react"
-import { nudge_size, useR$ } from "../for-export"
+import { gap_shim, nudge_size, useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
 import { borderWidths, fontWeights } from "../theme"
 import { Avatar } from "./Avatar"
@@ -24,7 +24,7 @@ export const Quote = ({ text, color = "dark_3", size = ["sm"] }) => {
                     height: "8rem",
                     width: "8rem",
                     overflow: "visible",
-                    fontStyle: "italic",
+                    //fontStyle: "italic",
                     fontWeight: fontWeights.bold,
                     fontSize: "20rem",
                     letterSpacing: 0,
@@ -68,6 +68,7 @@ const Quotee = ({ quotee, location, align = "right", color = "dark_5" }) => {
                 flexDirection: "column",
                 justifyContent: "center",
                 gap: space.xs,
+                ...gap_shim(space.xs, false, true),
             }}
         >
             <p
@@ -192,6 +193,7 @@ export const AvatarQuote = ({
     color = "light_3",
 }) => {
     const { sizes, space } = useMyTheme()
+    const { sm } = space
     const [downsize, downsized] = nudge_size(sizes)(size, -1)
     const quotee = [
         <Quotee key="quotee1" location={location} quotee={name} align={align} color={color} />,
@@ -221,6 +223,7 @@ export const AvatarQuote = ({
                     flexDirection: "row",
                     justifyContent: align === "right" ? "flex-end" : "flex-start",
                     gap: space[size],
+                    ...gap_shim(sm, false, true),
                 }}
             >
                 {align === "right" ? quotee : flip(quotee)}

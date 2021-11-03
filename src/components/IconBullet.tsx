@@ -4,7 +4,7 @@ import React from "react"
 import { Icon } from "./Icon"
 import { useMyTheme } from "../hooks"
 //import { theme } from "../theme"
-import { FontSize, IconWeight, nudge_size, useR$ } from "../for-export"
+import { FontSize, gap_shim, IconWeight, nudge_size, useR$ } from "../for-export"
 
 export const IconBullet = ({
     weight = "light",
@@ -41,6 +41,7 @@ export const IconBullet = ({
                 justifyContent: "flex-start",
                 alignItems: "center",
                 gap: icon && space[size],
+                ...(icon && gap_shim(space[size])),
             }}
         >
             <Icon color={light_5} type={icon} weight={weight} size={upsize} />
@@ -95,6 +96,7 @@ export const BulletList = ({ bullets, size }) => {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 gap: space[size],
+                ...gap_shim(space[size]),
             }}
         >
             {bullets.map((item, idx) => {

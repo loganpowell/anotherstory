@@ -4,7 +4,7 @@ import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState 
 import { medium_slab_padding, Slab, slim_slab_padding, tall_slab_padding } from "../containers"
 import { Timeline } from "../components"
 import { useMyTheme } from "../hooks"
-import { useR$ } from "../for-export"
+import { gap_shim, useR$ } from "../for-export"
 
 export const WhenTitle = ({ title, subtitle, ...props }) => {
     const {
@@ -27,6 +27,7 @@ export const WhenTitle = ({ title, subtitle, ...props }) => {
                     textAlign: "left",
                     alignItems: "baseline",
                     gap: [sm, md],
+                    ...gap_shim([sm, md]),
                 })}
             >
                 <span
@@ -68,6 +69,7 @@ export const TimelineHome = ({ title, subtitle, data }) => {
                     textAlign: "left",
                     alignItems: "baseline",
                     gap: [sm, md],
+                    ...gap_shim([sm, md], false, true),
                 })}
             >
                 <span
