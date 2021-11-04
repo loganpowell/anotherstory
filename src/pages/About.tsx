@@ -83,7 +83,7 @@ export const About = ({ data }) => {
                         }}
                     >
                         It was a{" "}
-                        <span css={{ textDecoration: "line-through" }}> dark and story night</span>{" "}
+                        <span css={{ textDecoration: "line-through" }}> dark and stormy night</span>{" "}
                         long and bumpy road
                     </p>
                 </TextPanel>
