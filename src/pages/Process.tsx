@@ -112,8 +112,8 @@ export const Process = ({ data }) => {
                         codes and setbacks and covenants.{" "}
                     </P>
                     <P>
-                        Once all process are vetted and completed that are necessary construction of
-                        your new second story.
+                        Once we have all necessary approvals (permits, engineering, zoning,
+                        geotechnical, etc.) we begin construction on your project!
                     </P>
                 </TextPanel>
             </Slab>
