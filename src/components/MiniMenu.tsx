@@ -4,9 +4,9 @@ import React, { useEffect, useLayoutEffect, useState, useContext, useCallback, u
 //import styled, { StyledTags } from "@emotion/styled"
 import { useTheme, jsx } from "@emotion/react"
 import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
-import { Theme, theme } from "../theme"
+import { letterSpacings, Theme, theme } from "../theme"
 import { CTX } from "../context"
-import { moicons } from "../elements"
+import { moicons, H2, H3 } from "../elements"
 import { Card } from "./Cards"
 import { useR$ } from "../for-export"
 import * as CSS from "csstype"
@@ -105,24 +105,68 @@ const Circumscribed = ({ style, children, ...props }) => {
     )
 }
 
+const Logo = ({ children }) => {
+    const {
+        colors,
+        fontSizes: { lg, md },
+        letterSpacings: { xs, sm, md: lms },
+        fonts,
+    } = useMyTheme()
+
+    return (
+        <Link
+            css={{
+                fontFamily: "Poppins",
+                alignItems: "flex-start",
+                lineHeight: 1,
+                fontSize: "3rem",
+                letterSpacing: letterSpacings.md,
+                WebkitTextStroke: "1px",
+                WebkitTextStrokeColor: colors.dark_5,
+                WebkitTextFillColor: colors.light_5,
+                mixBlendMode: "screen",
+                margin: 0,
+            }}
+            href="/"
+        >
+            {children}
+        </Link>
+    )
+}
 const MenuClosed = ({ trigger, ...props }) => {
     const {
         colors: { dark_5, light_5 },
     } = useMyTheme()
 
     return (
-        <Circumscribed
-            style={{
-                width: "3rem",
-                height: "3rem",
+        <div
+            css={{
+                boxSizing: "border-box",
+                height: "auto",
+                //zIndex: 10,
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
                 top: "3rem",
-                right: "3rem",
+                left: "3rem",
             }}
-            onClick={() => trigger(true)}
-            {...props}
         >
-            {null}
-        </Circumscribed>
+            <Logo>AnotherStory</Logo>
+            <Circumscribed
+                style={{
+                    width: "3rem",
+                    height: "3rem",
+                    top: "3rem",
+                    right: "3rem",
+                }}
+                onClick={() => trigger(true)}
+                {...props}
+            >
+                {null}
+            </Circumscribed>
+        </div>
     )
 }
 

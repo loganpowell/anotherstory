@@ -37,24 +37,28 @@ export const H3 = ({
     font = "sans",
     align = "flex-start",
     width = "100%",
+    invert = false,
     children,
 }) => {
     const {
         colors,
         fontSizes: { lg, md },
-        letterSpacings: { xs, sm, md: lms },
+        letterSpacings: { xs, sm, md: lmd },
         fonts,
     } = useMyTheme()
     return (
         <h3
             css={useR$({
                 width,
-                color: colors[color],
+
                 fontSize: [md, null, lg],
-                letterSpacing: [lms, sm],
+                letterSpacing: [lmd, sm],
                 lineHeight: 1,
                 fontFamily: fonts[font],
                 alignItems: align,
+                ...((invert && { mixBlendMode: "screen", color: colors[color] }) || {
+                    color: colors[color],
+                }),
             })}
         >
             {children}

@@ -84,7 +84,7 @@ export const IconBullet = ({
  */
 export const BulletList = ({ bullets, size }) => {
     const { space, sizes } = useMyTheme()
-
+    const { sm, md } = space
     //const {} = nudge_size()
     return (
         <ul
@@ -96,7 +96,7 @@ export const BulletList = ({ bullets, size }) => {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 gap: space[size],
-                ...gap_shim(space[size]),
+                //...gap_shim(md, false, true),
             }}
         >
             {bullets.map((item, idx) => {
