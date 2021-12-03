@@ -19,7 +19,8 @@ export const BannerQuote = ({
     src = "https://lh6.googleusercontent.com/-gxK45l5s8gg/AAAAAAAAAAI/AAAAAAAAAUo/2OJ5ahdHTNU/photo.jpg",
     shape = "circle",
     align = "left",
-    topline = "The Buies' Story",
+    topline = "Build Another Story without Moving",
+    //topline = "The Buies' Story",
     banner_img = "https://anotherstorypub.s3.amazonaws.com/PA210211.JPG",
 }) => {
     const { fontWeights, fontSizes, letterSpacings, colors } = useMyTheme()
@@ -39,7 +40,7 @@ export const BannerQuote = ({
             <h3
                 css={{
                     fontFamily: "Poppins",
-                    fontSize: fontSizes.xl,
+                    fontSize: fontSizes.lg,
                     fontWeight: fontWeights.black,
                     letterSpacing: letterSpacings.sm,
                     //color: colors.light_3,

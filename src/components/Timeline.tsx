@@ -278,32 +278,35 @@ export const Timeline = ({
 }: {
     milestones: Milestones
     color?: string
-}) => (
-    <ul
-        css={{
-            label: "stack",
-            height: "auto",
-            flexShrink: 0,
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            overflow: "hidden",
-        }}
-    >
-        {milestones.map(({ time, icon, title, description }, idx, { length }) => {
-            return (
-                <TLItem
-                    key={"timeline_item" + idx}
-                    color={color}
-                    time={time}
-                    icon={icon}
-                    title={title}
-                    description={description}
-                    borders={idx + 1 < length ? true : false}
-                />
-            )
-        })}
-    </ul>
-)
+}) => {
+    //console.log({ milestones })
+    return (
+        <ul
+            css={{
+                label: "stack",
+                height: "auto",
+                flexShrink: 0,
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+                overflow: "hidden",
+            }}
+        >
+            {milestones.map(({ time, icon, title, description }, idx, { length }) => {
+                return (
+                    <TLItem
+                        key={"timeline_item" + idx}
+                        color={color}
+                        time={time}
+                        icon={icon}
+                        title={title}
+                        description={description}
+                        borders={idx + 1 < length ? true : false}
+                    />
+                )
+            })}
+        </ul>
+    )
+}

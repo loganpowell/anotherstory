@@ -43,8 +43,8 @@ export const View = ({ store = $store$ }) => {
     const path = (!loading && getIn(state, [API._, API.$$_PATH])) || []
 
     // @ts-ignore
-    const data = getIn(state, path)
-    //console.log({ Page, data, loading, ...getScrollPos() })
+    const stuff = getIn(state, path)
+    //console.log({ Page, stuff, loading, ...getScrollPos() })
 
     return (
         <AnimatePresence
@@ -55,7 +55,7 @@ export const View = ({ store = $store$ }) => {
             //    console.log("scrollposition after:", getScrollPos())
             //}}
         >
-            {!loading && <Page data={data} />}
+            {!loading && <Page data={stuff} />}
         </AnimatePresence>
     )
 }

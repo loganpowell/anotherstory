@@ -163,6 +163,7 @@ export const urlToPageConfig = async URL => {
     }
 
     const res = await data()
+    //const state = $store$.deref()
     //console.log({ res })
     return {
         [API.URL_DATA]: res,
@@ -172,24 +173,11 @@ export const urlToPageConfig = async URL => {
 
 const LOG_POP_STATE = LOG_PROP(API.POP_STATE)
 
-export const _SCROLL_TO_HASH = registerCMD({
-    [API.CMD_SUB$]: "_SCROLL_TO_HASH",
-    [API.CMD_ARGS]: ({ [API.URL_FULL]: url }) => ({ [API.URL_FULL]: url }),
-    [API.CMD_WORK]: ({ [API.URL_FULL]: url }) => {
-        const { _HASH } = URL2obj(url)
-        if (_HASH) {
-            const el = document.getElementById(_HASH)
-            //console.log({ el })
-            el.scrollIntoView({ behavior: "smooth" })
-        }
-    },
-})
-
 export const router: API.RouterCFG = {
     // @ts-ignore
     [API.CFG_RUTR]: urlToPageConfig,
     //[API.RTR_PREP]: [PUSH],
     //@ts-ignore
     ignore_prefix: "anotherstory",
-    [API.RTR_POST]: [_SCROLL_TO_HASH],
+    //[API.RTR_POST]: [_SCROLL_TO_HASH],
 }
