@@ -175,9 +175,14 @@ const LOG_POP_STATE = LOG_PROP(API.POP_STATE)
 const LOG_TO_GA = registerCMD({
     sub$: "LOG_TO_GA",
     args: x => x,
-    work: router_stuff => {
-        //const match = URL2obj(_FURL)
-        console.log({ router_stuff })
+    work: ({ _FURL }) => {
+        const {
+            _PATH: [page],
+        } = URL2obj(_FURL)
+        //@ts-ignore
+        ga("set", "page", `/${page}.html`)
+        //@ts-ignore
+        ga("send", "pageview")
     },
 })
 
