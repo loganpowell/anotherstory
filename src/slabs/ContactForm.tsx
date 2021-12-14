@@ -15,7 +15,7 @@ import { _NAVIGATE } from "../context"
 import { API } from "@-0/browser"
 import { Input, Address } from "../components"
 import Airtable from "airtable"
-import vc from "vcards-js"
+//import vc from "vcards-js"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -24,7 +24,7 @@ const apiKey = process.env.REACT_APP_AIRTABLE
 const places = process.env.REACT_APP_PLACES
 
 //create a new vCard
-const vCard = vc()
+//const vCard = vc()
 
 //save to file
 
@@ -112,18 +112,18 @@ export const ContactForm = () => {
                 const state = address_parts[2]
 
                 //set properties
-                vCard.firstName = first
-                vCard.middleName = middle
-                vCard.lastName = last
-                vCard.cellPhone = phone
-                vCard.homeAddress.label = "Home Address"
-                vCard.homeAddress.street = street
-                vCard.homeAddress.city = city
-                vCard.homeAddress.stateProvince = state
-                vCard.note = why
+                //vCard.firstName = first
+                //vCard.middleName = middle
+                //vCard.lastName = last
+                //vCard.cellPhone = phone
+                //vCard.homeAddress.label = "Home Address"
+                //vCard.homeAddress.street = street
+                //vCard.homeAddress.city = city
+                //vCard.homeAddress.stateProvince = state
+                //vCard.note = why
 
-                const vcard = vCard.getFormattedString()
-                console.log({ vcard })
+                //const vcard = vCard.getFormattedString()
+                //console.log({ vcard })
                 await createRecord({
                     address,
                     name,
