@@ -172,6 +172,14 @@ export const urlToPageConfig = async URL => {
 }
 
 const LOG_POP_STATE = LOG_PROP(API.POP_STATE)
+const LOG_TO_GA = registerCMD({
+    sub$: "LOG_TO_GA",
+    args: x => x,
+    work: router_stuff => {
+        //const match = URL2obj(_FURL)
+        console.log({ router_stuff })
+    },
+})
 
 export const router: API.RouterCFG = {
     // @ts-ignore
@@ -179,5 +187,5 @@ export const router: API.RouterCFG = {
     //[API.RTR_PREP]: [PUSH],
     //@ts-ignore
     ignore_prefix: "anotherstory",
-    //[API.RTR_POST]: [_SCROLL_TO_HASH],
+    [API.RTR_POST]: [LOG_TO_GA],
 }
