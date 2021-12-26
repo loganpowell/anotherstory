@@ -2,7 +2,7 @@
     "name": "anotherstory",
     "version": "0.1.0",
     "private": true,
-    "homepage": ".",
+    "homepage": "/",
     "dependencies": {
         "@-0/browser": "^0.3.73",
         "@aws-amplify/auth": "^4.3.12",
@@ -38,15 +38,18 @@
         "react-dev-utils": "^11.0.4",
         "react-lorem-ipsum": "^1.4.9",
         "react-scripts": "^4.0.3",
+        "react-snap": "^1.23.0",
         "typescript": "^4.4.4",
         "web-vitals": "^2.1.2"
     },
     "scripts": {
         "start": "react-scripts start",
         "clean": "rm -rf docs/*",
-        "build": "npm run clean && react-scripts build && mv build/* docs/ && cp CNAME docs/",
+        "pages": "npm run clean && react-scripts build && mv build/* docs/ && cp CNAME docs/",
+        "build": "react-scripts build && cp CNAME build/",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "postbuild": "react-snap"
     },
     "eslintConfig": {
         "extends": [
