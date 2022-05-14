@@ -17,12 +17,12 @@ const data = {
             {
                 icon: "facebook-logo",
                 point: "facebook",
-                link: "https://www.facebook.com/pg/stroutarchitect/",
+                link: "https://www.facebook.com/pg/anotherstorybham/",
             },
             {
                 icon: "instagram-logo",
                 point: "Instagram",
-                link: "https://www.instagram.com/stroutarchitecture/?hl=en",
+                link: "https://www.instagram.com/anotherstorybham/?hl=en",
             },
             {
                 icon: "linkedin-logo",

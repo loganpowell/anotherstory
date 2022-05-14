@@ -21,7 +21,9 @@ import {
     ContactForm,
     Footer,
     TimelineProcess,
+    YouTubeProcess,
 } from "../slabs"
+import { YoutubeEmbed } from "../components"
 import { useMyTheme } from "../hooks"
 import { useR$ } from "../for-export"
 
@@ -83,6 +85,7 @@ export const Process = ({ data }) => {
                     </p>
                 </TextPanel>
             </IsoSimple>
+            <YouTubeProcess embedId="YE1QU3bYeSY" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
                 <H3 color="dark_5" width={null}>
                     Timeline

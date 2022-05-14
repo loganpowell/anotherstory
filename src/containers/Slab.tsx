@@ -60,6 +60,7 @@ export const Slab = ({
                 ...gap_shim(sm, false, true),
                 //...gap_shim(gap.map(g => space[g])),
                 //overflow: "visible",
+                ...props,
             })}
         >
             {children}
