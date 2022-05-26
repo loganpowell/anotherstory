@@ -1,8 +1,8 @@
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { LoremIpsum } from "react-lorem-ipsum"
+//import { LoremIpsum } from "react-lorem-ipsum"
 import { Link } from "./Link"
-import { Header } from "./Header"
+//import { Header } from "./Header"
 //import { items } from "../misc/data"
 
 export function Item({ id, data, ...props }) {
@@ -11,7 +11,7 @@ export function Item({ id, data, ...props }) {
     //console.log(`Item: card-container-${id}`)
     return (
         <div {...props}>
-            <Header />
+            {/*<Header />*/}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -49,7 +49,7 @@ export function Item({ id, data, ...props }) {
                         <h2>{title}</h2>
                     </motion.div>
                     <motion.div className="content-container" animate>
-                        <LoremIpsum p={2} avgWordsPerSentence={6} avgSentencesPerParagraph={4} />
+                        {/*<LoremIpsum p={2} avgWordsPerSentence={6} avgSentencesPerParagraph={4} />*/}
                     </motion.div>
                 </motion.div>
             </div>

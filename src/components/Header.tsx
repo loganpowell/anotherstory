@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Avatar } from "react-lorem-ipsum"
+//import { Avatar } from "react-lorem-ipsum"
 import { Link } from "./Link"
 
 export const Header = () => (
@@ -8,8 +8,6 @@ export const Header = () => (
         <h1>
             <Link href="/">Home</Link>
         </h1>
-        <div className="avatar">
-            <Avatar />
-        </div>
+        <div className="avatar">{/*<Avatar />*/}</div>
     </header>
 )
