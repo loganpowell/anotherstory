@@ -12,7 +12,7 @@ import {
 } from "../containers"
 
 const [a, b, c, d, e] = slim_slab_padding
-const mobile_first_padding = [a, ["0%", "0%"], ["0%", "0%"]]
+const mobile_first_padding = [["0%", "0%"]]
 export const YouTubeProcess = ({ embedId }) => {
     return (
         <Slab align="center" justify="center" padding={mobile_first_padding}>

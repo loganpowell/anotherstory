@@ -85,6 +85,7 @@ export const Process = ({ data }) => {
                     </p>
                 </TextPanel>
             </IsoSimple>
+            <Slab padding={medium_slab_padding} bg="light_5" />
             <YouTubeProcess embedId="YE1QU3bYeSY" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
                 <H3 color="dark_5" width={null}>

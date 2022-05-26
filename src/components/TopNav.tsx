@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState, useMemo, useRef } from "react"
 import { Slab, slim_slab_padding } from "../containers"
 import { H4 } from "../elements"
 import { useMyTheme, useSize$, useThrottle } from "../hooks"
-import throttle from "lodash.throttle"
+//import throttle from "lodash.throttle"
 import { Link } from "./Link"
 import { MiniMenu } from "./MiniMenu"
 
@@ -105,7 +105,7 @@ export const TopNav = () => {
             {((size === "sm" || size === "xs") && (
                 <MiniMenu items={nav_items}> Large </MiniMenu>
             )) || (
-                <Slab padding={slim_slab_padding} bg="none" blur direction={["row"]} align="center">
+                <Slab padding={slim_slab_padding} bg="dark_5" direction={["row"]} align="center">
                     <div
                         css={{
                             flex: "1",
