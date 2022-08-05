@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useContext } from "react"
 import { TextPanel } from "../containers"
 import { IconBullet, BulletList } from "../components"

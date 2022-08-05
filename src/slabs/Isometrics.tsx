@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { motion, useViewportScroll } from "framer-motion"
 import { Interpolation } from "@emotion/react"
@@ -211,7 +209,7 @@ export const IsoStair = ({ src, tagline, zIndex = 1 }) => {
                     }}
                 />
                 <motion.img
-                    src={process.env.PUBLIC_URL + "/svgs/staircase.svg"}
+                    src="/svgs/staircase.svg"
                     alt="stair"
                     css={{
                         width: "100%",

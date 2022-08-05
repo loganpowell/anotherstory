@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React from "react"
+//import React from "react"
 import { Bio, Link, TopNav } from "../components"
 import {
     medium_slab_padding,
@@ -67,7 +66,7 @@ export const About = ({ data }) => {
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
             <IsoSimple
-                src={process.env.PUBLIC_URL + "/svgs/about-us.svg"}
+                src="/svgs/about-us.svg"
                 alt="image of builder inside a house under construction"
             >
                 <TextPanel>

@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { TitledBullets } from "../components"
 import { Slab, TextPanel } from "../containers"
 import { H2 } from "../elements"

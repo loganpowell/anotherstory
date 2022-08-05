@@ -19,9 +19,9 @@ import fetch from "node-fetch"
 import { items } from "../misc/data"
 import { Magic, Move, Stub, Home, Contact, Process, About } from "../pages"
 
-dotenv.config()
+//dotenv.config()
 
-const apiKey = process.env.REACT_APP_AIRTABLE
+const apiKey = import.meta.env.VITE_AIRTABLE
 
 //console.log({ apiKey })
 Airtable.configure({

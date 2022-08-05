@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { gap_shim, nudge_size, useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
 import { borderWidths, fontWeights } from "../theme"

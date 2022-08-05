@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { motion } from "framer-motion"
 import React, { useCallback, useEffect, useState, useMemo, useRef } from "react"
 import { Slab, slim_slab_padding } from "../containers"
@@ -77,6 +75,7 @@ export const TopNav = () => {
 
     return (
         <motion.div
+            //layoutId="menu"
             css={{
                 height: "auto",
                 width: "100%",

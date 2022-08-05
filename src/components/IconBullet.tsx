@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { Icon } from "./Icon"
 import { useMyTheme } from "../hooks"
 //import { theme } from "../theme"

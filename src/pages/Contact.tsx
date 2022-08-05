@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React from "react"
+//import React from "react"
 import { Link, TopNav } from "../components"
 import {
     medium_slab_padding,
@@ -20,10 +19,7 @@ export const Contact = ({ data }) => {
     return (
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
-            <IsoSimple
-                src={process.env.PUBLIC_URL + "/svgs/living.svg"}
-                alt="image of female reading a book in living room"
-            >
+            <IsoSimple src="/svgs/living.svg" alt="image of female reading a book in living room">
                 <TextPanel>
                     <H3 font="serif" color="dark_5">
                         What&apos;s your story?

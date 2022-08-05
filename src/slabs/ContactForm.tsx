@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, {
     CSSProperties,
     useContext,
@@ -16,12 +14,12 @@ import { API } from "@-0/browser"
 import { Input, Address } from "../components"
 import Airtable from "airtable"
 //import vc from "vcards-js"
-import dotenv from "dotenv"
+//import dotenv from "dotenv"
 
-dotenv.config()
+//dotenv.config()
 
-const apiKey = process.env.REACT_APP_AIRTABLE
-const places = process.env.REACT_APP_PLACES
+const apiKey = import.meta.env.VITE_AIRTABLE
+const places = import.meta.env.VITE_PLACES
 
 //create a new vCard
 //const vCard = vc()

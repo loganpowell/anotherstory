@@ -1,4 +1,4 @@
-import React from "react"
+//import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 //import { LoremIpsum } from "react-lorem-ipsum"
 import { Link } from "./Link"

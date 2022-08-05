@@ -1,15 +1,13 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import dotenv from "dotenv"
+//import dotenv from "dotenv"
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService"
 import { useMyTheme } from "../hooks"
 import { _NAVIGATE } from "../context"
 
-dotenv.config()
+//dotenv.config()
 
-const places = process.env.REACT_APP_PLACES
+const places = import.meta.env.VITE_PLACES
 
 /*
 {

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React from "react"
+//import React from "react"
 //import styled from "@emotion/styled"
 import { motion } from "framer-motion"
 import { Link } from "./Link"

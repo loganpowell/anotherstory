@@ -1,4 +1,5 @@
-import React from "react"
+/* eslint-disable react/react-in-jsx-scope */
+//import React from "react"
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 //import { Header, Item, List } from "./components"
 import { View } from "./view"
