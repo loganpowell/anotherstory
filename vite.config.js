@@ -17,5 +17,8 @@ export default ({ mode }) => {
         esbuild: {
             logOverride: { "this-is-undefined-in-esm": "silent" },
         },
+        build: {
+            outDir: "./docs",
+        },
     })
 }
