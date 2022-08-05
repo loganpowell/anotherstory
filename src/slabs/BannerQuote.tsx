@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { Slab, xtall_slab_padding } from "../containers"
 import { Avatar, AvatarQuote } from "../elements"
 import { useMyTheme } from "../hooks"

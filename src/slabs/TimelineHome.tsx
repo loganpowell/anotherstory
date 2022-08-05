@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { medium_slab_padding, Slab, slim_slab_padding, tall_slab_padding } from "../containers"
 import { Timeline } from "../components"

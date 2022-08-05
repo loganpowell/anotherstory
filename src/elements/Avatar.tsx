@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { useMyTheme } from "../hooks"
 
 export const Avatar = ({

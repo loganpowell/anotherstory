@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React from "react"
+//import React from "react"
 import { Link, TopNav } from "../components"
 import {
     medium_slab_padding,
@@ -21,7 +20,7 @@ import {
     ContactForm,
     Footer,
     TimelineProcess,
-    YouTubeProcess,
+    YouTubeSlab,
 } from "../slabs"
 import { YoutubeEmbed } from "../components"
 import { useMyTheme } from "../hooks"
@@ -66,7 +65,7 @@ export const Process = ({ data }) => {
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
             <IsoSimple
-                src={process.env.PUBLIC_URL + "/svgs/finance.svg"}
+                src="/svgs/finance.svg"
                 alt="image of office with 3 chairs facing each other across a desk"
             >
                 <TextPanel>
@@ -86,7 +85,7 @@ export const Process = ({ data }) => {
                 </TextPanel>
             </IsoSimple>
             <Slab padding={medium_slab_padding} bg="light_5" />
-            <YouTubeProcess embedId="YE1QU3bYeSY" />
+            <YouTubeSlab embedId="YE1QU3bYeSY" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
                 <H3 color="dark_5" width={null}>
                     Timeline
@@ -97,8 +96,8 @@ export const Process = ({ data }) => {
                 <TextPanel width={["100%", "75%"]}>
                     <H3 color="dark_5">Financing Options</H3>
                     <P weight="bold">
-                        Visit with your local mortgage broker to see if a pre-appraised construction
-                        loan can work for you.
+                        We can help connect you with a number of different options to finance your
+                        dream.
                     </P>
                     <P>
                         - Financing options

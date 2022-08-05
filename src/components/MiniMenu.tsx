@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useEffect, useLayoutEffect, useState, useContext, useCallback, useRef } from "react"
 //import styled, { StyledTags } from "@emotion/styled"
 import { useTheme, jsx } from "@emotion/react"
@@ -226,6 +224,7 @@ const MenuOpen = ({ trigger, children, ...props }) => {
     }, [trigger, closeMe])
 
     const { height, right, width } = getFloodDims()
+    console.log({ height, right, width })
     return (
         <Circumscribed
             {...props}
@@ -304,7 +303,7 @@ const MoCard = ({ ch, ...props }) => {
                 }}
                 {...props}
             >
-                <Card img={process.env.PUBLIC_URL + img} href={url} title={title} alt={title} />
+                <Card img={img} href={url} title={title} alt={title} />
             </motion.li>
         </Link>
     )

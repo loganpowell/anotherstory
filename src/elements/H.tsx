@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useContext } from "react"
 import { Slab } from "../containers"
 import { IconBullet, BulletList } from "../components"

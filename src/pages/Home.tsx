@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import React from "react"
+//import React from "react"
 import { Link, TopNav } from "../components"
 import { medium_slab_padding, Page, Slab, slim_slab_padding } from "../containers"
 import { useR$ } from "../for-export"
@@ -16,6 +14,7 @@ import {
     TimelineHome,
     WhenTitle,
     Footer,
+    YouTubeSlab,
 } from "../slabs"
 export const Home = ({ data: { data } }) => {
     const {
@@ -30,10 +29,12 @@ export const Home = ({ data: { data } }) => {
     return (
         <Page>
             <BannerQuote />
+            <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
+
             <WhatWhy />
             <BoldSlab title="How" subtitle="it is done" />
             <IsoSimple
-                src={process.env.PUBLIC_URL + "/svgs/about-us.svg"}
+                src="/svgs/about-us.svg"
                 alt="We build your second story without breaching the first"
                 zIndex={10}
             >
@@ -51,12 +52,12 @@ export const Home = ({ data: { data } }) => {
                 </p>
             </IsoSimple>
             <IsoLiving
-                src={process.env.PUBLIC_URL + "/svgs/living.svg"}
+                src="/svgs/living.svg"
                 tagline="While you live uninterrupted and dust-free until stair installation"
                 zIndex={1}
             />
             <IsoStair
-                src={process.env.PUBLIC_URL + "/svgs/stair.svg"}
+                src="/svgs/stair.svg"
                 tagline="Stairs are installed and cleanup occurs at the end of the process"
                 zIndex={10}
             />

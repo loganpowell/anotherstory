@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { CSSProperties, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { Slab, xtall_slab_padding } from "../containers"
 import { AvatarQuote } from "../elements"

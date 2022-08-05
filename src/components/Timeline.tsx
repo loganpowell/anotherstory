@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useContext } from "react"
 import { motion } from "framer-motion"
 import { Link, MiniMenu, Icon } from "../components"
