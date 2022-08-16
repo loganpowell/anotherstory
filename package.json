@@ -41,7 +41,7 @@
     },
     "scripts": {
         "start": "vite",
-        "build": "VITE_AIRTABLE=$AIRTABLE VITE_PLACES=$PLACES vite build"
+        "build": "vite build"
     },
     "eslintConfig": {
         "extends": [
