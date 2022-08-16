@@ -137,7 +137,7 @@ export const urlToPageConfig: Router = async URL => {
                     [API.DOM_BODY]: async () => ({ data: await getTimelineData() }),
                     [API.DOM_HEAD]: {
                         title: "AnotherStory",
-                        //favicon: "",
+                        favicon: "/favicon.ico",
                         og_description: "Build Another Story - Without Moving!",
                         og_image: "/images/stair.png",
                         //og_image_width: "",
@@ -155,7 +155,7 @@ export const urlToPageConfig: Router = async URL => {
                     [API.DOM_BODY]: getItems,
                     [API.DOM_HEAD]: {
                         title: "Contact Us",
-                        //favicon: "",
+                        favicon: "/favicon.ico",
                         og_description: "Sign up for a free 15-minute consultation",
                         og_image: "/images/finance.png",
                         //og_image_width: "",
@@ -174,7 +174,7 @@ export const urlToPageConfig: Router = async URL => {
                         await getTimelineData(["order", "time", "title", "icon", "description"]),
                     [API.DOM_HEAD]: {
                         title: "Our Process",
-                        //favicon: "",
+                        favicon: "/favicon.ico",
                         og_description: "Move into Your Second Story in a Year or Less",
                         og_image: "/images/living.png",
                         //og_image_width: "",
@@ -192,7 +192,7 @@ export const urlToPageConfig: Router = async URL => {
                     [API.DOM_BODY]: async () => await getTeam(),
                     [API.DOM_HEAD]: {
                         title: "About Us",
-                        //favicon: "",
+                        favicon: "/favicon.ico",
                         og_description: "The AnotherStory Story",
                         og_image: "/images/about-us.png",
                         //og_image_width: "",
