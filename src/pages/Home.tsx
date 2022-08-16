@@ -1,4 +1,4 @@
-//import React from "react"
+import { API } from "@-0/browser"
 import { Link, TopNav } from "../components"
 import { medium_slab_padding, Page, Slab, slim_slab_padding } from "../containers"
 import { useR$ } from "../for-export"
@@ -16,6 +16,8 @@ import {
     Footer,
     YouTubeSlab,
 } from "../slabs"
+
+// need the extra "data" prop to nest home state inside global atom
 export const Home = ({ data: { data } }) => {
     const {
         colors: { dark_5 },

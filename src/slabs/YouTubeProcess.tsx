@@ -11,7 +11,7 @@ import {
 
 const [a, b, c, d, e] = slim_slab_padding
 const mobile_first_padding = [["0%", "0%"]]
-export const YouTubeSlab = ({ embedId, yt, title }) => {
+export const YouTubeSlab = ({ embedId, yt = true, title = "AnotherStory" }) => {
     return (
         <Slab align="center" justify="center" padding={mobile_first_padding}>
             <YoutubeEmbed embedId={embedId} yt={yt} title={title} />

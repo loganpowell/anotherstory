@@ -36,7 +36,7 @@ export const View = ({ store = $store$ }) => {
 
     const state = store.deref()
 
-    //console.log({ state })
+    console.log({ state })
 
     //const is_home = !path.length
     const Page = (!loading && getIn(state, [API._, API.$$_VIEW])()) || null
