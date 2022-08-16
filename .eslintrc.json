@@ -37,7 +37,7 @@
     "root": true,
     "plugins": ["react", "@typescript-eslint"],
     "parserOptions": {
-        "ecmaVersion": 11,
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "jsx": true
         }

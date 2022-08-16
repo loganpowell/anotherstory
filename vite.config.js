@@ -1,7 +1,7 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 
-export default ({ mode }) => {
+const config = ({ mode }) => {
     return defineConfig({
         plugins: [
             react({
@@ -22,3 +22,5 @@ export default ({ mode }) => {
         },
     })
 }
+
+export default config
