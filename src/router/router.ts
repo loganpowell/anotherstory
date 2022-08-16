@@ -241,6 +241,26 @@ export const urlToPageConfig: Router = async URL => {
 }
 const INJECT_HEAD = registerCMD(cmd_inject_head)
 
+const SET_PRERENDER_FALSE = registerCMD({
+    sub$: "SET_PRERENDER_FALSE",
+    args: x => x,
+    work: () => {
+        console.log("window.prerenderReady = false")
+        //@ts-ignore
+        window.prerenderReady = false
+    },
+})
+
+const SET_PRERENDER_TRUE = registerCMD({
+    sub$: "SET_PRERENDER_TRUE",
+    args: x => x,
+    work: acc => {
+        console.log("window.prerenderReady = true", { acc })
+        //@ts-ignore
+        window.prerenderReady = true
+    },
+})
+
 const LOG_POP_STATE = LOG_PROP(API.POP_STATE)
 const LOG_TO_GA = registerCMD({
     sub$: "LOG_TO_GA",
@@ -258,7 +278,7 @@ const LOG_TO_GA = registerCMD({
 
 export const router: API.RouterCFG = {
     [API.CFG_RUTR]: urlToPageConfig,
-    //[API.RTR_PREP]: [PUSH],
+    [API.RTR_PREP]: [SET_PRERENDER_FALSE],
     ignore_prefix: "anotherstory",
-    [API.RTR_POST]: [LOG_TO_GA, INJECT_HEAD],
+    [API.RTR_POST]: [LOG_TO_GA, INJECT_HEAD, SET_PRERENDER_TRUE],
 }
