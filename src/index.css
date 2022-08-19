@@ -17,14 +17,16 @@
     position: relative;
     /*smooth scrollin'*/
     /*scroll-behavior: smooth;*/
-    /* font-size 1em = 10px on default browser settings (16px) */
-    font-size: 62.5%;
 }
 /*from @-0/browser set active Command*/
 /*a[active] {
     color: coral;
 }*/
 
+html {
+    /* font-size 1em = 10px on default browser settings (16px) */
+    font-size: 62.5%;
+}
 body {
     margin: 0;
     padding: 0;
@@ -32,6 +34,7 @@ body {
     /*overflow-y: scroll;*/
     --secondary: rgb(161, 161, 161);
     --divider: #343434;
+    font-size: 160%;
 }
 
 #root {
