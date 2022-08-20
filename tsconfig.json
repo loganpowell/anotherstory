@@ -10,7 +10,7 @@
         "isolatedModules": true,
         "jsx": "react-jsx",
         "lib": ["ES2017", "ES2015", "ES7", "ES6", "DOM"],
-        "module": "esnext",
+        "module": "es6",
         "moduleResolution": "node",
         "noEmit": true,
         "noFallthroughCasesInSwitch": true,
