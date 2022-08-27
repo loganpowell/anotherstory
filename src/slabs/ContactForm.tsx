@@ -11,7 +11,7 @@ import { useMyTheme } from "../hooks"
 import { run$ } from "@-0/spool"
 import { _NAVIGATE } from "../context"
 import { API } from "@-0/browser"
-import { Input, Address } from "../components"
+import { Input, Address, DropDown } from "../components"
 import Airtable from "airtable"
 //import vc from "vcards-js"
 //import dotenv from "dotenv"
@@ -40,7 +40,7 @@ const createRecord = async ({
     phone,
     experienced,
     why,
-    urgency,
+    status,
     referral,
     //vcard,
 }) =>
@@ -54,7 +54,7 @@ const createRecord = async ({
                     phone,
                     experienced,
                     why,
-                    urgency,
+                    status,
                     referral,
                     //vcard,
                 },
@@ -78,8 +78,10 @@ export const ContactForm = () => {
     const [phone, setPhone] = useState("")
     const [experienced, setExperienced] = useState("")
     const [why, setWhy] = useState("")
-    const [urgency, setUrgency] = useState("")
+    const [status, setStatus] = useState("")
     const [referral, setReferral] = useState("")
+    const [financed, setFinanced] = useState("")
+    const [certainty, setCertainty] = useState("")
 
     const { fonts, fontSizes, colors, fontWeights, letterSpacings } = useMyTheme()
     return (
@@ -108,20 +110,6 @@ export const ContactForm = () => {
                 const street = address_parts[0]
                 const city = address_parts[1]
                 const state = address_parts[2]
-
-                //set properties
-                //vCard.firstName = first
-                //vCard.middleName = middle
-                //vCard.lastName = last
-                //vCard.cellPhone = phone
-                //vCard.homeAddress.label = "Home Address"
-                //vCard.homeAddress.street = street
-                //vCard.homeAddress.city = city
-                //vCard.homeAddress.stateProvince = state
-                //vCard.note = why
-
-                //const vcard = vCard.getFormattedString()
-                //console.log({ vcard })
                 await createRecord({
                     address,
                     name,
@@ -129,7 +117,7 @@ export const ContactForm = () => {
                     phone,
                     experienced,
                     why,
-                    urgency,
+                    status,
                     referral,
                     //vcard: vCard,
                 }).then(val => {
@@ -149,50 +137,62 @@ export const ContactForm = () => {
             <Slab bg="light_5" gap={["lg"]}>
                 <TextPanel gap={["lg"]}>
                     <Input
-                        label="Full Name*"
-                        placeholder="Full Name"
+                        label="Full name"
                         value={name}
                         onChange={ev => setName(ev.target.value)}
                     />
-                    <Input
-                        label="Email*"
-                        placeholder="Email"
-                        value={email}
-                        onChange={ev => setEmail(ev.target.value)}
-                    />
-                    <Input
-                        label="Phone"
-                        placeholder="Phone"
-                        value={phone}
-                        onChange={ev => setPhone(ev.target.value)}
-                    />
+                    <Input label="Email" value={email} onChange={ev => setEmail(ev.target.value)} />
+                    <Input label="Phone" value={phone} onChange={ev => setPhone(ev.target.value)} />
                     <Address address={address} setAddress={setAddress} />
+                    <DropDown
+                        label="Have you renovated before?"
+                        selection={experienced}
+                        setSelection={setExperienced}
+                        selections={["Yes", "No"]}
+                    />
                 </TextPanel>
                 <TextPanel gap={["lg"]}>
                     <Input
-                        label="Have you renovated before? (Y/N)"
-                        placeholder="no"
-                        value={experienced}
-                        onChange={ev => setExperienced(ev.target.value)}
-                    />
-                    <Input
-                        label="Why do you need more space?"
-                        placeholder="because..."
-                        value={why}
-                        onChange={ev => setWhy(ev.target.value)}
-                    />
-                    <Input
-                        label="Is your need urgent? (Y/N)"
-                        placeholder="because..."
-                        value={urgency}
-                        onChange={ev => setUrgency(ev.target.value)}
-                    />
-                    <Input
                         label="How did you hear about us?"
-                        placeholder="referral"
                         value={referral}
                         onChange={ev => setReferral(ev.target.value)}
                     />
+                    <Input
+                        label="Why do you need more space?"
+                        value={why}
+                        onChange={ev => setWhy(ev.target.value)}
+                    />
+                    <DropDown
+                        label="Project status"
+                        selection={status}
+                        setSelection={setStatus}
+                        selections={[
+                            "Just exploring",
+                            "Planning & budgeting",
+                            "Ready to start ASAP",
+                        ]}
+                    />
+                    <DropDown
+                        label="Financing status"
+                        selection={financed}
+                        setSelection={setFinanced}
+                        selections={[
+                            "Prequalified for financing",
+                            "Exploring different options",
+                            "Haven't done any research yet",
+                        ]}
+                    />
+                    <DropDown
+                        label="Certain you want a second story?"
+                        selection={certainty}
+                        setSelection={setCertainty}
+                        selections={[
+                            "We are certain we want a second story addition",
+                            "Leaning towards a different type of addition",
+                            "Considering the pros & cons of various types",
+                        ]}
+                    />
+
                     <input
                         type="submit"
                         value="Send"

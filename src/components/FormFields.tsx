@@ -52,7 +52,7 @@ const places = import.meta.env.VITE_PLACES
 }
 */
 
-export const Input = ({ label, placeholder, onChange, value, bg = "light_5", children = null }) => {
+export const Input = ({ label, onChange, value, bg = "light_5", children = null }) => {
     const [focused, setFocused] = useState(false)
     const { colors, letterSpacings, fontSizes } = useMyTheme()
     return (
@@ -83,7 +83,6 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
                         outline: "none",
                     },
                 }}
-                placeholder={placeholder}
                 onChange={ev => {
                     ev.preventDefault()
                     //console.log({ value: ev.target.value })
@@ -158,10 +157,9 @@ export const Input = ({ label, placeholder, onChange, value, bg = "light_5", chi
     )
 }
 
-export const Li = ({ place_id, onClick, description }) => {
+export const Li = ({ onClick, description }) => {
     return (
         <li
-            key={place_id}
             css={{
                 width: "100%",
                 height: "auto",
@@ -190,6 +188,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
             debounce: 500,
         })
 
+    const [zip, setZip] = useState("")
     //console.log({ address })
     useEffect(() => {
         // fetch place details for the first element in placePredictions array
@@ -198,19 +197,29 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
             placesService?.getDetails(
                 {
                     placeId: placePredictions[0].place_id,
+                    fields: ["address_components"],
+                },
+                details => {
+                    let postcode = null
+                    details?.address_components?.forEach(entry => {
+                        if (entry.types?.[0] === "postal_code") {
+                            postcode = entry.long_name
+                            console.log({ postcode })
+                        }
+                    })
+                    //console.log({ postcode })
+                    setZip(postcode)
                 }
-                //placeDetails => console.log(placeDetails)
             )
         }
     }, [placePredictions, placesService])
     return (
         <Input
-            label="Address (street, city, state)"
-            placeholder="Address (street, city, state)"
+            label="Address (street, city, state, zip)"
             onChange={ev => {
                 const input = ev.target.value
                 getPlacePredictions({ input })
-                setAddress(input)
+                setAddress((zip && input.concat(`, ${zip}`)) || input)
             }}
             value={address}
         >
@@ -227,20 +236,59 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
                 }}
             >
                 {placePredictions.map(({ description, place_id, terms }, idx) => {
+                    console.log({ description, terms })
                     const text = description.split(", ").slice(0, -1).join(", ")
                     return (
                         <Li
-                            key={place_id}
                             onClick={() => {
                                 //console.log({ text })
-                                setAddress(text)
+                                setAddress(text.concat(`, ${zip}`))
                             }}
                             description={text}
-                            place_id={place_id}
+                            key={place_id}
                         />
                     )
                 })}
             </ul>
+        </Input>
+    )
+}
+
+export const DropDown = ({ selections = [], selection, setSelection, bg = "light_5", label }) => {
+    const { colors } = useMyTheme()
+    return (
+        <Input
+            label={label}
+            onChange={ev => {
+                setSelection(ev.target.value)
+            }}
+            value={selection}
+        >
+            {
+                <ul
+                    css={{
+                        width: "100%",
+                        position: "absolute",
+                        top: 50,
+                        left: 0,
+                        backgroundColor: colors[bg],
+                        borderRadius: "3px",
+                        padding: "0px 5px",
+                        //padding: "1rem",
+                    }}
+                >
+                    {" "}
+                    {selections.map((c, i) => {
+                        return (
+                            <Li
+                                key={`${label}_${i}`}
+                                onClick={() => setSelection(c)}
+                                description={c}
+                            />
+                        )
+                    })}
+                </ul>
+            }
         </Input>
     )
 }

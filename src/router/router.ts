@@ -258,7 +258,7 @@ const SET_PRERENDER_TRUE = registerCMD({
         // use setTimetout to push prerenderReady to end of current event queue
         setTimeout(() => {
             const html = document.body.innerHTML
-            console.log("window.prerenderReady = true", { acc, html })
+            console.log("window.prerenderReady = true" /*, { acc, html } */)
             //@ts-ignore
             window.prerenderReady = true
         }, 0)
