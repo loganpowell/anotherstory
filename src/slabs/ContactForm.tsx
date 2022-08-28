@@ -114,6 +114,7 @@ export const ContactForm = () => {
                 const street = address_parts[0]
                 const city = address_parts[1]
                 const state = address_parts[2]
+                const zip = address_parts[3]
                 await createRecord({
                     address,
                     name,

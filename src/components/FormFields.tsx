@@ -260,6 +260,7 @@ export const DropDown = ({ selections = [], selection, setSelection, bg = "light
         <Input
             label={label}
             onChange={ev => {
+                //console.log("onChange setSelection:", ev.target.value)
                 setSelection(ev.target.value)
             }}
             value={selection}
@@ -282,7 +283,10 @@ export const DropDown = ({ selections = [], selection, setSelection, bg = "light
                         return (
                             <Li
                                 key={`${label}_${i}`}
-                                onClick={() => setSelection(c)}
+                                onClick={() => {
+                                    //console.log("onClick setSelection: ", c)
+                                    setSelection(c)
+                                }}
                                 description={c}
                             />
                         )
