@@ -219,7 +219,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
             onChange={ev => {
                 const input = ev.target.value
                 getPlacePredictions({ input })
-                setAddress((zip && input.concat(`, ${zip}`)) || input)
+                setAddress(input)
             }}
             value={address}
         >
@@ -236,7 +236,7 @@ export const Address = ({ address, setAddress, bg = "light_5" }) => {
                 }}
             >
                 {placePredictions.map(({ description, place_id, terms }, idx) => {
-                    console.log({ description, terms })
+                    //console.log({ description, terms })
                     const text = description.split(", ").slice(0, -1).join(", ")
                     return (
                         <Li
