@@ -42,6 +42,8 @@ const createRecord = async ({
     why,
     status,
     referral,
+    financed,
+    certainty,
     //vcard,
 }) =>
     await base("contact").create(
@@ -56,6 +58,8 @@ const createRecord = async ({
                     why,
                     status,
                     referral,
+                    financed,
+                    certainty,
                     //vcard,
                 },
             },
@@ -119,6 +123,8 @@ export const ContactForm = () => {
                     why,
                     status,
                     referral,
+                    financed,
+                    certainty,
                     //vcard: vCard,
                 }).then(val => {
                     window.alert(
