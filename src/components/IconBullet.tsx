@@ -42,7 +42,7 @@ export const IconBullet = ({
                 ...(icon && gap_shim(space[size])),
             }}
         >
-            <Icon color={light_5} type={icon} weight={weight} size={upsize} />
+            {icon && <Icon color={light_5} type={icon} weight={weight} size={upsize} />}
             <p
                 css={useR$({
                     fontFamily: serif,

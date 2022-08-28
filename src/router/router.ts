@@ -93,7 +93,7 @@ const getTeam = async () => {
 
     return res.sort(compare)
 }
-const getTimelineData = async (keep = ["order", "time", "title"]) => {
+const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
     const res: any[] = await new Promise((resolve, reject) => {
         let acc = []
         base("timeline")
@@ -112,6 +112,7 @@ const getTimelineData = async (keep = ["order", "time", "title"]) => {
                 },
                 function done(e) {
                     if (e) throw new Error(e)
+                    //console.log("Finished loading airtable Timeline:", acc)
                     return resolve(acc)
                 }
             )

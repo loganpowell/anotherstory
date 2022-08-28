@@ -197,67 +197,69 @@ export const TLItem = ({
                     {title}
                 </h4>
             </div>
-            <TimelineRow height="100%">
-                <div
-                    aria-hidden
-                    css={{
-                        label: "tl-bottom-left",
-                        width: "30%",
-                        ...(borders && one_border("Right", ".1rem", colors[color])),
-                    }}
-                >
+            {description && icon && (
+                <TimelineRow height="100%">
                     <div
+                        aria-hidden
                         css={{
-                            label: "tl-icon",
-                            padding: "2rem 3rem 0rem 0rem",
-                            width: "100%",
-                            height: "100%",
-                            fontWeight: 300,
-                            color: colors[color],
-                            //fontSize: "2rem",
-                            letterSpacing: "-0.8px",
-                            lineHeight: "1",
-                            textAlign: "right",
+                            label: "tl-bottom-left",
+                            width: "30%",
+                            ...(borders && one_border("Right", ".1rem", colors[color])),
                         }}
                     >
-                        <Icon type={icon} weight="thin" size="lg" />
+                        <div
+                            css={{
+                                label: "tl-icon",
+                                padding: "2rem 3rem 0rem 0rem",
+                                width: "100%",
+                                height: "100%",
+                                fontWeight: 300,
+                                color: colors[color],
+                                //fontSize: "2rem",
+                                letterSpacing: "-0.8px",
+                                lineHeight: "1",
+                                textAlign: "right",
+                            }}
+                        >
+                            <Icon type={icon} weight="thin" size="lg" />
+                        </div>
                     </div>
-                </div>
-                <div
-                    css={{
-                        label: "tl-bottom-right",
-                        width: "70%",
-                        height: "auto",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-start",
-                        alignItems: "flex-start",
-                        padding: "20px 30px 0px 30px",
-                        overflow: "visible",
-                        ...(borders && one_border("Left", ".1rem", colors[color])),
-                    }}
-                >
-                    <p
-                        css={useR$({
-                            label: "tl-description",
-                            height: "auto ",
-                            width: "100%",
-                            overflow: "hidden",
-                            whiteSpace: "pre-wrap",
-                            wordWrap: "break-word",
-                            wordBreak: "break-word",
-                            fontWeight: 200,
-                            color: colors[color],
-                            fontSize: [xs, sm],
-                            letterSpacing: "-0.8px",
-                            lineHeight: "1.3",
-                            textAlign: "left",
-                        })}
+                    <div
+                        css={{
+                            label: "tl-bottom-right",
+                            width: "70%",
+                            height: "auto",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            alignItems: "flex-start",
+                            padding: "20px 30px 0px 30px",
+                            overflow: "visible",
+                            ...(borders && one_border("Left", ".1rem", colors[color])),
+                        }}
                     >
-                        {description || ""}
-                    </p>
-                </div>
-            </TimelineRow>
+                        <p
+                            css={useR$({
+                                label: "tl-description",
+                                height: "auto ",
+                                width: "100%",
+                                overflow: "hidden",
+                                whiteSpace: "pre-wrap",
+                                wordWrap: "break-word",
+                                wordBreak: "break-word",
+                                fontWeight: 200,
+                                color: colors[color],
+                                fontSize: [xs, sm],
+                                letterSpacing: "-0.8px",
+                                lineHeight: "1.3",
+                                textAlign: "left",
+                            })}
+                        >
+                            {description || ""}
+                        </p>
+                    </div>
+                </TimelineRow>
+            )}
         </li>
     )
 }

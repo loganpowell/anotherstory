@@ -1,6 +1,13 @@
 import { API } from "@-0/browser"
+import { H1, H2, H3 } from "../elements"
 import { Link, TopNav } from "../components"
-import { medium_slab_padding, Page, Slab, slim_slab_padding } from "../containers"
+import {
+    medium_slab_padding,
+    Page,
+    Slab,
+    slim_slab_padding,
+    xtall_slab_padding,
+} from "../containers"
 import { useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
 import {
@@ -27,10 +34,24 @@ export const Home = ({ data: { data } }) => {
         fontSizes: { xs, sm, md },
     } = useMyTheme()
 
-    //console.log({ data })
+    //console.log("Home:", { data })
+
     return (
         <Page>
-            <BannerQuote />
+            {/*<BannerQuote />*/}
+            <Slab
+                //padding={xtall_slab_padding}
+                bg="light_5"
+                justify="center"
+                align={["flex-start", null, "center"]}
+                full_height={true}
+                direction={["column"]}
+            >
+                <H1>Double Your Square Footage</H1>
+                <H3 color="dark_5" weight="thin">
+                    The Easy Way
+                </H3>
+            </Slab>
             <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
 
             <WhatWhy />
@@ -69,7 +90,9 @@ export const Home = ({ data: { data } }) => {
             </Slab>
             <TimelineHome title="When" subtitle="things happen for you" data={data} />
 
+            <BannerQuote />
             <BigQuote />
+
             <Footer />
         </Page>
     )

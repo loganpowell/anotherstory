@@ -215,7 +215,7 @@ export const letterSpacings = {
     xxs: "-1rem",
     xs: "-0.5rem",
     sm: "-0.25rem",
-    md: "-0.1rem",
+    md: "-0.15rem",
     lg: "0.25rem",
     xl: "0.5rem",
     xxl: "1rem",
