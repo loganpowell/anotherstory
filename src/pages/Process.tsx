@@ -85,7 +85,7 @@ export const Process = ({ data }) => {
                 </TextPanel>
             </IsoSimple>
             <Slab padding={medium_slab_padding} bg="light_5" />
-            <YouTubeSlab embedId="YE1QU3bYeSY" />
+            <YouTubeSlab embedId="MjdbuYFfHaQ" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
                 <H3 color="dark_5" width={null}>
                     Timeline
@@ -103,27 +103,27 @@ export const Process = ({ data }) => {
                         - Financing options
                         <br />- Pre-Approval
                     </P>
-                    <hr/>
-                        <P>
-                            <Bold>NEW!!</Bold>
-                        </P>
-                        <P>
-                            Finance your renovation using your existing equity without refinancing
-                            your home with{" "}
-                            <Bold>
-                                <a
-                                    href="https://www.renofi.com/"
-                                    style={{
-                                        fontFamily: "Bitter",
-                                        color: "#c02d2d",
-                                        textDecoration: "underline",
-                                    }}
-                                >
-                                    RENOFI
-                                </a>
-                            </Bold>
-                        </P>
-                    <hr/>
+                    <hr />
+                    <P>
+                        <Bold>NEW!!</Bold>
+                    </P>
+                    <P>
+                        Finance your renovation using your existing equity without refinancing your
+                        home with{" "}
+                        <Bold>
+                            <a
+                                href="https://www.renofi.com/"
+                                style={{
+                                    fontFamily: "Bitter",
+                                    color: "#c02d2d",
+                                    textDecoration: "underline",
+                                }}
+                            >
+                                RENOFI
+                            </a>
+                        </Bold>
+                    </P>
+                    <hr />
                     <P>
                         <Bold>We</Bold> provide complete design services with a registered
                         architect.
