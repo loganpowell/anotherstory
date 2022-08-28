@@ -22,9 +22,10 @@ export const H1 = ({ color = "light_5", children }) => {
                 fontSize: [lg, xl],
                 lineHeight: [1],
                 fontFamily: "Poppins",
-                WebkitTextStroke: "2px",
-                WebkitTextStrokeColor: colors.dark_5,
-                WebkitTextFillColor: "transparent",
+                WebkitTextStroke: "1px",
+                WebkitTextStrokeColor: colors.dark_3,
+                textShadow: `0 0 5px ${colors.dark_5}`,
+                WebkitTextFillColor: "white",
             })}
         >
             {children}
