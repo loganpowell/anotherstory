@@ -22,7 +22,7 @@ const MotionButtonCentered = ({ children, ...props }) => (
             zIndex: 100,
             cursor: "pointer",
             position: "fixed",
-            top: "3rem",
+            top: "3.5rem",
             right: "3rem",
             width: "3rem",
             height: "3rem",

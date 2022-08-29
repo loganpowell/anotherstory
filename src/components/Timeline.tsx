@@ -161,6 +161,7 @@ export const TLItem = ({
                         justifyContent: "flex-start",
                         alignItems: "center",
                         overflow: "hidden",
+                        marginLeft: "auto",
                     }}
                 >
                     <DotStem height={["1rem", "1.3rem", "1.2rem", "1.7rem"]} />
@@ -210,7 +211,7 @@ export const TLItem = ({
                         <div
                             css={{
                                 label: "tl-icon",
-                                padding: "2rem 3rem 0rem 0rem",
+                                padding: "2rem 3.5rem 4rem 0rem",
                                 width: "100%",
                                 height: "100%",
                                 fontWeight: 300,

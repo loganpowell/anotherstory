@@ -7,6 +7,7 @@ import {
     Slab,
     slim_slab_padding,
     xtall_slab_padding,
+    TextPanel,
 } from "../containers"
 import { useR$ } from "../for-export"
 import { useMyTheme } from "../hooks"
@@ -26,14 +27,9 @@ import {
 
 // need the extra "data" prop to nest home state inside global atom
 export const Home = ({ data: { data } }) => {
-    const {
-        colors: { dark_5 },
-        fonts,
-        fontWeights,
-        lineHeights,
-        fontSizes: { xs, sm, md },
-    } = useMyTheme()
-
+    const { colors, fonts, fontWeights, lineHeights, fontSizes } = useMyTheme()
+    const { dark_5 } = colors
+    const { xs, sm, md } = fontSizes
     //console.log("Home:", { data })
 
     return (
@@ -53,7 +49,40 @@ export const Home = ({ data: { data } }) => {
                 </H3>
             </Slab>
             <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
-
+            <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
+                <H3 color="dark_5" width={null}>
+                    Latest News
+                </H3>
+            </Slab>
+            <IsoSimple
+                src="/svgs/pro-remodeler-logo.svg"
+                alt="Pro Remodeler Journal Logo"
+                href="https://www.proremodeler.com/anotherstory-revamping-second-story-addition"
+            >
+                <TextPanel>
+                    {/*<H3 font="serif" color="dark_5">
+                        <a href="https://www.proremodeler.com/anotherstory-revamping-second-story-addition">
+                            Pro Remodeler
+                        </a>
+                    </H3>*/}
+                    <p
+                        css={{
+                            fontFamily: fonts.serif,
+                            fontWeight: fontWeights.normal,
+                            fontSize: fontSizes.sm,
+                            color: colors.dark_5,
+                        }}
+                    >
+                        <span style={{ fontStyle: "italic" }}>
+                            Traditionally, second-story additions are intense and disrupting
+                            projects: for both the builder and the homeowners. The disruption alone
+                            could be enough to deter a family from proceeding with an addition, but
+                            that’s AnotherStory’s entire selling point: a second story without
+                            disruption.
+                        </span>
+                    </p>
+                </TextPanel>
+            </IsoSimple>
             <WhatWhy />
             <BoldSlab title="How" subtitle="it is done" />
             <IsoSimple

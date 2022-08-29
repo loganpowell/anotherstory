@@ -220,6 +220,7 @@ export const AvatarQuote = ({
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: align === "right" ? "flex-end" : "flex-start",
+                    alignSelf: align === "right" ? "end" : "start",
                     gap: space[size],
                     ...gap_shim(sm, false, true),
                 }}

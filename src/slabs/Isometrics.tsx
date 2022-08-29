@@ -16,6 +16,7 @@ export const responsive_img_css = zIndex => ({
         content: `""`,
         display: "block",
         paddingBottom: "100%",
+        //alignSelf: "start",
     },
     zIndex: zIndex,
 })
@@ -138,7 +139,7 @@ export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
     )
 }
 
-export const IsoSimple = ({ src, alt, zIndex = 1, children = null }) => {
+export const IsoSimple = ({ src, alt, zIndex = 1, href = "", children = null }) => {
     const {
         colors: { dark_5 },
         fonts,
@@ -152,8 +153,11 @@ export const IsoSimple = ({ src, alt, zIndex = 1, children = null }) => {
             padding={[["sm", "sm"], ["sm", "lg"], ["sm", "15%"], null, ["sm", "20%"]]}
             direction={["row"]}
         >
-            <img src={src} alt={alt} css={responsive_img_css(zIndex)} />
-
+            {(href && (
+                <a href={href} css={responsive_img_css(zIndex)}>
+                    <img src={src} alt={alt} style={{ maxWidth: "100%", alignSelf: "start" }} />
+                </a>
+            )) || <img src={src} alt={alt} css={responsive_img_css(zIndex)} />}
             {children}
         </Slab>
     )

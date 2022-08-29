@@ -61,11 +61,12 @@ export const TimelineHome = ({ title, subtitle, data }) => {
                     display: "flex",
                     flexDirection: "row",
                     fontSize: [sm, md],
-                    letterSpacing: lmd,
+                    //letterSpacing: lmd,
                     fontWeight: fontWeights.bold,
                     color: colors.light_5,
                     textAlign: "left",
                     alignItems: "baseline",
+                    lineHeight: "0.6",
                     gap: [sm, md],
                     ...gap_shim([sm, md], false, true),
                 })}

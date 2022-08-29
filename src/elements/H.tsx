@@ -5,7 +5,7 @@ import { useR$ } from "../for-export"
 import { useMyTheme, useSize$ } from "../hooks"
 import { CTX } from "../context"
 
-export const H1 = ({ color = "light_5", children }) => {
+export const H1 = ({ color = "dark_5", children }) => {
     const {
         fontSizes: { xxl, xl, lg, md, sm },
         letterSpacings: { xxs, xs, md: _md },
@@ -18,14 +18,14 @@ export const H1 = ({ color = "light_5", children }) => {
             css={useR$({
                 color: colors[color],
                 fontWeight: black,
-                letterSpacing: [_md, null, null, xs],
+                letterSpacing: xs,
                 fontSize: [lg, xl],
                 lineHeight: [1],
                 fontFamily: "Poppins",
-                WebkitTextStroke: "1px",
-                WebkitTextStrokeColor: colors.dark_3,
-                textShadow: `0 0 5px ${colors.dark_5}`,
-                WebkitTextFillColor: "white",
+                //WebkitTextStroke: "1px",
+                //WebkitTextStrokeColor: colors.dark_3,
+                //textShadow: `0 0 5px ${colors.dark_5}`,
+                //WebkitTextFillColor: "white",
             })}
         >
             {children}
@@ -103,7 +103,7 @@ export const H4 = ({ color = "light_5", font = "sans", children }) => {
                 color: colors[color],
                 fontSize: [sm, md],
                 letterSpacing: [lmd, lsm],
-                lineHeight: 1,
+                lineHeight: 1.5,
                 fontFamily: fonts[font],
             })}
         >

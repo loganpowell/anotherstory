@@ -49,6 +49,7 @@ export const BannerQuote = ({
                     WebkitTextStroke: "1px",
                     WebkitTextStrokeColor: colors.light_3,
                     WebkitTextFillColor: "transparent",
+                    alignSelf: align === "right" ? "end" : "start",
                 }}
             >
                 {topline}
