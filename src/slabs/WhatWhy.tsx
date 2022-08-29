@@ -19,7 +19,7 @@ const data = {
         ],
     },
     Why: {
-        subtitle: "should you choose AnotherStory™",
+        subtitle: "would you choose AnotherStory?",
         bullets: [
             { icon: "package", point: "No moving required" },
             { icon: "currency-dollar", point: "No short term renting" },

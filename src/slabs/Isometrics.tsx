@@ -164,7 +164,7 @@ export const IsoSimple = ({
                 <a href={href} css={responsive_img_css(zIndex, display)}>
                     <img src={src} alt={alt} style={{ maxWidth: "100%", alignSelf: "start" }} />
                 </a>
-            )) || <img src={src} alt={alt} css={responsive_img_css(zIndex, display)} />}
+            )) || <img src={src} alt={alt} css={responsive_img_css(zIndex)} />}
             {children}
         </Slab>
     )
