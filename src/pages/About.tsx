@@ -9,18 +9,7 @@ import {
     TextPanel,
 } from "../containers"
 import { H2, H3, H4 } from "../elements"
-import {
-    WhatWhy,
-    BannerQuote,
-    IsoSimple,
-    IsoLiving,
-    BoldSlab,
-    IsoStair,
-    BigQuote,
-    ContactForm,
-    Footer,
-    TimelineProcess,
-} from "../slabs"
+import { IsoSimple, Footer } from "../slabs"
 import { useMyTheme } from "../hooks"
 import { gap_shim, useR$ } from "../for-export"
 import { space } from "../theme"

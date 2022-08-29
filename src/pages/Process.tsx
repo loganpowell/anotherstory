@@ -9,19 +9,7 @@ import {
     TextPanel,
 } from "../containers"
 import { H2, H3, H4 } from "../elements"
-import {
-    WhatWhy,
-    BannerQuote,
-    IsoSimple,
-    IsoLiving,
-    BoldSlab,
-    IsoStair,
-    BigQuote,
-    ContactForm,
-    Footer,
-    TimelineProcess,
-    YouTubeSlab,
-} from "../slabs"
+import { IsoSimple, Footer, TimelineProcess, YouTubeSlab } from "../slabs"
 import { YoutubeEmbed } from "../components"
 import { useMyTheme } from "../hooks"
 import { useR$ } from "../for-export"
