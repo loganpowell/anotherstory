@@ -10,11 +10,11 @@ import { colors, lineHeights, Theme } from "../theme"
 
 // trick to make responsive square image
 // source: https://spin.atomicobject.com/2015/07/14/css-responsive-square/
-export const responsive_img_css = zIndex => ({
+export const responsive_img_css = (zIndex, display = "block") => ({
     width: "47%",
     "&:after": {
         content: `""`,
-        display: "block",
+        display,
         paddingBottom: "100%",
         //alignSelf: "start",
     },
@@ -139,7 +139,14 @@ export const IsoLiving = ({ src, tagline, zIndex = 1 }) => {
     )
 }
 
-export const IsoSimple = ({ src, alt, zIndex = 1, href = "", children = null }) => {
+export const IsoSimple = ({
+    src,
+    alt,
+    zIndex = 1,
+    href = "",
+    display = "block",
+    children = null,
+}) => {
     const {
         colors: { dark_5 },
         fonts,
@@ -154,10 +161,10 @@ export const IsoSimple = ({ src, alt, zIndex = 1, href = "", children = null }) 
             direction={["row"]}
         >
             {(href && (
-                <a href={href} css={responsive_img_css(zIndex)}>
+                <a href={href} css={responsive_img_css(zIndex, display)}>
                     <img src={src} alt={alt} style={{ maxWidth: "100%", alignSelf: "start" }} />
                 </a>
-            )) || <img src={src} alt={alt} css={responsive_img_css(zIndex)} />}
+            )) || <img src={src} alt={alt} css={responsive_img_css(zIndex, display)} />}
             {children}
         </Slab>
     )

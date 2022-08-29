@@ -58,19 +58,19 @@ export const Home = ({ data: { data } }) => {
                 src="/svgs/pro-remodeler-logo.svg"
                 alt="Pro Remodeler Journal Logo"
                 href="https://www.proremodeler.com/anotherstory-revamping-second-story-addition"
+                display="none"
             >
                 <TextPanel>
-                    {/*<H3 font="serif" color="dark_5">
-                        <a href="https://www.proremodeler.com/anotherstory-revamping-second-story-addition">
-                            Pro Remodeler
-                        </a>
-                    </H3>*/}
                     <p
                         css={{
                             fontFamily: fonts.serif,
                             fontWeight: fontWeights.normal,
                             fontSize: fontSizes.sm,
                             color: colors.dark_5,
+                            "&:after": {
+                                display: "none",
+                                paddingBottom: "100%",
+                            },
                         }}
                     >
                         <span style={{ fontStyle: "italic" }}>
@@ -83,6 +83,7 @@ export const Home = ({ data: { data } }) => {
                     </p>
                 </TextPanel>
             </IsoSimple>
+            <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center"></Slab>
             <WhatWhy />
             <BoldSlab title="How" subtitle="it is done" />
             <IsoSimple
