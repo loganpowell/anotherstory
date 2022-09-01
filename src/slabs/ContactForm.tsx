@@ -44,6 +44,7 @@ const createRecord = async ({
     referral,
     financed,
     certainty,
+    stage = "Schedule Intake Call",
     //vcard,
 }) =>
     await base("contact").create(
@@ -60,6 +61,7 @@ const createRecord = async ({
                     referral,
                     financed,
                     certainty,
+                    stage,
                     //vcard,
                 },
             },
