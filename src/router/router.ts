@@ -190,7 +190,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: async () => await getTeam(),
+                    [API.DOM_BODY]: {}, // async () => await getTeam(),
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",

@@ -140,7 +140,7 @@ export const About = ({ data }) => {
                         //justifyContent: "center",
                     }}
                 >
-                    {data.map(({ name, bio_short, quote, role, avatar }) => {
+                    {/* TEAM REMOVED FROM AIRTABLE {data.map(({ name, bio_short, quote, role, avatar }) => {
                         return (
                             <Bio
                                 key={name}
@@ -150,7 +150,7 @@ export const About = ({ data }) => {
                                 img={avatar}
                             />
                         )
-                    })}
+                    })}*/}
                 </div>
                 {/*<TextPanel gap={["lg"]} paddingBottom={null}>
                     <Bio
