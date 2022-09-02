@@ -49,7 +49,7 @@ const Bold = ({ children }) => {
 
 export const About = ({ data }) => {
     const { fontWeights, fonts, letterSpacings, fontSizes, colors } = useMyTheme()
-    //console.log({ data })
+    console.log({ data })
 
     return (
         <Page>

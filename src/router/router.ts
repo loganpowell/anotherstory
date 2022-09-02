@@ -120,6 +120,8 @@ const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
     return res.sort(({ order: a }, { order: b }) => a - b)
 }
 
+const HACKED_API_FIXME = async () => await new Promise(resolve => setTimeout(() => resolve({}), 0))
+
 export const urlToPageConfig: Router = async URL => {
     const match = URL2obj(URL)
     const { _PATH } = match
@@ -153,7 +155,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => Contact,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: () => ({}),
+                    [API.DOM_BODY]: HACKED_API_FIXME,
                     [API.DOM_HEAD]: {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
@@ -190,7 +192,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: () => ({}), // async () => await getTeam(),
+                    [API.DOM_BODY]: HACKED_API_FIXME, // async () => await getTeam(),
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
