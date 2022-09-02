@@ -153,7 +153,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => Contact,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: getItems,
+                    [API.DOM_BODY]: () => ({}),
                     [API.DOM_HEAD]: {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
@@ -190,7 +190,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: {}, // async () => await getTeam(),
+                    [API.DOM_BODY]: () => ({}), // async () => await getTeam(),
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
