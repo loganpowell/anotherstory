@@ -4,7 +4,7 @@
     "private": true,
     "homepage": ".",
     "dependencies": {
-        "@-0/browser": "^0.3.77",
+        "@-0/browser": "^0.3.82",
         "@aws-amplify/auth": "^4.6.1",
         "@aws-amplify/storage": "^4.5.1",
         "@emotion/react": "^11.10.0",

@@ -120,7 +120,16 @@ const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
     return res.sort(({ order: a }, { order: b }) => a - b)
 }
 
-const HACKED_API_FIXME = async () => await new Promise(resolve => setTimeout(() => resolve({}), 0))
+//                                                 d8
+//   e88~~8e  Y88b  /  888-~88e   e88~-_  888-~\ _d88__
+//  d888  88b  Y88b/   888  888b d888   i 888     888
+//  8888__888   Y88b   888  8888 8888   | 888     888
+//  Y888    ,   /Y88b  888  888P Y888   ' 888     888
+//   "88___/   /  Y88b 888-_88"   "88_-~  888     "88_/
+//                     888
+//
+// TODO: EXPORT TO @-0/browser
+const EMPTY = async () => await new Promise(resolve => setTimeout(() => resolve({}), 0))
 
 export const urlToPageConfig: Router = async URL => {
     const match = URL2obj(URL)
@@ -155,7 +164,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => Contact,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: HACKED_API_FIXME,
+                    [API.DOM_BODY]: EMPTY,
                     [API.DOM_HEAD]: {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
@@ -192,7 +201,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: HACKED_API_FIXME, // async () => await getTeam(),
+                    [API.DOM_BODY]: EMPTY, // EMPTY, // async () => await getTeam(),
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
@@ -286,6 +295,6 @@ const LOG_TO_GA = registerCMD({
 export const router: API.RouterCFG = {
     [API.CFG_RUTR]: urlToPageConfig,
     [API.RTR_PREP]: [SET_PRERENDER_FALSE],
-    ignore_prefix: "anotherstory",
+    ignore_prefix: "anotherstory", // for github pages loganpowell.github.io/anotherstory
     [API.RTR_POST]: [LOG_TO_GA, INJECT_HEAD, SET_PRERENDER_TRUE],
 }
