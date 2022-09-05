@@ -21,8 +21,8 @@ const getScrollPos = () => ({
     x: window.scrollX,
     y: window.scrollY,
 })
-// TODO: @-0/react figure out how to AnimatePresence...
-// EXPORT
+// TODO: EXPORT TO @-0/react figure out how to AnimatePresence...
+//
 //                                                 d8    d8b
 //   e88~~8e  Y88b  /  888-~88e   e88~-_  888-~\ _d88__ !Y88!
 //  d888  88b  Y88b/   888  888b d888   i 888     888    Y8Y
@@ -37,7 +37,7 @@ export const View = ({ store = $store$ }) => {
 
     const state = store.deref()
 
-    console.log({ state })
+    //console.log({ state })
 
     //const is_home = !path.length
     const Page = (!loading && getIn(state, [API._, API.$$_VIEW])()) || null
@@ -45,7 +45,7 @@ export const View = ({ store = $store$ }) => {
 
     // @ts-ignore
     const stuff = getIn(state, path) || {}
-    console.log({ Page, stuff, loading })
+    //console.log({ Page, stuff, loading })
 
     return (
         <AnimatePresence

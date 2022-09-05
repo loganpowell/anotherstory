@@ -129,7 +129,7 @@ const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
 //                     888
 //
 // TODO: EXPORT TO @-0/browser
-const EMPTY = async () => await new Promise(resolve => setTimeout(() => resolve({}), 0))
+const EMPTY = async () => await new Promise(r => setTimeout(r, 0))
 
 export const urlToPageConfig: Router = async URL => {
     const match = URL2obj(URL)
@@ -170,9 +170,6 @@ export const urlToPageConfig: Router = async URL => {
                         favicon: "/favicon.ico",
                         og_description: "Sign up for a free 15-minute consultation",
                         og_image: "/images/finance.png",
-                        //og_image_width: "",
-                        //og_image_height: "",
-                        //og_type: "",
                     },
                 },
             },
@@ -189,9 +186,6 @@ export const urlToPageConfig: Router = async URL => {
                         favicon: "/favicon.ico",
                         og_description: "Move into Your Second Story in a Year or Less",
                         og_image: "/images/living.png",
-                        //og_image_width: "",
-                        //og_image_height: "",
-                        //og_type: "",
                     },
                 },
             },
@@ -201,15 +195,12 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: EMPTY, // EMPTY, // async () => await getTeam(),
+                    [API.DOM_BODY]: EMPTY,
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
                         og_description: "The AnotherStory Story",
                         og_image: "/images/about-us.png",
-                        //og_image_width: "",
-                        //og_image_height: "",
-                        //og_type: "",
                     },
                 },
             },
@@ -257,7 +248,7 @@ const SET_PRERENDER_FALSE = registerCMD({
     sub$: "SET_PRERENDER_FALSE",
     args: x => x,
     work: () => {
-        console.log("window.prerenderReady = false")
+        //console.log("window.prerenderReady = false")
         //@ts-ignore
         window.prerenderReady = false
     },
@@ -270,7 +261,7 @@ const SET_PRERENDER_TRUE = registerCMD({
         // use setTimetout to push prerenderReady to end of current event queue
         setTimeout(() => {
             const html = document.body.innerHTML
-            console.log("window.prerenderReady = true" /*, { acc, html } */)
+            //console.log("window.prerenderReady = true" /*, { acc, html } */)
             //@ts-ignore
             window.prerenderReady = true
         }, 0)

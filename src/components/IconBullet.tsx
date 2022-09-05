@@ -3,6 +3,7 @@ import { Icon } from "./Icon"
 import { useMyTheme } from "../hooks"
 //import { theme } from "../theme"
 import { FontSize, gap_shim, IconWeight, nudge_size, useR$ } from "../for-export"
+import { Link } from "./Link"
 
 export const IconBullet = ({
     weight = "light",
@@ -55,18 +56,33 @@ export const IconBullet = ({
             </p>
         </li>
     )
-    return link ? (
-        <a
-            href={link}
-            css={{
-                width: "100%",
-            }}
-        >
-            <Li />
-        </a>
-    ) : (
-        <Li />
-    )
+    if (link) {
+        // local link
+        if (link[0] === "/") {
+            //console.log("local link!:", link)
+            return (
+                <Link
+                    href={link}
+                    css={{
+                        width: "100%",
+                    }}
+                >
+                    <Li />
+                </Link>
+            )
+        }
+        return (
+            <a
+                href={link}
+                css={{
+                    width: "100%",
+                }}
+            >
+                <Li />
+            </a>
+        )
+    }
+    return <Li />
 }
 
 /**

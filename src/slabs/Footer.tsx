@@ -10,7 +10,8 @@ const data = {
             {
                 icon: "envelope",
                 point: "Email",
-                link: "mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory",
+                //link: "mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory",
+                link: "/contact",
             },
             {
                 icon: "facebook-logo",

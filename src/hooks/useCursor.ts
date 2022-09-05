@@ -3,8 +3,8 @@ import { useState, useMemo, useLayoutEffect } from "react"
 import { Cursor } from "@thi.ng/atom"
 //import { log } from "../utils/data"
 
-// TODO: @-0/react
-// EXPORT
+// TODO: EXPORT TO @-0/react
+//
 //                                                 d8    d8b
 //   e88~~8e  Y88b  /  888-~88e   e88~-_  888-~\ _d88__ !Y88!
 //  d888  88b  Y88b/   888  888b d888   i 888     888    Y8Y
