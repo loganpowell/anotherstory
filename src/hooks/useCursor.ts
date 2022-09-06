@@ -20,15 +20,12 @@ export const createCursor =
         // 1. recreated every re-render of parent component
         const cursor = useMemo(() => new Cursor(atom, path), [path])
 
-        //useEffect(() => {
-        //    console.log("useLayoutEffect triggered:", state)
         cursor.addWatch(uid, (id, bfr, aft) => {
             if (log) console.log(`${uid} cursor triggered:`, { id, bfr, aft })
             setState(aft)
             // 2. needs to be released after every triggered change
             cursor.release()
         })
-        //}, [state, cursor, uid])
 
         return [state, setState]
     }

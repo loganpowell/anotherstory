@@ -40,11 +40,13 @@ export const View = ({ store = $store$ }) => {
 
     //console.log({ state })
 
-    const _loading = getIn(state, [API._, API.$$_LOAD])
-    if (_loading !== loading) setLoading(_loading)
-    const Page = !loading && getIn(state, [API._, API.$$_VIEW])()
-    const path = !loading && getIn(state, [API._, API.$$_PATH])
-    //const path = (!loading && getIn(state, [API._, API.$$_PATH])) || []
+    const {
+        [API._]: { [API.$$_LOAD]: _loading, [API.$$_VIEW]: page, [API.$$_PATH]: path },
+    } = state
+
+    if (_loading !== loading) setLoading(_loading) // refresh view when state is updated
+
+    const Page = !loading && page()
 
     // @ts-ignore
     const data = getIn(state, path) || {}

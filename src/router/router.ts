@@ -13,14 +13,13 @@ import {
 } from "@-0/browser"
 
 import Airtable from "airtable"
-//import { __DOM_URL__ROUTE } from "@-0/browser/lib/tasks/routing"
-//import { Err_missing_props } from "@-0/utils"
-import { URL_DATA, URL_PAGE, Router } from "@-0/keys"
+import { DOM_BODY, DOM_HEAD, URL_DATA, URL_PAGE, Router } from "@-0/keys"
 import { getIn } from "@thi.ng/paths"
 //import dotenv from "dotenv"
 //import fetch from "node-fetch"
 //import { items } from "../misc/data"
-import { Magic, Move, Stub, Home, Contact, Process, About } from "../pages"
+import { Home, Contact, Process, About } from "../pages"
+//import { Magic, Move, Stub } from "../pages"
 import { isEmpty } from "../utils"
 
 //dotenv.config()
@@ -153,17 +152,17 @@ export const urlToPageConfig: Router = async URL => {
 
     const [_1, _2, _3] = _PATH
     const {
-        [API.URL_PAGE]: page,
-        [API.URL_DATA]: { [API.DOM_BODY]: body, [API.DOM_HEAD]: head },
+        [URL_PAGE]: page,
+        [URL_DATA]: { [DOM_BODY]: body, [DOM_HEAD]: head },
     } = new EquivMap([
         [
             { ...match, _PATH: [] },
             {
-                [API.URL_PAGE]: () => Home,
-                [API.URL_DATA]: {
+                [URL_PAGE]: () => Home,
+                [URL_DATA]: {
                     // need the extra "data" prop to nest home state inside global atom
-                    [API.DOM_BODY]: async () => ({ data: await getTimelineData(_PATH) }),
-                    [API.DOM_HEAD]: {
+                    [DOM_BODY]: async () => ({ data: await getTimelineData(_PATH) }),
+                    [DOM_HEAD]: {
                         title: "AnotherStory",
                         favicon: "/favicon.ico",
                         og_description: "Build Another Story - Without Moving!",
@@ -178,10 +177,10 @@ export const urlToPageConfig: Router = async URL => {
         [
             { ...match, _PATH: ["contact"] },
             {
-                [API.URL_PAGE]: () => Contact,
-                [API.URL_DATA]: {
-                    [API.DOM_BODY]: () => null,
-                    [API.DOM_HEAD]: {
+                [URL_PAGE]: () => Contact,
+                [URL_DATA]: {
+                    [DOM_BODY]: () => null,
+                    [DOM_HEAD]: {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
                         og_description: "Sign up for a free 15-minute consultation",
@@ -193,9 +192,9 @@ export const urlToPageConfig: Router = async URL => {
         [
             { ...match, _PATH: ["process"] },
             {
-                [API.URL_PAGE]: () => Process,
-                [API.URL_DATA]: {
-                    [API.DOM_BODY]: async () =>
+                [URL_PAGE]: () => Process,
+                [URL_DATA]: {
+                    [DOM_BODY]: async () =>
                         await getTimelineData(_PATH, [
                             "order",
                             "time",
@@ -203,7 +202,7 @@ export const urlToPageConfig: Router = async URL => {
                             "icon",
                             "description",
                         ]),
-                    [API.DOM_HEAD]: {
+                    [DOM_HEAD]: {
                         title: "Our Process",
                         favicon: "/favicon.ico",
                         og_description: "Move into Your Second Story in a Year or Less",
@@ -215,10 +214,10 @@ export const urlToPageConfig: Router = async URL => {
         [
             { ...match, _PATH: ["about"] },
             {
-                [API.URL_PAGE]: () => About,
-                [API.URL_DATA]: {
-                    [API.DOM_BODY]: () => null, // EMPTY,
-                    [API.DOM_HEAD]: {
+                [URL_PAGE]: () => About,
+                [URL_DATA]: {
+                    [DOM_BODY]: () => null, // EMPTY,
+                    [DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
                         og_description: "The AnotherStory Story",
@@ -230,26 +229,26 @@ export const urlToPageConfig: Router = async URL => {
         //[
         //    { ...match, _PATH: ["magic-move"] },
         //    {
-        //        [API.URL_PAGE]: () => Magic,
-        //        [API.URL_DATA]: {
-        //            [API.DOM_BODY]: getItems,
+        //        [URL_PAGE]: () => Magic,
+        //        [URL_DATA]: {
+        //            [DOM_BODY]: getItems,
         //        },
         //    },
         //],
         //[
         //    { ...match, _PATH: ["magic-move", _2] },
         //    {
-        //        [API.URL_PAGE]: () => Move,
-        //        [API.URL_DATA]: {
-        //            [API.DOM_BODY]: getItems,
+        //        [URL_PAGE]: () => Move,
+        //        [URL_DATA]: {
+        //            [DOM_BODY]: getItems,
         //        },
         //    },
         //],
     ]).get(match) || {
-        [API.URL_PAGE]: () => Home,
-        [API.URL_DATA]: {
+        [URL_PAGE]: () => Home,
+        [URL_DATA]: {
             // need the extra "data" prop to nest home state inside global atom
-            [API.DOM_BODY]: async () => ({ data: await getTimelineData() }),
+            [DOM_BODY]: async () => ({ data: await getTimelineData([]) }),
         },
     }
 
@@ -257,11 +256,11 @@ export const urlToPageConfig: Router = async URL => {
     //const state = $store$.deref()
     //console.log({ res, state })
     return {
-        [API.URL_DATA]: {
-            [API.DOM_BODY]: res,
-            [API.DOM_HEAD]: head,
+        [URL_DATA]: {
+            [DOM_BODY]: res,
+            [DOM_HEAD]: head,
         },
-        [API.URL_PAGE]: page,
+        [URL_PAGE]: page,
     }
 }
 const INJECT_HEAD = registerCMD(cmd_inject_head)
