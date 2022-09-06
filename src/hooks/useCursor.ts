@@ -1,5 +1,5 @@
 import { $store$ } from "@-0/browser"
-import { useState, useMemo, useLayoutEffect } from "react"
+import { useState, useMemo, useLayoutEffect, useEffect } from "react"
 import { Cursor } from "@thi.ng/atom"
 //import { log } from "../utils/data"
 
@@ -15,18 +15,22 @@ import { Cursor } from "@thi.ng/atom"
 //
 export const createCursor =
     (atom = $store$, log = false) =>
-    (path, uid = `cursor-${Date.now()}`, init = null): [any, Cursor<any>] => {
+    (path, uid = `cursor-${Date.now()}`, init = null): [any, any] => {
         const [state, setState] = useState(init)
         // 1. recreated every re-render of parent component
+        const cursor = useMemo(() => new Cursor(atom, path), [path])
 
-        const cursor = new Cursor(atom, path)
+        //useEffect(() => {
+        //    console.log("useLayoutEffect triggered:", state)
         cursor.addWatch(uid, (id, bfr, aft) => {
             if (log) console.log(`${uid} cursor triggered:`, { id, bfr, aft })
             setState(aft)
             // 2. needs to be released after every triggered change
             cursor.release()
         })
-        return [state, cursor]
+        //}, [state, cursor, uid])
+
+        return [state, setState]
     }
 
 export const useCursor = createCursor()

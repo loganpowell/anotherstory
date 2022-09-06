@@ -31,20 +31,23 @@ const getScrollPos = () => ({
 //   "88___/   /  Y88b 888-_88"   "88_-~  888     "88_/  "8"
 //                     888
 //
+const useCursor = createCursor($store$)
+
 export const View = ({ store = $store$ }) => {
-    const useCursor = createCursor($store$)
-    const [loading] = useCursor([API._, API.$$_LOAD], "View loading", true)
+    const [loading, setLoading] = useCursor([API._, API.$$_LOAD], "View loading", true)
 
     const state = store.deref()
 
     //console.log({ state })
 
-    //const is_home = !path.length
-    const Page = (!loading && getIn(state, [API._, API.$$_VIEW])()) || null
-    const path = (!loading && getIn(state, [API._, API.$$_PATH])) || []
+    const _loading = getIn(state, [API._, API.$$_LOAD])
+    if (_loading !== loading) setLoading(_loading)
+    const Page = !loading && getIn(state, [API._, API.$$_VIEW])()
+    const path = !loading && getIn(state, [API._, API.$$_PATH])
+    //const path = (!loading && getIn(state, [API._, API.$$_PATH])) || []
 
     // @ts-ignore
-    const stuff = getIn(state, path) || {}
+    const data = getIn(state, path) || {}
     //console.log({ Page, stuff, loading })
 
     return (
@@ -56,7 +59,7 @@ export const View = ({ store = $store$ }) => {
             //    console.log("scrollposition after:", getScrollPos())
             //}}
         >
-            {!loading && <Page data={stuff} />}
+            {(!loading && <Page data={data} />) || "loading"}
         </AnimatePresence>
     )
 }

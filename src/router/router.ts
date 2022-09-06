@@ -16,10 +16,12 @@ import Airtable from "airtable"
 //import { __DOM_URL__ROUTE } from "@-0/browser/lib/tasks/routing"
 //import { Err_missing_props } from "@-0/utils"
 import { URL_DATA, URL_PAGE, Router } from "@-0/keys"
-import dotenv from "dotenv"
-import fetch from "node-fetch"
-import { items } from "../misc/data"
+import { getIn } from "@thi.ng/paths"
+//import dotenv from "dotenv"
+//import fetch from "node-fetch"
+//import { items } from "../misc/data"
 import { Magic, Move, Stub, Home, Contact, Process, About } from "../pages"
+import { isEmpty } from "../utils"
 
 //dotenv.config()
 
@@ -93,7 +95,21 @@ const getTeam = async () => {
 
     return res.sort(compare)
 }
-const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
+
+const sorter = ({ order: a }, { order: b }) => a - b
+
+const getTimelineData = async (path, keep = ["order", "time", "title", "icon"]) => {
+    const store = $store$.deref()
+    const state_for_path = getIn(store, path)
+    if (!path.length && state_for_path?.data) {
+        // in root
+        return state_for_path.data.sort(sorter)
+    }
+    if (path.length && !isEmpty(state_for_path)) {
+        // not in root
+        return state_for_path.sort(sorter)
+    }
+    //console.log("BLOOP")
     const res: any[] = await new Promise((resolve, reject) => {
         let acc = []
         base("timeline")
@@ -117,7 +133,7 @@ const getTimelineData = async (keep = ["order", "time", "title", "icon"]) => {
                 }
             )
     })
-    return res.sort(({ order: a }, { order: b }) => a - b)
+    return res.sort(sorter)
 }
 
 //                                                 d8
@@ -146,7 +162,7 @@ export const urlToPageConfig: Router = async URL => {
                 [API.URL_PAGE]: () => Home,
                 [API.URL_DATA]: {
                     // need the extra "data" prop to nest home state inside global atom
-                    [API.DOM_BODY]: async () => ({ data: await getTimelineData() }),
+                    [API.DOM_BODY]: async () => ({ data: await getTimelineData(_PATH) }),
                     [API.DOM_HEAD]: {
                         title: "AnotherStory",
                         favicon: "/favicon.ico",
@@ -164,7 +180,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => Contact,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: EMPTY,
+                    [API.DOM_BODY]: () => null,
                     [API.DOM_HEAD]: {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
@@ -180,7 +196,13 @@ export const urlToPageConfig: Router = async URL => {
                 [API.URL_PAGE]: () => Process,
                 [API.URL_DATA]: {
                     [API.DOM_BODY]: async () =>
-                        await getTimelineData(["order", "time", "title", "icon", "description"]),
+                        await getTimelineData(_PATH, [
+                            "order",
+                            "time",
+                            "title",
+                            "icon",
+                            "description",
+                        ]),
                     [API.DOM_HEAD]: {
                         title: "Our Process",
                         favicon: "/favicon.ico",
@@ -195,7 +217,7 @@ export const urlToPageConfig: Router = async URL => {
             {
                 [API.URL_PAGE]: () => About,
                 [API.URL_DATA]: {
-                    [API.DOM_BODY]: EMPTY,
+                    [API.DOM_BODY]: () => null, // EMPTY,
                     [API.DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
