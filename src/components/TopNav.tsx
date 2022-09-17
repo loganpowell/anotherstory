@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState, useMemo, useRef } from "react"
 import { Slab, slim_slab_padding } from "../containers"
 import { H4 } from "../elements"
 import { useMyTheme, useSize$, useThrottle } from "../hooks"
+import { ButtonCTA } from "./ButtonCTA"
 //import throttle from "lodash.throttle"
 import { Link } from "./Link"
 import { MiniMenu } from "./MiniMenu"
@@ -15,17 +16,17 @@ const nav_items = [
     },
     {
         url: "/process",
-        title: "Process",
+        title: "process",
         img: "/svgs/finance.svg",
     },
     {
         url: "/about",
-        title: "About",
+        title: "about",
         img: "/svgs/about-us.svg",
     },
     {
         url: "/contact",
-        title: "Connect",
+        title: "contact",
         img: "/svgs/living.svg",
     },
 ]
@@ -126,21 +127,7 @@ export const TopNav = () => {
                     >
                         <NavLink href="/process">Process</NavLink>
                         <NavLink href="/about">About</NavLink>
-                        <Link
-                            href="/contact"
-                            css={{
-                                width: "auto",
-                                height: "auto",
-                                padding: "1.5rem 3rem",
-                                backgroundColor: colors.light_5,
-                                color: colors.dark_5,
-                                borderRadius: "1rem",
-                                fontWeight: fontWeights.bold,
-                                fontSize: fontSizes.sm,
-                            }}
-                        >
-                            Contact
-                        </Link>
+                        <ButtonCTA>Contact</ButtonCTA>
                     </div>
                 </Slab>
             )}

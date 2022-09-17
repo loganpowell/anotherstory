@@ -42,7 +42,7 @@ export const getRelativePath = href => {
         : href // absolute href
 }
 
-export const Link = ({ href, children = null, ...props }) => {
+export const Link = ({ href, children, ...props }) => {
     const me = useRef()
 
     const r_path = getRelativePath(href)
@@ -54,17 +54,13 @@ export const Link = ({ href, children = null, ...props }) => {
             {...props}
             onClick={e => {
                 e.preventDefault()
-                //console.log({
-                //    href: e.currentTarget.href,
-                //    location: window.location.href,
-                //    r_path,
-                //    me: me.current,
-                //})
+                //console.log(e)
                 run$.next({
                     ..._NAVIGATE,
                     [API.CMD_ARGS]: {
                         [API.URL_FULL]: e.currentTarget.href,
                         [API.DOM_NODE]: me.current,
+                        [API.POP_STATE]: { [API.PUSH_STATE]: document.referrer },
                     },
                 })
             }}

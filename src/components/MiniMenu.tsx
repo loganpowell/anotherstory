@@ -223,7 +223,7 @@ const MenuOpen = ({ trigger, children, ...props }) => {
         return () => document.removeEventListener("scroll", closeMe)
     }, [trigger, closeMe])
 
-    //const { height, right, width } = getFloodDims()
+    const { height, right, width } = getFloodDims()
     console.log({ height, right, width })
     return (
         <Circumscribed

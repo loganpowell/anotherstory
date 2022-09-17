@@ -1,5 +1,5 @@
 import React, { createContext, useState, useMemo } from "react"
-import { registerRouterDOM } from "@-0/browser"
+import { registerRouterDOM, log$, trace } from "@-0/browser"
 import { router } from "../router"
 import { useSize$ } from "../hooks"
 
@@ -12,6 +12,8 @@ import { useSize$ } from "../hooks"
 //   "88___/   /  Y88b 888-_88"   "88_-~  888     "88_/
 //                     888
 export const _NAVIGATE = registerRouterDOM(router)
+
+//log$.subscribe(trace("logging:"))
 
 //console.log({ _NAVIGATE })
 export const CTX = createContext(null)

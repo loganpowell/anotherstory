@@ -1,6 +1,6 @@
 import { API } from "@-0/browser"
 import { H1, H2, H3 } from "../elements"
-import { Link, TopNav } from "../components"
+import { Link, TopNav, ButtonCTA } from "../components"
 import {
     medium_slab_padding,
     Page,
@@ -44,9 +44,11 @@ export const Home = ({ data: { data } }) => {
                 direction={["column"]}
             >
                 <H1>Double Your Square Footage</H1>
-                <H3 color="dark_5" weight="thin">
-                    The Easy Way
-                </H3>
+                <div>
+                    <H3 color="dark_5" weight="thin">
+                        The Easy Way
+                    </H3>
+                </div>
             </Slab>
             <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
