@@ -1,15 +1,16 @@
 import React, { useEffect, useLayoutEffect, useState, useContext, useCallback, useRef } from "react"
 //import styled, { StyledTags } from "@emotion/styled"
-import { useTheme, jsx } from "@emotion/react"
+//import { useTheme, jsx } from "@emotion/react"
 import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
 import { letterSpacings, Theme, theme } from "../theme"
-import { CTX } from "../context"
+//import { CTX } from "../context"
 import { moicons, H2, H3 } from "../elements"
 import { Card } from "./Cards"
-import { useR$ } from "../for-export"
-import * as CSS from "csstype"
+//import { useR$ } from "../for-export"
+//import * as CSS from "csstype"
 import { useMyTheme } from "../hooks"
-import { Link } from "."
+import { Link } from "./Link"
+import { ButtonCTA } from "./ButtonCTA"
 
 //const responsive_bg = make_responsive(["red", "grey", "green", "darkgrey"])
 
@@ -116,14 +117,16 @@ const Logo = ({ children }) => {
             css={{
                 fontFamily: "Poppins",
                 alignItems: "flex-start",
-                lineHeight: 1,
+                //lineHeight: 1,
                 fontSize: "3rem",
+                fontWeight: "900",
                 letterSpacing: letterSpacings.md,
                 WebkitTextStroke: "1px",
-                WebkitTextStrokeColor: colors.dark_5,
-                WebkitTextFillColor: colors.light_5,
+                WebkitTextStrokeColor: colors.light_5,
+                WebkitTextFillColor: colors.dark_5,
                 mixBlendMode: "screen",
                 margin: 0,
+                padding: "0.5rem",
             }}
             href="/"
         >
@@ -142,16 +145,35 @@ const MenuClosed = ({ trigger, ...props }) => {
                 boxSizing: "border-box",
                 height: "auto",
                 //zIndex: 10,
-                width: "100%",
+                width: "75%",
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                top: "3rem",
-                left: "3rem",
+                top: "1.75rem",
+                left: "2rem",
             }}
         >
             <Logo>AnotherStory</Logo>
+            <Link
+                href="/contact"
+                css={{
+                    fontFamily: "Inter",
+                    //alignItems: "flex-start",
+                    //lineHeight: 1,
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    //letterSpacing: letterSpacings.lg,
+                    color: light_5,
+                    //height: "100%",
+                    marginTop: "0.5rem",
+                    padding: "1rem 3rem",
+                    backgroundColor: dark_5,
+                    borderRadius: "1rem",
+                }}
+            >
+                Contact
+            </Link>
             <Circumscribed
                 style={{
                     width: "3rem",
@@ -224,7 +246,7 @@ const MenuOpen = ({ trigger, children, ...props }) => {
     }, [trigger, closeMe])
 
     const { height, right, width } = getFloodDims()
-    console.log({ height, right, width })
+    //console.log({ height, right, width })
     return (
         <Circumscribed
             {...props}
@@ -316,6 +338,7 @@ export const MiniMenu = ({ items, ...props }) => {
     return (
         <div style={{ position: "relative" }}>
             <MenuButton toggle={setMenuOpen} isOpen={menuOpen} />
+            {/*<ButtonCTA>Contact</ButtonCTA>*/}
             <AnimatePresence
                 //onExitComplete={() => {
                 //    console.log(

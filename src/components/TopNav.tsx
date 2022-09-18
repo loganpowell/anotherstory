@@ -16,17 +16,17 @@ const nav_items = [
     },
     {
         url: "/process",
-        title: "process",
+        title: "Process",
         img: "/svgs/finance.svg",
     },
     {
         url: "/about",
-        title: "about",
+        title: "About",
         img: "/svgs/about-us.svg",
     },
     {
         url: "/contact",
-        title: "contact",
+        title: "Contact",
         img: "/svgs/living.svg",
     },
 ]
@@ -102,9 +102,7 @@ export const TopNav = () => {
             }}
             animate={(showing && "show") || "hide"}
         >
-            {((size === "sm" || size === "xs") && (
-                <MiniMenu items={nav_items}> Large </MiniMenu>
-            )) || (
+            {((size === "sm" || size === "xs") && <MiniMenu items={nav_items} />) || (
                 <Slab padding={slim_slab_padding} bg="dark_5" direction={["row"]} align="center">
                     <div
                         css={{
