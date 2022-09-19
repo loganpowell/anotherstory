@@ -87,10 +87,10 @@ export const Home = ({ data: { data } }) => {
             </IsoSimple>
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center"></Slab>
             <WhatWhy />
-            <BoldSlab title="How" subtitle="it is done" />
+            <BoldSlab title="How" subtitle="Patent-Pending Technology" />
             <IsoSimple
                 src="/svgs/about-us.svg"
-                alt="We build your second story without breaching the first"
+                alt="Man working in second story addition hovering above first"
                 zIndex={10}
             >
                 <p
