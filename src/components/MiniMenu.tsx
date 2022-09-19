@@ -6,9 +6,9 @@ import { letterSpacings, Theme, theme } from "../theme"
 //import { CTX } from "../context"
 import { moicons, H2, H3 } from "../elements"
 import { Card } from "./Cards"
-//import { useR$ } from "../for-export"
+import { useR$ } from "../for-export"
 //import * as CSS from "csstype"
-import { useMyTheme } from "../hooks"
+import { useMyTheme, useSize$ } from "../hooks"
 import { Link } from "./Link"
 import { ButtonCTA } from "./ButtonCTA"
 
@@ -114,20 +114,21 @@ const Logo = ({ children }) => {
 
     return (
         <Link
-            css={{
+            css={useR$({
                 fontFamily: "Poppins",
                 alignItems: "flex-start",
                 //lineHeight: 1,
-                fontSize: "3rem",
+                fontSize: ["2.5rem", "3rem"],
                 fontWeight: "900",
                 letterSpacing: letterSpacings.md,
                 WebkitTextStroke: "1px",
                 WebkitTextStrokeColor: colors.light_5,
                 WebkitTextFillColor: colors.dark_5,
                 mixBlendMode: "screen",
-                margin: 0,
+                //margin: 0,
+                marginTop: ["0.25rem", "0rem"],
                 padding: "0.5rem",
-            }}
+            })}
             href="/"
         >
             {children}
@@ -157,20 +158,20 @@ const MenuClosed = ({ trigger, ...props }) => {
             <Logo>AnotherStory</Logo>
             <Link
                 href="/contact"
-                css={{
+                css={useR$({
                     fontFamily: "Inter",
                     //alignItems: "flex-start",
                     //lineHeight: 1,
-                    fontSize: "2rem",
+                    fontSize: ["1.5rem", "2rem"],
                     fontWeight: "700",
                     //letterSpacing: letterSpacings.lg,
                     color: light_5,
                     //height: "100%",
-                    marginTop: "0.5rem",
-                    padding: "1rem 3rem",
+                    marginTop: ["1.25rem", "0.5rem"],
+                    padding: ["0.5rem 1.5rem", "1rem 3rem"],
                     backgroundColor: dark_5,
-                    borderRadius: "1rem",
-                }}
+                    borderRadius: ["0.5rem", "1rem"],
+                })}
             >
                 Contact
             </Link>
@@ -338,7 +339,6 @@ export const MiniMenu = ({ items, ...props }) => {
     return (
         <div style={{ position: "relative" }}>
             <MenuButton toggle={setMenuOpen} isOpen={menuOpen} />
-            {/*<ButtonCTA>Contact</ButtonCTA>*/}
             <AnimatePresence
                 //onExitComplete={() => {
                 //    console.log(
