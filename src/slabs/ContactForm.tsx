@@ -13,6 +13,7 @@ import { _NAVIGATE } from "../context"
 import { API } from "@-0/browser"
 import { Input, Address, DropDown } from "../components"
 import Airtable from "airtable"
+import { PopupModal } from "react-calendly"
 //import vc from "vcards-js"
 //import dotenv from "dotenv"
 
@@ -88,6 +89,7 @@ export const ContactForm = () => {
     const [referral, setReferral] = useState("")
     const [financed, setFinanced] = useState("")
     const [certainty, setCertainty] = useState("")
+    const [isOpen, setIsOpen] = useState(false)
 
     const { fonts, fontSizes, colors, fontWeights, letterSpacings } = useMyTheme()
     return (
@@ -130,16 +132,17 @@ export const ContactForm = () => {
                     certainty,
                     //vcard: vCard,
                 }).then(val => {
-                    window.alert(
-                        `Thank you ${first}. We'll review your information and be in touch.`
-                    )
-                    run$.next({
-                        ..._NAVIGATE,
-                        [API.CMD_ARGS]: {
-                            [API.URL_FULL]: ".",
-                        },
-                    })
-                    window.history.pushState({}, null, ".")
+                    setIsOpen(true)
+                    //window.alert(
+                    //    `Thank you ${first}. We'll review your information and be in touch.`
+                    //)
+                    //run$.next({
+                    //    ..._NAVIGATE,
+                    //    [API.CMD_ARGS]: {
+                    //        [API.URL_FULL]: ".",
+                    //    },
+                    //})
+                    //window.history.pushState({}, null, ".")
                 })
             }}
         >
@@ -219,6 +222,27 @@ export const ContactForm = () => {
                         }}
                     />
                 </TextPanel>
+                <PopupModal
+                    url="https://calendly.com/anotherstory/introduction"
+                    rootElement={document.getElementById("root")}
+                    open={isOpen}
+                    onModalClose={() => {
+                        run$.next({
+                            ..._NAVIGATE,
+                            [API.CMD_ARGS]: {
+                                [API.URL_FULL]: ".",
+                            },
+                        })
+                        window.history.pushState({}, null, ".")
+                    }}
+                    prefill={{
+                        email,
+                        name,
+                        customAnswers: {
+                            a1: why,
+                        },
+                    }}
+                />
             </Slab>
         </form>
     )
