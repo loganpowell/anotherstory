@@ -348,7 +348,7 @@ export const MiniMenu = ({ items, ...props }) => {
                 //    )
                 //}}
                 // enable exit transitions to happen before unmount/remount
-                exitBeforeEnter
+                exitBeforeEnter={true}
             >
                 {(menuOpen && (
                     <MenuOpen trigger={setMenuOpen} key="open">
