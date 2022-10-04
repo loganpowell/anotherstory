@@ -60,11 +60,11 @@ const Backdrop = ({ children, onClick }) => {
 }
 
 export const Modal = ({ handleClose, children }) => {
-    useEffect(() => {
-        //console.log({ scrollY })
-        document.addEventListener("scroll", handleClose)
-        return () => document.removeEventListener("scroll", handleClose)
-    }, [handleClose])
+    //useEffect(() => {
+    //console.log({ scrollY })
+    //document.addEventListener("scroll", handleClose)
+    //return () => document.removeEventListener("scroll", handleClose)
+    //}, [handleClose])
     return (
         <Backdrop onClick={handleClose}>
             <motion.div
