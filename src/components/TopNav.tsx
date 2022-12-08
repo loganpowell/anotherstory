@@ -55,7 +55,7 @@ export const TopNav = () => {
     const [showing, setShowing] = useState(true)
     const [lastYPos, setLastYPos] = useState(0)
 
-    const { colors, fontSizes, fontWeights } = useMyTheme()
+    //const { colors, fontSizes, fontWeights } = useMyTheme()
     //const debouncedYPos = useDebounce(lastYPos, 1000)
 
     //console.log({ size })
@@ -67,7 +67,7 @@ export const TopNav = () => {
         setShowing(isScrollingUp)
         setLastYPos(yPos)
     }
-    const throttled = useThrottle(setScroll, 300)
+    const throttled = useThrottle(setScroll, 100)
 
     useEffect(() => {
         window.addEventListener("scroll", throttled, false)

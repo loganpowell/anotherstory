@@ -16,30 +16,35 @@ type Responsive = RArr | RFun
 // https://github.com/frenic/csstype#what-should-i-do-when-i-get-type-errors
 declare module "csstype" {
     interface Properties {
-        // Add a missing property
-        //WebkitRocketLauncher?: string;
-        size?: string
-        label?: string
-        lineHeight?: CSS.Property.LineHeight | Responsive
+        alignItems?: CSS.Property.AlignItems | Responsive
+        borderColor?: CSS.Property.BorderColor | Responsive
         color?: CSS.Property.Color | Responsive
+        flexDirection?: CSS.Property.FlexDirection | Responsive
+        fontFamily?: CSS.Property.FontFamily | Responsive
         fontSize?: CSS.Property.FontSize | Responsive
-        width?: CSS.Property.Width | Responsive
+        fontWeight?: CSS.Property.FontWeight | Responsive
+        gap?: CSS.Property.Gap | Responsive
         height?: CSS.Property.Height | Responsive
+        label?: string
+        letterSpacing?: CSS.Property.LetterSpacing | Responsive
+        lineHeight?: CSS.Property.LineHeight | Responsive
+        marginTop?: CSS.Property.MarginTop | Responsive
+        mixBlendMode?: CSS.Property.MixBlendMode | Responsive
         padding?: CSS.Property.Padding | Responsive
         paddingTop?: CSS.Property.PaddingTop | Responsive
         paddingBottom?: CSS.Property.PaddingBottom | Responsive
         paddingRight?: CSS.Property.PaddingRight | Responsive
         paddingLeft?: CSS.Property.PaddingLeft | Responsive
-        borderColor?: CSS.Property.BorderColor | Responsive
         right?: CSS.Property.Right | Responsive
+        size?: string
         top?: CSS.Property.Top | Responsive
-        flexDirection?: CSS.Property.FlexDirection | Responsive
-        letterSpacing?: CSS.Property.LetterSpacing | Responsive
-        alignItems?: CSS.Property.AlignItems | Responsive
-        gap?: CSS.Property.Gap | Responsive
+        WebkitTextStroke?: CSS.Property.WebkitTextStroke | Responsive
+        WebkitTextStrokeColor?: CSS.Property.WebkitTextStrokeColor | Responsive
+        WebkitTextFillColor?: CSS.Property.WebkitTextFillColor | Responsive
+        width?: CSS.Property.Width | Responsive
+
         // Add a CSS Custom Property
         //'--theme-color'?: 'black' | 'white';
-
         // ...or allow any other property
         //[index: string]: any;
     }

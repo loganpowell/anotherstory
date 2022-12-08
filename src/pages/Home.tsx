@@ -50,7 +50,8 @@ export const Home = ({ data: { data } }) => {
                     </H3>
                 </div>
             </Slab>
-            <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
+            {/*<iframe title="vimeo-player" src="https://player.vimeo.com/video/777452572?h=a19a02c9c6" width="640" height="360" frameborder="0" allowfullscreen></iframe>*/}
+            <YouTubeSlab embedId="779274998" yt={false} title="Hall Interview" />
             <Slab padding={medium_slab_padding} bg="light_5" justify="center" align="center">
                 <H3 color="dark_5" width={null}>
                     Latest News
@@ -123,7 +124,9 @@ export const Home = ({ data: { data } }) => {
             <TimelineHome title="When" subtitle="things happen for you" data={data} />
 
             <BannerQuote />
+
             <BigQuote />
+            <YouTubeSlab embedId="736543055" yt={false} title="Hall Interview" />
 
             <Footer />
         </Page>

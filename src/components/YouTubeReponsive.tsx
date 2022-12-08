@@ -35,7 +35,7 @@ export const YoutubeEmbed = ({ embedId, yt = true, title = "AnotherStory" }) => 
             src={
                 yt
                     ? `https://www.youtube.com/embed/${embedId}`
-                    : `https://player.vimeo.com/video/${embedId}?h=dfba48524a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`
+                    : `https://player.vimeo.com/video/${embedId}`
             }
         />
     </div>

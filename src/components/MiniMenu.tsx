@@ -1,13 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState, useContext, useCallback, useRef } from "react"
-//import styled, { StyledTags } from "@emotion/styled"
-//import { useTheme, jsx } from "@emotion/react"
 import { motion, AnimatePresence, useCycle, useViewportScroll, usePresence } from "framer-motion"
 import { letterSpacings, Theme, theme } from "../theme"
-//import { CTX } from "../context"
 import { moicons, H2, H3 } from "../elements"
 import { Card } from "./Cards"
 import { useR$ } from "../for-export"
-//import * as CSS from "csstype"
 import { useMyTheme, useSize$ } from "../hooks"
 import { Link } from "./Link"
 import { ButtonCTA } from "./ButtonCTA"
@@ -117,9 +113,9 @@ const Logo = ({ children }) => {
             css={useR$({
                 fontFamily: "Poppins",
                 alignItems: "flex-start",
-                //lineHeight: 1,
+                lineHeight: 1,
                 fontSize: ["2.5rem", "3rem"],
-                fontWeight: "900",
+                fontWeight: 900,
                 letterSpacing: letterSpacings.md,
                 WebkitTextStroke: "1px",
                 WebkitTextStrokeColor: colors.light_5,
@@ -151,19 +147,21 @@ const MenuClosed = ({ trigger, ...props }) => {
                 alignItems: "center",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                top: "1.75rem",
-                left: "2rem",
+                top: "2.5rem",
+                left: "2.5rem",
+                //top: "1.75rem",
+                //left: "2rem",
             }}
         >
             <Logo>AnotherStory</Logo>
-            <Link
+            {/*<Link
                 href="/contact"
                 css={useR$({
                     fontFamily: "Inter",
                     //alignItems: "flex-start",
                     //lineHeight: 1,
                     fontSize: ["1.5rem", "2rem"],
-                    fontWeight: "700",
+                    fontWeight: 500,
                     //letterSpacing: letterSpacings.lg,
                     color: light_5,
                     //height: "100%",
@@ -174,7 +172,7 @@ const MenuClosed = ({ trigger, ...props }) => {
                 })}
             >
                 Contact
-            </Link>
+            </Link>*/}
             <Circumscribed
                 style={{
                     width: "3rem",

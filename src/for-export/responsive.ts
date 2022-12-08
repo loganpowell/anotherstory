@@ -105,5 +105,3 @@ const configResponsiveStyler = (CTX: React.Context<{ size$: string }>) => (css: 
 }
 
 export const useR$ = configResponsiveStyler(CTX)
-
-// TODO: FUCKIN DRAW/SKETCH! 🔥

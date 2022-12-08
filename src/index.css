@@ -25,6 +25,7 @@
 }*/
 
 html {
+    /* 🔴 css fix for bots/scrapers when js is disabled -> body: { font-size 16…0% }*/
     /* font-size 1em = 10px on default browser settings (16px) */
     font-size: 62.5%;
 }
@@ -35,8 +36,9 @@ body {
     /*overflow-y: scroll;*/
     --secondary: rgb(161, 161, 161);
     --divider: #343434;
+    /* 🔴 css fix for bots/scrapers when js is disabled -> body: { font-size 16…0% }*/
     /* fix for prerendered (no js enabled) font resizing to compensate for 62.5%
-        adjustment before dynamic styles */
+        adjustment before dynamic (jss: emotion) styles */
     font-size: 160%;
 }
 
