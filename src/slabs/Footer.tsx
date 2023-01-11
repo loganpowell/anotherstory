@@ -48,8 +48,8 @@ const data = {
             {
                 icon: "envelope",
                 point: "Email",
-                //link: "mailto:inquiries@anotherstory.com?subject=Referral%20from%20anotherstory",
-                link: "/contact",
+                link: "mailto:hey@anotherstory.com?subject=Referral%20from%20anotherstory.com",
+                //link: "/contact",
             },
             {
                 icon: "facebook-logo",
@@ -74,6 +74,7 @@ const data = {
             { point: "Birmingham, AL" },
             { point: "USA" },
             { icon: "phone-call", point: "205-336-2121" },
+            //{ icon: "envelope", point: "hey@anotherstory.com" },
         ],
     },
 }
