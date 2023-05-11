@@ -145,6 +145,7 @@ const getTimelineData = async (path, keep = ["order", "time", "title", "icon"]) 
 //
 // TODO: EXPORT TO @-0/browser
 const EMPTY = async () => await new Promise(r => setTimeout(r, 0))
+const BASE_URL = "https://anotherstory.com"
 
 export const urlToPageConfig: Router = async URL => {
     const match = URL2obj(URL)
@@ -166,7 +167,7 @@ export const urlToPageConfig: Router = async URL => {
                         title: "AnotherStory",
                         favicon: "/favicon.ico",
                         og_description: "Build Another Story - Without Moving!",
-                        og_image: "/images/stair.png",
+                        og_image: BASE_URL + "/images/stair.png",
                         //og_image_width: "",
                         //og_image_height: "",
                         //og_type: "",
@@ -184,7 +185,7 @@ export const urlToPageConfig: Router = async URL => {
                         title: "Contact Us",
                         favicon: "/favicon.ico",
                         og_description: "Sign up for a free 15-minute consultation",
-                        og_image: "/images/finance.png",
+                        og_image: BASE_URL + "/images/finance.png",
                     },
                 },
             },
@@ -206,7 +207,7 @@ export const urlToPageConfig: Router = async URL => {
                         title: "Our Process",
                         favicon: "/favicon.ico",
                         og_description: "Move into Your Second Story in a Year or Less",
-                        og_image: "/images/living.png",
+                        og_image: BASE_URL + "/images/living.png",
                     },
                 },
             },
@@ -220,8 +221,8 @@ export const urlToPageConfig: Router = async URL => {
                     [DOM_HEAD]: {
                         title: "About Us",
                         favicon: "/favicon.ico",
-                        og_description: "The AnotherStory Story",
-                        og_image: "/images/about-us.png",
+                        og_description: "The Story of AnotherStory",
+                        og_image: BASE_URL + "/images/about-us.png",
                     },
                 },
             },
