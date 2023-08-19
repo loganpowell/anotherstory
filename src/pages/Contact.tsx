@@ -19,7 +19,7 @@ export const Contact = ({ data }) => {
     return (
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
-            <IsoSimple src="/svgs/living.svg" alt="image of female reading a book in living room">
+            <IsoSimple src="/svgs/finance.svg" alt="a pleasant office space">
                 <TextPanel>
                     <H3 font="serif" color="dark_5">
                         What&apos;s your story?

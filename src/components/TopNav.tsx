@@ -12,28 +12,28 @@ const nav_items = [
     {
         url: "/",
         title: "Home",
-        img: "/svgs/stair.svg",
+        img: "/svgs/living.svg",
     },
     {
         url: "/process",
         title: "Process",
-        img: "/svgs/finance.svg",
+        img: "/svgs/stair.svg",
     },
     {
         url: "/contact",
         title: "Contact",
-        img: "/svgs/living.svg",
+        img: "/svgs/finance.svg",
     },
     {
         url: "/contractors",
         title: "Contractors",
         img: "/svgs/planner.svg",
     },
-    {
-        url: "/about",
-        title: "About",
-        img: "/svgs/about-us.svg",
-    },
+    //{
+    //    url: "/about",
+    //    title: "About",
+    //    img: "/svgs/about-us.svg",
+    //},
 ]
 
 const NavLink = ({ href, children }) => {
@@ -129,7 +129,7 @@ export const TopNav = () => {
                         }}
                     >
                         <NavLink href="/process">Process</NavLink>
-                        <NavLink href="/about">About</NavLink>
+                        {/*<NavLink href="/about">About</NavLink>*/}
                         <NavLink href="/contractors">Contractors</NavLink>
                         <ButtonCTA>Contact</ButtonCTA>
                     </div>

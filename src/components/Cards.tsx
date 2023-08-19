@@ -50,11 +50,12 @@ const Title = ({ href, children }) => {
         <p
             css={{
                 fontFamily: "Poppins",
-                fontSize: fontSizes.lg,
+                fontSize: fontSizes.md,
                 //padding: space.sm,
                 paddingLeft: space.md,
                 paddingBottom: space.sm,
                 letterSpacing: letterSpacings.md,
+                textShadow: "2px 2px white",
                 //fontWeight: fontWeights.bold,
 
                 color: colors.dark_5,

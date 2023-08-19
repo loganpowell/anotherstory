@@ -155,7 +155,7 @@ export const ContractorForm = () => {
                         onChange={ev => setReferral(ev.target.value)}
                     />
                     <Input
-                        label="In what year was your company established?"
+                        label="When was your company established?"
                         value={est}
                         onChange={ev => setEst(ev.target.value)}
                     />

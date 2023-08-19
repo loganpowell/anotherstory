@@ -52,10 +52,7 @@ export const Process = ({ data }) => {
     return (
         <Page>
             <Slab padding={tall_slab_padding} bg="light_5" />
-            <IsoSimple
-                src="/svgs/finance.svg"
-                alt="image of office with 3 chairs facing each other across a desk"
-            >
+            <IsoSimple src="/svgs/living.svg" alt="image of female reading a book in living room">
                 <TextPanel>
                     <H3 font="serif" color="dark_5">
                         The Creative Process
