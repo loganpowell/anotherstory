@@ -20,14 +20,19 @@ const nav_items = [
         img: "/svgs/finance.svg",
     },
     {
-        url: "/about",
-        title: "About",
-        img: "/svgs/about-us.svg",
-    },
-    {
         url: "/contact",
         title: "Contact",
         img: "/svgs/living.svg",
+    },
+    {
+        url: "/contractors",
+        title: "Contractors",
+        img: "/svgs/planner.svg",
+    },
+    {
+        url: "/about",
+        title: "About",
+        img: "/svgs/about-us.svg",
     },
 ]
 
@@ -125,6 +130,7 @@ export const TopNav = () => {
                     >
                         <NavLink href="/process">Process</NavLink>
                         <NavLink href="/about">About</NavLink>
+                        <NavLink href="/contractors">Contractors</NavLink>
                         <ButtonCTA>Contact</ButtonCTA>
                     </div>
                 </Slab>

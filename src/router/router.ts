@@ -18,7 +18,7 @@ import { getIn } from "@thi.ng/paths"
 //import dotenv from "dotenv"
 //import fetch from "node-fetch"
 //import { items } from "../misc/data"
-import { Home, Contact, Process, About } from "../pages"
+import { Home, Contact, Contractors, Process, About } from "../pages"
 //import { Magic, Move, Stub } from "../pages"
 import { isEmpty } from "../utils"
 
@@ -191,6 +191,21 @@ export const urlToPageConfig: Router = async URL => {
             },
         ],
         [
+            { ...match, _PATH: ["contractors"] },
+            {
+                [URL_PAGE]: () => Contractors,
+                [URL_DATA]: {
+                    [DOM_BODY]: () => null,
+                    [DOM_HEAD]: {
+                        title: "Contractor Partners",
+                        favicon: "/favicon.ico",
+                        og_description: "We 💙 Contractors",
+                        og_image: BASE_URL + "/images/finance.png",
+                    },
+                },
+            },
+        ],
+        [
             { ...match, _PATH: ["process"] },
             {
                 [URL_PAGE]: () => Process,
@@ -227,6 +242,7 @@ export const urlToPageConfig: Router = async URL => {
                 },
             },
         ],
+
         //[
         //    { ...match, _PATH: ["magic-move"] },
         //    {

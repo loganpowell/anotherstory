@@ -63,9 +63,9 @@ const Title = ({ href, children }) => {
                 right: 0,
                 zIndex: 10,
                 width: "100%",
-                WebkitTextStroke: "2px",
-                WebkitTextStrokeColor: colors.dark_5,
-                WebkitTextFillColor: "transparent",
+                //WebkitTextStroke: "2px",
+                //WebkitTextStrokeColor: colors.dark_5,
+                //WebkitTextFillColor: "transparent",
             }}
             //href={href}
         >
