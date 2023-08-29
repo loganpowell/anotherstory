@@ -169,6 +169,23 @@
             fbq("init", "637645623943932")
             fbq("track", "PageView")
         </script>
+
+        <!--metricool-->
+        <script>
+            function loadScript(a) {
+                var b = document.getElementsByTagName("head")[0],
+                    c = document.createElement("script")
+                ;(c.type = "text/javascript"),
+                    (c.src = "https://tracker.metricool.com/resources/be.js"),
+                    (c.onreadystatechange = a),
+                    (c.onload = a),
+                    b.appendChild(c)
+            }
+            loadScript(function () {
+                beTracker.t({ hash: "fb5e830a3451ebf15bb6693da63e143d" })
+            })
+        </script>
+        <!--end metricool-->
         <noscript
             ><img
                 height="1"
